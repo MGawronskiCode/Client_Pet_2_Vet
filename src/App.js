@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { MDBContainer } from 'mdb-react-ui-kit';
-import { Alert, Button, Navbar, Dropdown, Form } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {MDBContainer} from 'mdb-react-ui-kit';
+import {Alert, Button, Navbar, Dropdown, Form} from 'react-bootstrap';
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { pets: [] };
+        this.state = {pets: []};
 
         this.getPets = this.getPets.bind(this);
     }
@@ -14,7 +14,7 @@ class App extends Component {
     async componentDidMount() {
         const promise = fetch('http://localhost:8080/pets')
             .then(response => response.json());
-        promise.then(data => this.setState({ pets: data }));
+        promise.then(data => this.setState({pets: data}));
     }
 
     getPets() {
@@ -56,7 +56,7 @@ class App extends Component {
                             title="Choose your color"/>
                     </>
 
-                    <Form.Control type="text" placeholder="Some input here..." />
+                    <Form.Control type="text" placeholder="Some input here..."/>
 
                     <Form>
                         {['checkbox', 'radio'].map((type) => (
@@ -90,7 +90,7 @@ class App extends Component {
 
                     <>
                         <Form.Label>Range</Form.Label>
-                        <Form.Range />
+                        <Form.Range/>
                     </>
 
                 </Navbar>
