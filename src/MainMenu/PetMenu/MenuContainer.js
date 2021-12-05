@@ -1,6 +1,5 @@
 import {Col, Container} from "react-bootstrap";
 import MenuElements from "./MenuElements";
-import Logotype from "./Logotype";
 import MenuTitle from "./MenuTitle";
 
 export default function MenuContainer() {
@@ -8,7 +7,7 @@ export default function MenuContainer() {
         <div>
             <Container fluid>
                 <Col xs={2}>
-                    <Logotype />
+                    {/*<Logotype />*/}
                     <MenuTitle />
                     <MenuElements />
                 </Col>

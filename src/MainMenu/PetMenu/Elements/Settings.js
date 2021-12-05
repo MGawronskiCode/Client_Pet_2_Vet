@@ -16,7 +16,7 @@ export default class Settings extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.displaySettings}>
                         <MDBIcon icon="cog"/>&ensp; Settings

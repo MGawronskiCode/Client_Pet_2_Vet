@@ -17,7 +17,7 @@ export default class Calendar extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.getCalendar}>
                         <MDBIcon icon="calendar-alt"/>&ensp; Calendar

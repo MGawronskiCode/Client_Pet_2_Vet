@@ -27,7 +27,7 @@ export default class Pets extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.getPets}>
                         <MDBIcon icon="heart"/>&ensp; Your Pets

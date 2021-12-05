@@ -28,7 +28,7 @@ export default class Veterinarians extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.getVeterinarians}>
                         <MDBIcon icon="user-md"/>&ensp; Veterinarians

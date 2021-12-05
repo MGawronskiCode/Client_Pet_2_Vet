@@ -27,7 +27,7 @@ export default class Diet extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.getDietModule}>
                         <MDBIcon icon="drumstick-bite"/>&ensp; Diet module

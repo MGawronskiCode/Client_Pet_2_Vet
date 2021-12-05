@@ -1,14 +1,19 @@
-a {
-  line-height: 15px;
-  size: inherit;
-  transform: translate(-50%, -50%);
-  color: #4983de;
+#menuElement {
+  line-height: normal;
+  color: #416aa8;
   transition: .2s;
 }
 
-a:hover {
+#menuElement:hover {
   cursor: pointer;
   color: #0a216c;
-  transform: scale(1.5);
-  font-size: large;
+  transform: scale(1.05);
+  transform-origin: left;
+}
+
+#menuTitle {
+  color: #416aa8;
+  margin: 15px;
+  bottom: 15px;
+  text-align: center;
 }

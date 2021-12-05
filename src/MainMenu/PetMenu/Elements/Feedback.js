@@ -16,7 +16,7 @@ export default class Feedback extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.sendFeedback}>
                         <MDBIcon icon="paper-plane"/>&ensp; Send feedback

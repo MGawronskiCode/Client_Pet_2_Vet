@@ -16,7 +16,7 @@ export default class FindAVeterinarian extends Component {
 
     render() {
         return (
-            <div>
+            <div id="menuElement">
                 <p>
                     <a onClick={this.findVet}>
                         <MDBIcon icon="map-marked-alt"/>&ensp; Find a Veterinarian
