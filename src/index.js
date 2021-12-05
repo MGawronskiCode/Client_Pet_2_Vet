@@ -8,9 +8,7 @@ import PetMenu from "./MainMenu/PetMenu/PetMenu";
 
 ReactDOM.render(
     <React.StrictMode>
-        {/*<App/>*/}
         <PetMenu />
-        {/*<UserMenu />*/}
     </React.StrictMode>,
     document.getElementById('root')
 );

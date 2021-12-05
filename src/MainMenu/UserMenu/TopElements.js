@@ -1,5 +1,5 @@
 import React from "react";
-import MenuElement from "../MenuElement";
+import MenuElement_OLD from "../MenuElement_OLD";
 
 export default function TopElements () {
 
@@ -25,7 +25,7 @@ export default function TopElements () {
     return (
         <div>
             {topElements.map((element) =>
-                <MenuElement element={element} />
+                <MenuElement_OLD element={element} />
             )}
         </div>
     )
