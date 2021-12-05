@@ -1,0 +1,13 @@
+a {
+  line-height: 15px;
+  size: inherit;
+  transform: translate(-50%, -50%);
+  color: #4983de;
+  transition: .2s;
+}
+
+a:hover {
+  color: #0a216c;
+  transform: scale(1.5);
+  font-size: large;
+}
