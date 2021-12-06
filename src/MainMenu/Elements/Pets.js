@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {MDBIcon} from "mdb-react-ui-kit";
-import '../../Menu.css'
+import '../Menu.css'
 
 export default class Pets extends Component {
 
@@ -14,6 +14,7 @@ export default class Pets extends Component {
         this.getPets = this.getPets.bind(this);
     }
 
+    // TODO: fix endpoint at backend side. For such endpoint we get all pets from DB, not User's pet => should be like "http://localhost:8080/<userId>/pets"
     async componentDidMount() {
         fetch("http://localhost:8080/pets")
             .then(response => response.json()

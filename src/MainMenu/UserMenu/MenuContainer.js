@@ -1,6 +1,6 @@
 import {Col, Container} from "react-bootstrap";
-import MenuElements from "./MenuElements";
 import MenuTitle from "../MenuTitle";
+import MenuElements from './MenuElements'
 import Logotype from "../Logotype";
 
 export default function MenuContainer() {

@@ -1,6 +1,6 @@
 import React from "react";
-import Feedback from "./Elements/Feedback";
-import Settings from "./Elements/Settings";
+import Feedback from "./Feedback";
+import Settings from "./Settings";
 
 export default function BottomElements() {
 

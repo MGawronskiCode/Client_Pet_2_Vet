@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {MDBIcon} from "mdb-react-ui-kit";
-import '../../Menu.css'
+import '../Menu.css'
 
 export default class Settings extends Component {
 

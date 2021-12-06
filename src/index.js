@@ -4,12 +4,13 @@ import './index.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import reportWebVitals from './reportWebVitals';
 import UserMenu from "./MainMenu/UserMenu/UserMenu";
+import PetMenu from "./MainMenu/PetMenu/PetMenu";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        {/*<PetMenu />*/}
-        <UserMenu />
+        <PetMenu />
+        {/*<UserMenu />*/}
     </React.StrictMode>,
     document.getElementById('root')
 );
