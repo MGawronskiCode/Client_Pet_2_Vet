@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import reportWebVitals from './reportWebVitals';
-import UserMenu from "./MainMenu/UserMenu/UserMenu";
-import PetMenu from "./MainMenu/PetMenu/PetMenu";
+import PetPage from "./PetPage/PetPage";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        <PetMenu />
-        {/*<UserMenu />*/}
+        <PetPage />
     </React.StrictMode>,
     document.getElementById('root')
 );

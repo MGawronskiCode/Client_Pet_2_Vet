@@ -1,8 +1,15 @@
 import React, {Component} from "react";
-import MenuContainer from "./MenuContainer";
+import MenuTitle from "../MenuTitle";
+import UserNotes from "../Elements/UserNotes";
+import Veterinarians from "../Elements/Veterinarians";
+import FindAVeterinarian from "../Elements/FindAVeterinarian";
+import Calendar from "../Elements/Calendar";
+import BottomElements from "../Elements/BottomElements";
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class UserMenu extends Component {
+
+    // TODO userId from Parent. Here only for test
+    userId = 2;
 
     constructor(props) {
         super(props);
@@ -11,7 +18,12 @@ export default class UserMenu extends Component {
     render() {
         return (
             <div>
-                <MenuContainer />
+                <MenuTitle title="Menu" />
+                <UserNotes userId={this.userId} />
+                <Veterinarians />
+                <FindAVeterinarian />
+                <Calendar />
+                <BottomElements />
             </div>
         )
     }

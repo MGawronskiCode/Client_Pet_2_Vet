@@ -17,3 +17,8 @@
   bottom: 15px;
   text-align: center;
 }
+
+#menu {
+  background-color: lightgreen;
+  max-height: 900px;
+}

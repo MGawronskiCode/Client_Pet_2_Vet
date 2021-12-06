@@ -5,7 +5,11 @@ import Settings from "./Settings";
 export default function BottomElements() {
 
     return (
-        <div className="bottom-0 position-absolute bs-tooltip-bottom">
+        // <div id="menu" className="bottom-0 position-absolute bs-tooltip-bottom">
+        //     <Feedback />
+        //     <Settings />
+        // </div>
+        <div>
             <Feedback />
             <Settings />
         </div>

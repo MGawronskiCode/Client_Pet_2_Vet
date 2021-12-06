@@ -1,8 +1,16 @@
 import React, {Component} from "react";
-import MenuContainer from "./MenuContainer";
+import MenuTitle from "../MenuTitle";
+import Pets from "../Elements/Pets";
+import Veterinarians from "../Elements/Veterinarians";
+import FindAVeterinarian from "../Elements/FindAVeterinarian";
+import Diet from "../Elements/Diet";
+import Calendar from "../Elements/Calendar";
+import BottomElements from "../Elements/BottomElements";
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class PetMenu extends Component {
+
+    // TODO petId from Parent. Here only for test
+    petId = 1;
 
     constructor(props) {
         super(props);
@@ -11,9 +19,14 @@ export default class PetMenu extends Component {
     render() {
         return (
             <div>
-                <MenuContainer />
+                <MenuTitle title="Menu"/>
+                <Pets/>
+                <Veterinarians/>
+                <FindAVeterinarian/>
+                <Diet petId={this.petId}/>
+                <Calendar/>
+                <BottomElements/>
             </div>
         )
     }
-
 }
