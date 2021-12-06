@@ -1,5 +1,5 @@
 import {MDBIcon} from "mdb-react-ui-kit";
-import './Menu.css'
+import '../Styles/Menu.css'
 
 export default function MenuTitle(props) {
     return (

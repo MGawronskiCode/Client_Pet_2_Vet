@@ -5,7 +5,8 @@ import Veterinarians from "../Elements/Veterinarians";
 import FindAVeterinarian from "../Elements/FindAVeterinarian";
 import Diet from "../Elements/Diet";
 import Calendar from "../Elements/Calendar";
-import BottomElements from "../Elements/BottomElements";
+import Feedback from "../Elements/Feedback";
+import Settings from "../Elements/Settings";
 
 export default class PetMenu extends Component {
 
@@ -25,7 +26,10 @@ export default class PetMenu extends Component {
                 <FindAVeterinarian/>
                 <Diet petId={this.petId}/>
                 <Calendar/>
-                <BottomElements/>
+                <div id="bottomElements">
+                    <Feedback />
+                    <Settings />
+                </div>
             </div>
         )
     }

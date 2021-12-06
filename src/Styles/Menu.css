@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-#menu {
-  background-color: lightgreen;
-  max-height: 900px;
+#bottomElements {
+  position: absolute;
+  bottom: 0;
 }

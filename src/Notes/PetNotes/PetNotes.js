@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import '../Notes.css'
+import '../../Styles/Notes.css'
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class PetNotes extends Component {
@@ -11,7 +11,7 @@ export default class PetNotes extends Component {
     render() {
         return (
             <div>
-                <p>New</p>
+                <p>Pet Notes</p>
             </div>
         )
     }

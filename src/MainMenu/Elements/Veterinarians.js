@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {MDBIcon} from "mdb-react-ui-kit";
-import '../Menu.css'
+import '../../Styles/Menu.css'
 
 export default class Veterinarians extends Component {
 
