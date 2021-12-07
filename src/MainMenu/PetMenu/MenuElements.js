@@ -12,7 +12,7 @@ export default function MenuElements() {
     const petId = 1;
 
     return (
-        <div>
+        <div id='menu-elements'>
             <Pets/>
             <Veterinarians />
             <FindAVeterinarian />

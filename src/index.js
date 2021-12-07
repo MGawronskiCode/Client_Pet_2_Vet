@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import UserMenu from "./MainMenu/UserMenu/UserMenu";
 import PetMenu from "./MainMenu/PetMenu/PetMenu";
 
-
 ReactDOM.render(
     <React.StrictMode>
         <PetMenu />

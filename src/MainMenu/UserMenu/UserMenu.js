@@ -10,7 +10,7 @@ export default class UserMenu extends Component {
 
     render() {
         return (
-            <div>
+            <div id='user-menu'>
                 <MenuContainer />
             </div>
         )

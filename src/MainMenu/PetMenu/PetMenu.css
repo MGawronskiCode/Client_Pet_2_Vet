@@ -1,0 +1,8 @@
+#left-panel-col{
+    border-right: solid;
+    border-right-width: 3px;
+    border-right-color: #0a216c;
+    padding-right: 10%;
+    align-items: center;
+    display: flex;
+}

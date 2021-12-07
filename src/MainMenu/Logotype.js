@@ -4,7 +4,7 @@ export default function Logotype () {
 
     {/* TODO doesn't work image src with local storage */}
     return (
-        <div>
+        <div id='logotype'>
             <Container>
                 <Row>
                     <Col xs={3} md={4} className="text-center">
