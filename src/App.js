@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, {Component} from 'react';
 
 class App extends Component {
-    state = { loading: false, pets: [] };
 
+    constructor(props) {
+        super(props);
+        this.state = {pets: []};
 
-    constructor(props, context, state) {
-        super(props, context);
-        this.state = state;
+        this.getPets = this.getPets.bind(this);
     }
 
     componentDidMount() {

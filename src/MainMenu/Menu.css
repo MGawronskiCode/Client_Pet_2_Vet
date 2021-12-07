@@ -1,0 +1,19 @@
+#menuElement {
+  line-height: normal;
+  color: #416aa8;
+  transition: .2s;
+}
+
+#menuElement:hover {
+  cursor: pointer;
+  color: #0a216c;
+  transform: scale(1.05);
+  transform-origin: left;
+}
+
+#menuTitle {
+  color: #416aa8;
+  margin: 15px;
+  bottom: 15px;
+  text-align: center;
+}
