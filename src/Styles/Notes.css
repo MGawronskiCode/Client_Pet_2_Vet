@@ -1,0 +1,41 @@
+#title {
+    font-weight: bold;
+    margin-right: auto;
+    text-align: center;
+}
+
+#add {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    transition: transform .2s;
+}
+
+#add:hover {
+    cursor: pointer;
+    color: #0a216c;
+    transform: scale(1.1);
+}
+
+#delete {
+    position: fixed;
+    right: 25px;
+    transition: transform .2s;
+}
+
+#delete:hover {
+    cursor: pointer;
+    color: #f60000;
+    transform: scale(1.1);
+}
+
+#content {
+    font-style: italic;
+}
+
+#content.disabled {
+    pointer-events: none;
+    /* for "disabled" effect */
+    opacity: 0.5;
+    background: #CCC;
+}
