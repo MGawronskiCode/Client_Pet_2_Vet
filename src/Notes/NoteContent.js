@@ -1,31 +1,32 @@
 import {MDBIcon} from "mdb-react-ui-kit";
-import React, {Component} from "react";
+import React from "react";
 
-export default class NoteContent extends Component {
+export default function NoteContent(props) {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            disabled: false,
-        }
-
-        this.deleteNote = this.deleteNote.bind(this);
-    }
-
-    deleteNote() {
+    function deleteNote() {
         alert("Modal with confirmation will be here.");
     }
 
-    render() {
-        return (
-            <div id="content">
-
-                {this.props.content}
-
-                <MDBIcon id="delete" fas icon="trash-alt" onClick={this.deleteNote}  />
-
-            </div>
-        )
+    function editNote() {
+        alert("Edit note modal will be here.");
     }
+
+    return (
+        <div id="content">
+
+            {props.content}
+            {
+                props.disabled ?
+                    <>
+                        <MDBIcon id="disabled" fas icon="pencil-alt"/>
+                        <MDBIcon id="disabled" fas icon="trash-alt"/>
+                    </>
+                    :
+                    <>
+                        <MDBIcon id="edit" fas icon="pencil-alt" onClick={editNote}/>
+                        <MDBIcon id="delete" fas icon="trash-alt" onClick={deleteNote}/>
+                    </>
+            }
+        </div>
+    )
 }

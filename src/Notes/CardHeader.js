@@ -8,9 +8,16 @@ export default function CardHeader(props) {
     }
 
     return (
-        <div id="title">
-            {props.title}
-            <MDBIcon id="add" fas icon="plus-circle" onClick={addNewCard} />
+        <div>
+            <div id="cardTitle">
+                {props.title}
+            </div>
+            {
+                props.disabled ?
+                    <MDBIcon id="disabled" fas icon="plus-circle"/>
+                    :
+                    <MDBIcon id="add" fas icon="plus-circle" onClick={addNewCard}/>
+            }
         </div>
     )
 }

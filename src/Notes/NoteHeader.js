@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function NoteHeader (props) {
+export default function NoteHeader(props) {
 
     return (
         <div id="title">

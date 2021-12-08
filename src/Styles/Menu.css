@@ -3,6 +3,11 @@
   color: #416aa8;
   transition: .2s;
 }
+  @media(max-width: 767px) {
+    #menuElement{
+      background-color: #f60000;
+    }
+  }
 
 #menuElement:hover {
   cursor: pointer;

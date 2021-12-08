@@ -1,13 +1,31 @@
+#card {
+    height: 320px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform .4s;
+}
+
+#card:hover {
+    transform: scale(1.01);
+}
+
+#cardTitle {
+    font-weight: bold;
+    text-align: center;
+}
+
 #title {
     font-weight: bold;
-    margin-right: auto;
     text-align: center;
+}
+
+#content {
+    font-style: italic;
 }
 
 #add {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 2.5%;
+    right: 4%;
     transition: transform .2s;
 }
 
@@ -29,13 +47,19 @@
     transform: scale(1.1);
 }
 
-#content {
-    font-style: italic;
+#edit {
+    position: fixed;
+    right: 50px;
+    transition: transform .2s;
 }
 
-#content.disabled {
-    pointer-events: none;
-    /* for "disabled" effect */
-    opacity: 0.5;
+#edit:hover {
+    cursor: pointer;
+    color: #3eb243;
+    transform: scale(1.1);
+}
+
+#disabled {
+    opacity: 0;
     background: #CCC;
 }

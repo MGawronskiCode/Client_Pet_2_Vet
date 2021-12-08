@@ -3,7 +3,7 @@ import '../Styles/Menu.css'
 
 export default function MenuTitle(props) {
     return (
-        <div id="menuTitle">
+        <div id="menuTitle" >
             <MDBIcon fas icon="user-alt" />&ensp; {props.title}
         </div>
     )

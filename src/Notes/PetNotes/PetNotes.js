@@ -1,56 +1,45 @@
-import React, {Component} from "react";
-import '../../Styles/Notes.css'
-import {MDBCard, MDBCardBody, MDBCardTitle, MDBIcon} from "mdb-react-ui-kit";
+import React, {useEffect, useState} from "react";
+import {MDBCard, MDBCardBody, MDBCardTitle} from "mdb-react-ui-kit";
 import CardHeader from "../CardHeader";
 import Note from "../Note";
+import '../../Styles/Notes.css'
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class PetNotes extends Component {
+export default function PetNotes() {
 
     // TODO: petId from Parent. Here only for test
-    petId = 3;
+    const petId = 3;
+    const [notes, setNotes] = useState([]);
+    const [disabled, setDisabled] = useState(true);
 
-    constructor(props) {
-        super(props);
+    useEffect(() => {
+        fetch("http://localhost:8080/pets/" + petId + "/notes")
+            .then(resp => resp.json())
+            .then(data => setNotes(data))
+    }, [])
 
-        this.state = {
-            notes: [],
-        }
-
-        this.getNotes = this.getNotes.bind(this);
-    }
-
-    async componentDidMount() {
-        fetch("http://localhost:8080/pets/" + this.petId + "/notes")
-            .then(response => response.json()
-                .then(data => this.setState({notes: data}))
-            );
-    }
-
-    getNotes() {
-        return this.state.notes.map((note, index) => {
+    function getNotes() {
+        return notes.map((note, index) => {
             return (
                 <Note note={note} index={index}/>
             )
         })
     }
 
+    return (
+        <div onMouseOver={() => setDisabled(false)}
+            onMouseOut={() => setDisabled(true)}>
+            <MDBCard id="card">
 
-    render() {
-        return (
-            <div>
-                <MDBCard>
+                <MDBCardTitle>
+                    <CardHeader title="Personal notes" disabled={disabled}/>
+                </MDBCardTitle>
 
-                    <MDBCardTitle>
-                        <CardHeader title="Personal notes"/>
-                    </MDBCardTitle>
+                <MDBCardBody>
+                    {getNotes()}
+                </MDBCardBody>
 
-                    <MDBCardBody>
-                        {this.getNotes()}
-                    </MDBCardBody>
+            </MDBCard>
+        </div>
+    )
 
-                </MDBCard>
-            </div>
-        )
-    }
 }
