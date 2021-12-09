@@ -1,0 +1,29 @@
+#top-navbar-row{
+    background-color: rgba(104, 188, 246, 0.39);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: #0a216c;
+}
+
+#pet-panel{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.data-field{
+    background-color: rgba(0, 0, 0, 0.09);
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.data-row{
+    margin-bottom: 2%;
+}
+
+.pet-image{
+}
