@@ -4,9 +4,11 @@
   "description": "template for mdb-react-ui-kit",
   "private": true,
   "dependencies": {
+    "antd": "^4.17.3",
     "bootstrap": "^5.1.3",
     "mdb-react-ui-kit": "^2.0.0",
     "mdbreact": "^5.2.0",
+    "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-bootstrap": "^2.0.3",
     "react-dom": "17.0.1",
@@ -41,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "mdb-ui-kit": "^3.10.1"
+    "mdb-ui-kit": "^3.10.1",
+    "react-popconfirm": "^0.1.1"
   }
 }

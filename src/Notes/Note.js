@@ -12,8 +12,8 @@ export default function Note(props) {
             onMouseOver={() => setDisabled(false)}
             onMouseOut={() => setDisabled(true)}>
 
-            <div id="note">
-                <MDBCard>
+            <div>
+                <MDBCard id="note">
                     <MDBCardBody>
                         <MDBContainer>
                             <MDBRow>
@@ -24,7 +24,8 @@ export default function Note(props) {
                                     <MDBCardTitle>{props.note.title}</MDBCardTitle>
                                     <MDBCardText>
                                         <div>
-                                            <NoteContent content={props.note.content} disabled={disabled}/>
+                                            <NoteContent content={props.note.content} disabled={disabled} 
+                                                getDeleteModal={props.getDeleteModal}/>
                                         </div>
                                     </MDBCardText>
                                 </MDBCol>

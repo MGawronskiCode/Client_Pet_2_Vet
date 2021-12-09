@@ -4,7 +4,7 @@ import CardHeader from "../CardHeader";
 import Note from "../Note";
 import '../../Styles/Notes.css'
 
-export default function PetNotes() {
+export default function PetNotes(props) {
 
     // TODO: petId from Parent. Here only for test
     const petId = 3;
@@ -20,7 +20,7 @@ export default function PetNotes() {
     function getNotes() {
         return notes.map((note, index) => {
             return (
-                <Note note={note} index={index}/>
+                <Note note={note} index={index} getDeleteModal={props.getDeleteModal}/>
             )
         })
     }

@@ -4,8 +4,13 @@
 
 #note {
     border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 5px;
+    transition: transform .2s;
+}
+
+#note:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.01);
 }
 
 #content {
@@ -16,7 +21,7 @@
     font-size: 1.5em;
     position: absolute;
     top: 10px;
-    right: 25px;
+    right: 15px;
     transition: transform .2s;
     color: white;
 }
@@ -47,7 +52,7 @@
 
 #edit:hover {
     cursor: pointer;
-    color: #3eb243;
+    color: #0a216c;
     transform: scale(1.1);
 }
 

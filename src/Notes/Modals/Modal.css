@@ -1,0 +1,12 @@
+#cross {
+    text-align: center;
+    font-size: 50px;
+    color: #f93155;
+}
+
+#warning {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #f93155;
+    color: white;
+}

@@ -3,10 +3,6 @@ import React from "react";
 
 export default function NoteContent(props) {
 
-    function deleteNote() {
-        alert("Modal with confirmation will be here.");
-    }
-
     function editNote() {
         alert("Edit note modal will be here.");
     }
@@ -24,7 +20,7 @@ export default function NoteContent(props) {
                     :
                     <>
                         <MDBIcon id="edit" fas icon="pencil-alt" onClick={editNote}/>
-                        <MDBIcon id="delete" fas icon="trash-alt" onClick={deleteNote}/>
+                        <MDBIcon id="delete" fas icon="trash-alt" onClick={props.getDeleteModal}/>
                     </>
             }
         </div>
