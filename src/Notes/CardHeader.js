@@ -1,5 +1,5 @@
 import React from "react";
-import {MDBIcon} from "mdb-react-ui-kit";
+import {MDBBadge, MDBCol, MDBContainer, MDBIcon, MDBRow} from "mdb-react-ui-kit";
 
 export default function CardHeader(props) {
 
@@ -9,15 +9,25 @@ export default function CardHeader(props) {
 
     return (
         <div>
-            <div id="cardTitle">
-                {props.title}
-            </div>
-            {
-                props.disabled ?
-                    <MDBIcon id="disabled" fas icon="plus-circle"/>
-                    :
-                    <MDBIcon id="add" fas icon="plus-circle" onClick={addNewCard}/>
-            }
+            <MDBBadge className="container-xl">
+                <MDBContainer>
+                    <MDBRow>
+                        <MDBCol md="11">
+                            <h4>
+                                {props.title}
+                            </h4>
+                        </MDBCol>
+                        <MDBCol md="1" id="basket">
+                            {
+                                props.disabled ?
+                                    <MDBIcon id="disabled" fas icon="plus-circle"/>
+                                    :
+                                    <MDBIcon id="add" fas icon="plus-circle" onClick={addNewCard}/>
+                            }
+                        </MDBCol>
+                    </MDBRow>
+                </MDBContainer>
+            </MDBBadge>
         </div>
     )
 }

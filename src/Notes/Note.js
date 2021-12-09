@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import NoteHeader from "./NoteHeader";
 import NoteContent from "./NoteContent";
+import {MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
+import NoteImage from "./NoteImage";
 
 export default function Note(props) {
 
@@ -11,14 +12,27 @@ export default function Note(props) {
             onMouseOver={() => setDisabled(false)}
             onMouseOut={() => setDisabled(true)}>
 
-            <div>
-                <NoteHeader title={props.note.title} />
+            <div id="note">
+                <MDBCard>
+                    <MDBCardBody>
+                        <MDBContainer>
+                            <MDBRow>
+                                <MDBCol md="2" className='col-example'>
+                                    <NoteImage/>
+                                </MDBCol>
+                                <MDBCol>
+                                    <MDBCardTitle>{props.note.title}</MDBCardTitle>
+                                    <MDBCardText>
+                                        <div>
+                                            <NoteContent content={props.note.content} disabled={disabled}/>
+                                        </div>
+                                    </MDBCardText>
+                                </MDBCol>
+                            </MDBRow>
+                        </MDBContainer>
+                    </MDBCardBody>
+                </MDBCard>
             </div>
-
-            <div>
-                <NoteContent content={props.note.content} disabled={disabled}/>
-            </div>
-
         </div>
     )
 }

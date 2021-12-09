@@ -16,13 +16,9 @@
 }
 
 #historyAndNotes {
-    height: 50%;
+    /*height: 50%;*/
 }
 
 #history {
     background-color: coral;
-}
-
-#notes {
-    /*background-color: #729cdc;*/
 }

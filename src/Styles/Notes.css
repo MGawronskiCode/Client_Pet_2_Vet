@@ -1,21 +1,11 @@
 #card {
-    height: 320px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: transform .4s;
 }
 
-#card:hover {
-    transform: scale(1.01);
-}
-
-#cardTitle {
-    font-weight: bold;
-    text-align: center;
-}
-
-#title {
-    font-weight: bold;
-    text-align: center;
+#note {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 5px;
 }
 
 #content {
@@ -23,10 +13,12 @@
 }
 
 #add {
+    font-size: 1.5em;
     position: absolute;
-    top: 2.5%;
-    right: 4%;
+    top: 10px;
+    right: 25px;
     transition: transform .2s;
+    color: white;
 }
 
 #add:hover {
