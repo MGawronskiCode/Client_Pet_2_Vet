@@ -25,7 +25,8 @@ export default function Note(props) {
                                     <MDBCardText>
                                         <div>
                                             <NoteContent content={props.note.content} disabled={disabled} 
-                                                getDeleteModal={props.getDeleteModal}/>
+                                                getDeleteModal={props.getDeleteModal} 
+                                                getChangeModel={props.getChangeModel} id={props.note.id}/>
                                         </div>
                                     </MDBCardText>
                                 </MDBCol>

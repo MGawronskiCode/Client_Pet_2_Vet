@@ -1,25 +1,53 @@
 import {Col, Container, Row} from "react-bootstrap";
 import PetNotes from "../Notes/PetNotes/PetNotes";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../Styles/Notes.css'
 import '../Styles/PetPage.css'
 import PetMenu from "../MainMenu/PetMenu/PetMenu";
 import DeleteModal from "../Notes/Modals/DeleteModal/DeleteModal";
+import ChangeModal from "../Notes/Modals/ChangeModal/ChangeModal";
 
 export default function PetPage() {
 
     // Option 1: with props
     // Option 2: with context API
 
+    // TODO: petId from Parent. Here only for test
+    const petId = 3;
+    const [notes, setNotes] = useState([]);
+
     // Delete Modal
     const [showDeleteModal, setShowDeleteModel] = useState(false);
-    const toggleShow = () => setShowDeleteModel(!showDeleteModal);
+    const toggleShowDeleteModal = () => setShowDeleteModel(!showDeleteModal);
+
+    // Change Modal
+    const [showChangeModal, setShowChangeModal] = useState(false);
+    const [noteToChange, setNoteToChange] = useState();
+    const toggleShowChangeModal = (event) => {
+        const noteId = Number(event.target.attributes.storage.value);
+        notes.map((note) => {
+            if (note.id === noteId) {
+                setNoteToChange(note);
+            }
+        })
+        setShowChangeModal(!showChangeModal);
+    }
+
+
+    useEffect(() => {
+        fetch("http://localhost:8080/pets/" + petId + "/notes")
+            .then(resp => resp.json())
+            .then(data => setNotes(data))
+    }, [])
 
 
     return (
         <div>
             {
-                showDeleteModal && <DeleteModal isShow="true" setShow={setShowDeleteModel} toggleShow={toggleShow} />
+                showDeleteModal && <DeleteModal isShow="true" setShow={setShowDeleteModel} toggleShow={toggleShowDeleteModal} />
+            }
+            {
+                showChangeModal && <ChangeModal isShow="true" setShow={setShowChangeModal} toggleShow={toggleShowChangeModal} note={noteToChange} />
             }
 
             <Container fluid id="container">
@@ -36,7 +64,8 @@ export default function PetPage() {
                                 History
                             </Col>
                             <Col>
-                                <PetNotes getDeleteModal={toggleShow} />
+                                <PetNotes getChangeModel={toggleShowChangeModal}
+                                    getDeleteModal={toggleShowDeleteModal} notes={notes}/>
                             </Col>
                         </Row>
                     </Col>

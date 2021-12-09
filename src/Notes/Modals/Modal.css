@@ -10,3 +10,14 @@
     background-color: #f93155;
     color: white;
 }
+
+#update {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #00b849;
+    color: white;
+}
+
+#input {
+    margin: 15px;
+}
