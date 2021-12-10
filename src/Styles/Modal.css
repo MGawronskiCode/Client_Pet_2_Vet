@@ -1,0 +1,30 @@
+#cross {
+    text-align: center;
+    font-size: 50px;
+    color: #f93155;
+}
+
+#addNew {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #2d3051;
+    color: white;
+}
+
+#warning {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #f93155;
+    color: white;
+}
+
+#update {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #00b849;
+    color: white;
+}
+
+#input {
+    margin: 15px;
+}

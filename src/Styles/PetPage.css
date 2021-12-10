@@ -1,0 +1,16 @@
+#menu {
+    color: white;
+    background-color: #2d3051;
+
+    /* TODO: fix this. The height should be responsive and compatible*/
+    height: 100vh;
+}
+
+#petData {
+    background-color: #8f99cd;
+    height: 50%;
+}
+
+#historyAndNotes {
+    background-color: #8f99cd;
+}

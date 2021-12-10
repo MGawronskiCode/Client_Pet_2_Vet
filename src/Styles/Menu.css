@@ -1,0 +1,28 @@
+#menuElement {
+  color: white;
+  transition: .2s;
+}
+  /*TODO do not delete this! */
+  /*@media(max-width: 767px) {*/
+  /*  #menuElement{*/
+  /*    background-color: #f60000;*/
+  /*  }*/
+  /*}*/
+
+#menuElement:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transform-origin: left;
+}
+
+#menuTitle {
+  color: white;
+  margin: 15px;
+  bottom: 15px;
+  text-align: center;
+}
+
+#bottomElements {
+  position: absolute;
+  bottom: 0;
+}
