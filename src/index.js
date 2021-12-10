@@ -5,7 +5,6 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import reportWebVitals from './reportWebVitals';
 import PetPage from "./PetPage/PetPage";
 
-
 ReactDOM.render(
     <React.StrictMode>
         <PetPage />

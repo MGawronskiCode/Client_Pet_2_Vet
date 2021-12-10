@@ -7,6 +7,9 @@ import Diet from "../Elements/Diet";
 import Calendar from "../Elements/Calendar";
 import Feedback from "../Elements/Feedback";
 import Settings from "../Elements/Settings";
+import {Col, Container, Row} from "react-bootstrap";
+import './PetMenu.css'
+import PetPanel from '../PetPanel/PetPanel';
 
 export default class PetMenu extends Component {
 
@@ -19,18 +22,35 @@ export default class PetMenu extends Component {
 
     render() {
         return (
-            <div>
-                <MenuTitle title="Menu"/>
-                <Pets/>
-                <Veterinarians/>
-                <FindAVeterinarian/>
-                <Diet petId={this.petId}/>
-                <Calendar/>
-                <div id="bottomElements">
-                    <Feedback />
-                    <Settings />
-                </div>
+
+            <div id="pet-menu">
+                <Container id="pet-menu-container" fluid>
+                    <Row>
+                        <Col id='left-panel-col' xs={2}>
+                            <div id="pet-menu">
+                                <MenuTitle title="Menu"/>
+                                <Pets/>
+                                <Veterinarians/>
+                                <FindAVeterinarian/>
+                                <Diet petId={this.petId}/>
+                                <Calendar/>
+                                <div id="bottomElements">
+                                    <Feedback />
+                                    <Settings />
+                                </div>
+                            </div>
+                        </Col>
+                        <Col id = 'main-content-col'>
+                            <Row id='top-navbar-row'>
+                                top navbar
+                            </Row>
+                            <Row id='pet-panel-row'>
+                                <PetPanel />
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
-        )
+        );
     }
 }
