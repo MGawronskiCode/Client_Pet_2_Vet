@@ -12,7 +12,10 @@ export default function PetNotes(props) {
     function getNotes() {
         return notes.map((note, index) => {
             return (
-                <Note note={note} index={index} getChangeModel={props.getChangeModel}
+                <Note
+                    note={note}
+                    index={index}
+                    getChangeModel={props.getChangeModal}
                     getDeleteModal={props.getDeleteModal} />
             )
         })
@@ -24,7 +27,10 @@ export default function PetNotes(props) {
             <MDBCard id="card">
 
                 <MDBCardTitle>
-                    <CardHeader title="Personal notes" disabled={disabled}/>
+                    <CardHeader
+                        title="Personal notes"
+                        disabled={disabled}
+                        getAddModal={props.getAddModal}/>
                 </MDBCardTitle>
 
                 <MDBCardBody>

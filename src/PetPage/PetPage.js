@@ -6,6 +6,7 @@ import '../Styles/PetPage.css'
 import PetMenu from "../MainMenu/PetMenu/PetMenu";
 import DeleteModal from "../Notes/Modals/DeleteModal/DeleteModal";
 import ChangeModal from "../Notes/Modals/ChangeModal/ChangeModal";
+import AddModal from "../Notes/Modals/AddModal/AddModal";
 
 export default function PetPage() {
 
@@ -33,6 +34,10 @@ export default function PetPage() {
         setShowChangeModal(!showChangeModal);
     }
 
+    // Add Modal
+    const [showAddModal, setShowAddModal] = useState(false);
+    const toggleShowAddModal = () => setShowAddModal(!showAddModal);
+
 
     useEffect(() => {
         fetch("http://localhost:8080/pets/" + petId + "/notes")
@@ -44,10 +49,13 @@ export default function PetPage() {
     return (
         <div>
             {
-                showDeleteModal && <DeleteModal isShow="true" setShow={setShowDeleteModel} toggleShow={toggleShowDeleteModal} />
+                showAddModal && <AddModal isShow="true" setShow={setShowAddModal} toggleShow={toggleShowAddModal} />
             }
             {
                 showChangeModal && <ChangeModal isShow="true" setShow={setShowChangeModal} toggleShow={toggleShowChangeModal} note={noteToChange} />
+            }
+            {
+                showDeleteModal && <DeleteModal isShow="true" setShow={setShowDeleteModel} toggleShow={toggleShowDeleteModal} />
             }
 
             <Container fluid id="container">
@@ -64,8 +72,11 @@ export default function PetPage() {
                                 History
                             </Col>
                             <Col>
-                                <PetNotes getChangeModel={toggleShowChangeModal}
-                                    getDeleteModal={toggleShowDeleteModal} notes={notes}/>
+                                <PetNotes
+                                    getAddModal={toggleShowAddModal}
+                                    getChangeModal={toggleShowChangeModal}
+                                    getDeleteModal={toggleShowDeleteModal}
+                                    notes={notes} />
                             </Col>
                         </Row>
                     </Col>

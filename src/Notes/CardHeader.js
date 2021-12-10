@@ -3,10 +3,6 @@ import {MDBBadge, MDBCol, MDBContainer, MDBIcon, MDBRow} from "mdb-react-ui-kit"
 
 export default function CardHeader(props) {
 
-    function addNewCard() {
-        alert("Modal with input boxes will be here.");
-    }
-
     return (
         <div>
             <MDBBadge className="container-xl">
@@ -22,7 +18,7 @@ export default function CardHeader(props) {
                                 props.disabled ?
                                     <MDBIcon id="disabled" fas icon="plus-circle"/>
                                     :
-                                    <MDBIcon id="add" fas icon="plus-circle" onClick={addNewCard}/>
+                                    <MDBIcon id="add" fas icon="plus-circle" onClick={props.getAddModal}/>
                             }
                         </MDBCol>
                     </MDBRow>

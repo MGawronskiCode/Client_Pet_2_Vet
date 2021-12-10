@@ -4,6 +4,13 @@
     color: #f93155;
 }
 
+#addNew {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #1366f2;
+    color: white;
+}
+
 #warning {
     height: 40px;
     border-radius: 8px;

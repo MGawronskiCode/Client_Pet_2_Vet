@@ -1,19 +1,16 @@
 import {
     MDBBtn,
     MDBCol,
-    MDBContainer,
-    MDBInput,
+    MDBContainer, MDBInput,
     MDBModal,
     MDBModalContent,
-    MDBModalDialog,
-    MDBModalFooter,
+    MDBModalDialog, MDBModalFooter,
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
 import React from "react";
-import '../../../Styles/Modal.css'
 
-export default function ChangeModal(props) {
+export default function AddModal(props) {
 
     return (
         <>
@@ -21,12 +18,12 @@ export default function ChangeModal(props) {
                 <MDBModalDialog>
                     <MDBModalContent>
 
-                        <div id="update">
+                        <div id="addNew">
                             <MDBContainer>
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">Save
-                                            changes?</MDBModalTitle>
+                                            note?</MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
                                         <MDBBtn className='btn-close' color='none' onClick={props.toggleShow}/>
@@ -36,14 +33,14 @@ export default function ChangeModal(props) {
                         </div>
 
                         <div id="input">
-                            <MDBInput label='Title' id='form1' type='text' defaultValue={props.note.title}/>
+                            <MDBInput label='Title' id='form1' type='text'/>
                         </div>
                         <div id="input">
-                            <MDBInput label='Note' id='form1' type='text' defaultValue={props.note.content}/>
+                            <MDBInput label='Note' id='form1' type='text'/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded color='success' onClick={props.toggleShow}>
+                            <MDBBtn rounded color='primary' onClick={props.toggleShow}>
                                 Save
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
