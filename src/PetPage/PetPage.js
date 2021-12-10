@@ -1,12 +1,13 @@
 import {Col, Container, Row} from "react-bootstrap";
-import PetNotes from "../Notes/PetNotes/PetNotes";
+import PetNotes from "./Notes/PetNotes/PetNotes";
 import React, {useEffect, useState} from "react";
 import '../Styles/Notes.css'
 import '../Styles/PetPage.css'
-import PetMenu from "../MainMenu/PetMenu/PetMenu";
-import DeleteModal from "../Notes/Modals/DeleteModal/DeleteModal";
-import ChangeModal from "../Notes/Modals/ChangeModal/ChangeModal";
-import AddModal from "../Notes/Modals/AddModal/AddModal";
+import PetMenu from "./Menu/PetMenu";
+import DeleteModal from "./Notes/Modals/DeleteModal/DeleteModal";
+import ChangeModal from "./Notes/Modals/ChangeModal/ChangeModal";
+import AddModal from "./Notes/Modals/AddModal/AddModal";
+import PetPanel from "./PetPanel/PetPanel";
 
 export default function PetPage() {
 
@@ -65,7 +66,7 @@ export default function PetPage() {
                     </Col>
                     <Col>
                         <Row id="petData">
-                            Pet data
+                            <PetPanel />
                         </Row>
                         <Row id="historyAndNotes">
                             <Col id="history">
