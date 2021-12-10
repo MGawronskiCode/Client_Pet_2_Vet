@@ -26,7 +26,7 @@ export default function AddModal(props) {
                                             note?</MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className='btn-close' color='none' onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -36,11 +36,11 @@ export default function AddModal(props) {
                             <MDBInput label='Title' id='form1' type='text'/>
                         </div>
                         <div id="input">
-                            <MDBInput label='PetNote' id='form1' type='text'/>
+                            <MDBInput label='Note' id='form1' type='text'/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded color='primary' onClick={props.toggleShow}>
+                            <MDBBtn rounded style={{ backgroundColor: '#2d3051' }} onClick={props.toggleShow}>
                                 Save
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>

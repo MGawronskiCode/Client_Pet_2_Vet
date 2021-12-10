@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import NoteContent from "./Elements/NoteContent";
+import NoteContent from "../Elements/NoteContent";
 import {MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
-import NoteImage from "./Elements/NoteImage";
+import NoteImage from "../Elements/NoteImage";
 
-export default function PetNote(props) {
+export default function Note(props) {
 
     const [disabled, setDisabled] = useState(true);
 

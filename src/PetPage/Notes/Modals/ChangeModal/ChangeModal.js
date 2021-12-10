@@ -29,7 +29,7 @@ export default function ChangeModal(props) {
                                             changes?</MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className='btn-close' color='none' onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -39,7 +39,7 @@ export default function ChangeModal(props) {
                             <MDBInput label='Title' id='form1' type='text' defaultValue={props.note.title}/>
                         </div>
                         <div id="input">
-                            <MDBInput label='PetNote' id='form1' type='text' defaultValue={props.note.content}/>
+                            <MDBInput label='Note' id='form1' type='text' defaultValue={props.note.content}/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">

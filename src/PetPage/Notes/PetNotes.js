@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {MDBCard, MDBCardBody, MDBCardTitle} from "mdb-react-ui-kit";
-import CardHeader from "../Elements/CardHeader";
-import PetNote from "../PetNote";
-import '../../../Styles/Notes.css'
+import CardHeader from "./Elements/CardHeader";
+import Note from "./PetNotes/Note";
+import '../../Styles/Notes.css'
 
 export default function PetNotes(props) {
 
@@ -12,7 +12,7 @@ export default function PetNotes(props) {
     function getNotes() {
         return notes.map((note, index) => {
             return (
-                <PetNote
+                <Note
                     note={note}
                     index={index}
                     getChangeModel={props.getChangeModal}

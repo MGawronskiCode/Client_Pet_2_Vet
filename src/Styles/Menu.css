@@ -1,23 +1,22 @@
 #menuElement {
-  line-height: normal;
-  color: #416aa8;
+  color: white;
   transition: .2s;
 }
-  @media(max-width: 767px) {
-    #menuElement{
-      background-color: #f60000;
-    }
-  }
+  /*TODO do not delete this! */
+  /*@media(max-width: 767px) {*/
+  /*  #menuElement{*/
+  /*    background-color: #f60000;*/
+  /*  }*/
+  /*}*/
 
 #menuElement:hover {
   cursor: pointer;
-  color: #0a216c;
   transform: scale(1.05);
   transform-origin: left;
 }
 
 #menuTitle {
-  color: #416aa8;
+  color: white;
   margin: 15px;
   bottom: 15px;
   text-align: center;
@@ -26,13 +25,4 @@
 #bottomElements {
   position: absolute;
   bottom: 0;
-}
-
-#left-panel-col{
-  border-right: solid;
-  border-right-width: 3px;
-  border-right-color: #0a216c;
-  padding-right: 10%;
-  align-items: center;
-  display: flex;
 }

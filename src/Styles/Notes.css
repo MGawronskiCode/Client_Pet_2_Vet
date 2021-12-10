@@ -2,6 +2,19 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#card-title-badge {
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #46528e;
+    height: 45px;
+}
+
+#card-title {
+    margin-top: 7px;
+    font-size: 25px;
+}
+
 #note {
     border-radius: 20px;
     margin-bottom: 5px;
@@ -20,7 +33,7 @@
 #add {
     font-size: 1.5em;
     position: absolute;
-    top: 10px;
+    top: 8px;
     right: 15px;
     transition: transform .2s;
     color: white;
@@ -28,7 +41,7 @@
 
 #add:hover {
     cursor: pointer;
-    color: #0a216c;
+    color: #2d3051;
     transform: scale(1.1);
 }
 
@@ -52,7 +65,7 @@
 
 #edit:hover {
     cursor: pointer;
-    color: #0a216c;
+    color: #2d3051;
     transform: scale(1.1);
 }
 

@@ -29,7 +29,7 @@ export default function DeleteModal(props) {
                                             sure?</MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className='btn-close' color='none' onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
