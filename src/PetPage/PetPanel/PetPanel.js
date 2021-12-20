@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import DataColumn from './Elements/DataColumn';
 import PetPortrait from './Elements/PetPortrait';
-import '../../Styles/PetPanel.css';
+import '../../assets/styles/Old/PetPanel.css';
 
 export default function PetPanel() {
     return (

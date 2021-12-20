@@ -1,5 +1,5 @@
 import {Col, Container, Image, Row} from "react-bootstrap";
-import '../../../Styles/PetPanel.css'
+import '../../../assets/styles/Old/PetPanel.css'
 
 export default function PetPortrait () {
     return (

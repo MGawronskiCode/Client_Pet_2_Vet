@@ -1,0 +1,20 @@
+#navbarComponent {
+    color: white;
+    background-color: #46528e;
+}
+
+#menuComponent {
+    color: white;
+    background-color: #2d3051;
+}
+
+#viewComponent {
+    background-color: #8f99cd;
+}
+
+#footerComponent {
+    position: sticky;
+    height: 3vmax;
+    background-color: #46528e;
+    color: white;
+}

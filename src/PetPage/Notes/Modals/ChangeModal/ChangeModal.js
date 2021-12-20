@@ -11,7 +11,7 @@ import {
     MDBRow
 } from "mdb-react-ui-kit";
 import React from "react";
-import '../../../../Styles/Modal.css'
+import '../../../../assets/styles/Old/Modal.css'
 
 export default function ChangeModal(props) {
 

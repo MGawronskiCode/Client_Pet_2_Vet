@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {MDBCard, MDBCardBody, MDBCardTitle} from "mdb-react-ui-kit";
 import CardHeader from "./Elements/CardHeader";
 import Note from "./PetNotes/Note";
-import '../../Styles/Notes.css'
+import '../../assets/styles/Old/Notes.css'
 
 export default function PetNotes(props) {
 
