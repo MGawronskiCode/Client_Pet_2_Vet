@@ -1,4 +1,4 @@
-export default function PetsView (props) {
+export default function AllPetsView (props) {
 
     // Only for test
     function getPet(pet) {

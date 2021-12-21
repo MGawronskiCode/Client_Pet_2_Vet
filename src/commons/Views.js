@@ -1,6 +1,7 @@
 export default function Views () {
     return {
         USER: "user",
+        PET: "pet",
         USER_NOTES: "userNotes",
         PETS: "pets",
         VETERINARIANS: "veterinarians",

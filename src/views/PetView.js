@@ -1,6 +1,6 @@
 import {Col, Row} from "react-bootstrap";
 import PetNotes from "../PetPage/Notes/PetNotes";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import '../assets/styles/Old/Notes.css'
 import DeleteModal from "../PetPage/Notes/Modals/DeleteModal/DeleteModal";
 import ChangeModal from "../PetPage/Notes/Modals/ChangeModal/ChangeModal";
@@ -9,17 +9,11 @@ import PetPanel from "../PetPage/PetPanel/PetPanel";
 import History from "../PetPage/History/History";
 import {PageContext} from "../App";
 
-export default function PetView() {
-
-    // Option 1: with props
-    // Option 2: with context API
+export default function PetView(props) {
 
     const pageContext = useContext(PageContext)
 
-
-    // TODO: petId from Parent. Here only for test
-    const petId = 3;
-    const [notes, setNotes] = useState([]);
+    const notes = props.notes;
 
     // Delete Modal
     const [showDeleteModal, setShowDeleteModel] = useState(false);
@@ -42,14 +36,6 @@ export default function PetView() {
     const [showAddModal, setShowAddModal] = useState(false);
     const toggleShowAddModal = () => setShowAddModal(!showAddModal);
 
-
-    useEffect(() => {
-        fetch("http://localhost:8080/pets/" + petId + "/notes")
-            .then(resp => resp.json())
-            .then(data => setNotes(data))
-    }, [])
-
-
     return (
         <>
             {
@@ -64,8 +50,6 @@ export default function PetView() {
                 showDeleteModal &&
                 <DeleteModal isShow="true" setShow={setShowDeleteModel} toggleShow={toggleShowDeleteModal}/>
             }
-
-
 
             <Row>
                 <PetPanel/>

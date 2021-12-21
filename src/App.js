@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import Menu from "./components/Menu";
 import {Col, Container, Row} from "react-bootstrap";
 import './assets/styles/App.css'
@@ -6,14 +6,15 @@ import Footer from "./components/Footer";
 import UserView from "./views/UserView";
 import UserNotesView from "./views/UserNotesView";
 import Views from "./commons/Views";
-import MenuService from "./services/MenuService";
-import PetsView from "./views/PetsView";
+import AllPetsView from "./views/AllPetsView";
 import VeterinariansView from "./views/VeterinariansView";
 import FindVeterinarianView from "./views/FindVeterinarianView";
 import DietView from "./views/DietView.js"
 import CalendarView from "./views/CalendarView";
 import FeedbackView from "./views/FeedbackView";
 import SettingsView from "./views/SettingsView";
+import PetView from "./views/PetView";
+import GetData from "./services/GetData";
 
 const PageContext = createContext(null);
 
@@ -23,12 +24,13 @@ export default function App() {
     const [userId, setUserId] = useState(2);
     const [petId, setPetId] = useState(3);
 
-    const [isUserMenu, setUserMenu] = useState(true);
-    const [isPetMenu, setPetMenu] = useState(false);
+    const [isUserMenu, setUserMenu] = useState(false);
+    const [isPetMenu, setPetMenu] = useState(true);
 
-    const [isUserView, setUserView] = useState(true);
+    const [isUserView, setUserView] = useState(false);
+    const [isPetView, setPetView] = useState(true);
     const [isUserNotesView, setUserNotesView] = useState(false);
-    const [isPetsView, setPetsView] = useState(false);
+    const [isAllPetsView, setAllPetsView] = useState(false);
     const [isVeterinariansView, setVeterinariansView] = useState(false);
     const [isFindVeterinarianView, setFindVeterinarianView] = useState(false);
     const [isDietView, setDietView] = useState(false);
@@ -40,8 +42,9 @@ export default function App() {
 
     function setCurrentView(view) {
         view === "user" ? setUserView(true) : setUserView(false);
+        view === "pet" ? setPetView(true) : setPetView(false);
         view === "userNotes" ? setUserNotesView(true) : setUserNotesView(false);
-        view === "pets" ? setPetsView(true) : setPetsView(false);
+        view === "pets" ? setAllPetsView(true) : setAllPetsView(false);
         view === "veterinarians" ? setVeterinariansView(true) : setVeterinariansView(false);
         view === "findVeterinarians" ? setFindVeterinarianView(true) : setFindVeterinarianView(false);
         view === "diet" ? setDietView(true) : setDietView(false);
@@ -50,19 +53,44 @@ export default function App() {
         view === "settings" ? setSettingsView(true) : setSettingsView(false);
     }
 
-    const userNotes = MenuService("http://localhost:8080/users/" + userId + "/notes");
-    // TODO: fix endpoint at backend side. For such endpoint we get all pets from DB, not User's pet => should be like "http://localhost:8080/<userId>/pets"
-    const pets = MenuService("http://localhost:8080/pets");
-    // TODO made endpoint to "Veterinarians" at back-end side
-    //
-    const dietData = MenuService("http://localhost:8080/pets/" + petId + "/meals");
+
+    const [pets, setPets] = useState(null);
+    const [petNotes, setPetNotes] = useState(null);
+    const [userNotes, setUserNotes] = useState(null);
+    const [dietData, setDietData] = useState(null);
+
+    useEffect(() => {
+        if (isUserNotesView) {
+            GetData("http://localhost:8080/users/" + userId + "/notes")
+                .then(data => setUserNotes(data));
+        }
+        if (isAllPetsView) {
+            GetData("http://localhost:8080/" + userId + "/pets")
+                .then(data => setPets(data));
+        }
+        if (isPetView) {
+            GetData("http://localhost:8080/pets/" + petId + "/notes")
+                .then(data => setPetNotes(data));
+        }
+        if (isDietView) {
+            GetData("http://localhost:8080/pets/" + petId + "/meals")
+                .then(data => setDietData(data));
+        }
+
+        // TODO made endpoint to "Veterinarians" at back-end side
+        // const veterinarians = ...
+
+    }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
+        isDietView, isCalendarView, isFeedbackView, isSettingsView]);
+
 
     const contextValue = {
         setCurrentView,
         view,
         isUserMenu,
         isPetMenu,
-        userId
+        userId,
+        petNotes
     }
 
     return (
@@ -78,11 +106,12 @@ export default function App() {
                         </Col>
                         <Col id="viewComponent">
                             {isUserView && <UserView />}
-                            {isUserNotesView && <UserNotesView notes={userNotes}/>}
-                            {isPetsView && <PetsView pets={pets} />}
+                            {isPetView && petNotes != null && <PetView notes={petNotes}/>}
+                            {isUserNotesView && userNotes != null && <UserNotesView notes={userNotes}/>}
+                            {isAllPetsView && pets != null && <AllPetsView pets={pets} />}
                             {isVeterinariansView && <VeterinariansView />}
                             {isFindVeterinarianView && <FindVeterinarianView />}
-                            {isDietView && <DietView dietData={dietData}/>}
+                            {isDietView && dietData != null && <DietView dietData={dietData}/>}
                             {isCalendarView && <CalendarView />}
                             {isFeedbackView && <FeedbackView />}
                             {isSettingsView && <SettingsView />}
