@@ -4,7 +4,7 @@ import React, {useContext, useState} from "react";
 import '../assets/styles/Old/Notes.css'
 import DeleteModal from "../PetPage/Notes/Modals/DeleteModal/DeleteModal";
 import ChangeModal from "../PetPage/Notes/Modals/ChangeModal/ChangeModal";
-import AddModal from "../PetPage/Notes/Modals/AddModal/AddModal";
+import AddModal from "../components/AddModal";
 import PetPanel from "../PetPage/PetPanel/PetPanel";
 import History from "../PetPage/History/History";
 import {PageContext} from "../App";
@@ -12,8 +12,8 @@ import {PageContext} from "../App";
 export default function PetView(props) {
 
     const pageContext = useContext(PageContext)
-
     const notes = props.notes;
+    const saveUrl = "http://localhost:8080/pets/" + pageContext.petId + "/notes"
 
     // Delete Modal
     const [showDeleteModal, setShowDeleteModel] = useState(false);
@@ -39,16 +39,30 @@ export default function PetView(props) {
     return (
         <>
             {
-                showAddModal && <AddModal isShow="true" setShow={setShowAddModal} toggleShow={toggleShowAddModal}/>
+                showAddModal &&
+                <AddModal
+                    isShow="true"
+                    setShow={setShowAddModal}
+                    modalTitle="Save note?"
+                    inputTitle="Title"
+                    inputContent="Note"
+                    saveUrl={saveUrl}
+                    toggleShow={toggleShowAddModal}/>
             }
             {
                 showChangeModal &&
-                <ChangeModal isShow="true" setShow={setShowChangeModal} toggleShow={toggleShowChangeModal}
+                <ChangeModal
+                    isShow="true"
+                    setShow={setShowChangeModal}
+                    toggleShow={toggleShowChangeModal}
                     note={noteToChange}/>
             }
             {
                 showDeleteModal &&
-                <DeleteModal isShow="true" setShow={setShowDeleteModel} toggleShow={toggleShowDeleteModal}/>
+                <DeleteModal
+                    isShow="true"
+                    setShow={setShowDeleteModel}
+                    toggleShow={toggleShowDeleteModal}/>
             }
 
             <Row>

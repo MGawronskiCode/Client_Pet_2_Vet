@@ -11,7 +11,7 @@ import {
     MDBRow
 } from "mdb-react-ui-kit";
 import React from "react";
-import '../../../../assets/styles/Old/Modal.css'
+import '../../../../assets/styles/Modal.css'
 
 export default function DeleteModal(props) {
 
