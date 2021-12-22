@@ -11,9 +11,15 @@ import {
     MDBRow
 } from "mdb-react-ui-kit";
 import React from "react";
-import '../../../../assets/styles/Modal.css'
+import '../assets/styles/Modal.css'
+import DeleteData from "../services/DeleteData";
 
-export default function DeleteModal(props) {
+export default function DeleteModal (props) {
+
+    function deleteObject() {
+        DeleteData(props.deleteUrl + props.currentObject.id);
+        props.toggleShow();
+    }
 
     return (
         <>
@@ -25,8 +31,9 @@ export default function DeleteModal(props) {
                             <MDBContainer>
                                 <MDBRow>
                                     <MDBCol md="11">
-                                        <MDBModalTitle className="modal-danger text-center">Are you
-                                            sure?</MDBModalTitle>
+                                        <MDBModalTitle className="modal-danger text-center">
+                                            {props.modalTitle}
+                                        </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
                                         <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
@@ -40,7 +47,7 @@ export default function DeleteModal(props) {
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded className='mx-2' color='danger' onClick={props.toggleShow}>
+                            <MDBBtn rounded className='mx-2' color='danger' onClick={deleteObject}>
                                 Yes
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>

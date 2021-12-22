@@ -2,7 +2,7 @@ import {Col, Row} from "react-bootstrap";
 import PetNotes from "../PetPage/Notes/PetNotes";
 import React, {useContext, useState} from "react";
 import '../assets/styles/Old/Notes.css'
-import DeleteModal from "../PetPage/Notes/Modals/DeleteModal/DeleteModal";
+import DeleteModal from "../components/DeleteModal";
 import ChangeModal from "../components/ChangeModal";
 import AddModal from "../components/AddModal";
 import PetPanel from "../PetPage/PetPanel/PetPanel";
@@ -13,12 +13,14 @@ export default function PetView(props) {
 
     const pageContext = useContext(PageContext)
     const notes = props.notes;
-    const saveUrl = "http://localhost:8080/pets/" + pageContext.petId + "/notes";
-    const updateUrl = "http://localhost:8080/pets/" + pageContext.petId + "/notes/";
+    const baseNotesUrl = "http://localhost:8080/pets/" + pageContext.petId + "/notes/";
 
     // Delete Modal
     const [showDeleteModal, setShowDeleteModel] = useState(false);
-    const toggleShowDeleteModal = () => setShowDeleteModel(!showDeleteModal);
+    const toggleShowDeleteModal = () => {
+        pageContext.setModalShown(!pageContext.isModalShown);
+        setShowDeleteModel(!showDeleteModal);
+    }
 
     // Change Modal
     const [showChangeModal, setShowChangeModal] = useState(false);
@@ -33,14 +35,14 @@ export default function PetView(props) {
     }
 
     const toggleShowChangeModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown)
+        pageContext.setModalShown(!pageContext.isModalShown);
         setShowChangeModal(!showChangeModal);
     }
 
     // Add Modal
     const [showAddModal, setShowAddModal] = useState(false);
     const toggleShowAddModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown)
+        pageContext.setModalShown(!pageContext.isModalShown);
         setShowAddModal(!showAddModal);
     }
 
@@ -54,18 +56,18 @@ export default function PetView(props) {
                     modalTitle="Save note?"
                     inputTitle="Title"
                     inputContent="Note"
-                    saveUrl={saveUrl}
+                    saveUrl={baseNotesUrl}
                     toggleShow={toggleShowAddModal}/>
             }
             {
-                showChangeModal && noteToChange != null &&
+                showChangeModal &&
                 <ChangeModal
                     isShow="true"
                     setShow={setShowChangeModal}
                     modalTitle="Save changes?"
                     inputTitle="Title"
                     inputContent="Note"
-                    updateUrl={updateUrl}
+                    updateUrl={baseNotesUrl}
                     toggleShow={toggleShowChangeModal}
                     currentObject={noteToChange}/>
             }
@@ -74,7 +76,10 @@ export default function PetView(props) {
                 <DeleteModal
                     isShow="true"
                     setShow={setShowDeleteModel}
-                    toggleShow={toggleShowDeleteModal}/>
+                    modalTitle="Are you sure?"
+                    toggleShow={toggleShowDeleteModal}
+                    currentObject={noteToChange}
+                    deleteUrl={baseNotesUrl}/>
             }
 
             <Row>
