@@ -10,10 +10,24 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React from "react";
-import '../../../../assets/styles/Modal.css'
+import React, {useState} from "react";
+import '../assets/styles/Modal.css'
+import PostData from "../services/PostData";
+import PutData from "../services/PutData";
 
 export default function ChangeModal(props) {
+
+    const [title, setTitle] = useState(props.currentObject.title)
+    const [content, setContent] = useState(props.currentObject.content)
+
+    function update() {
+        const data = {
+            "title": title,
+            "content": content
+        }
+        PutData(props.updateUrl + props.currentObject.id, data);
+        props.toggleShow();
+    }
 
     return (
         <>
@@ -25,8 +39,9 @@ export default function ChangeModal(props) {
                             <MDBContainer>
                                 <MDBRow>
                                     <MDBCol md="11">
-                                        <MDBModalTitle className="modal-danger text-center">Save
-                                            changes?</MDBModalTitle>
+                                        <MDBModalTitle className="modal-danger text-center">
+                                            {props.modalTitle}
+                                        </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
                                         <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
@@ -36,14 +51,22 @@ export default function ChangeModal(props) {
                         </div>
 
                         <div id="input">
-                            <MDBInput label='Title' id='form1' type='text' defaultValue={props.note.title}/>
+                            <MDBInput
+                                type='text'
+                                label={props.inputTitle}
+                                defaultValue={props.currentObject.title}
+                                onChange={(el) => setTitle(el.target.value)}/>
                         </div>
                         <div id="input">
-                            <MDBInput label='Note' id='form1' type='text' defaultValue={props.note.content}/>
+                            <MDBInput
+                                type='text'
+                                label={props.inputContent}
+                                defaultValue={props.currentObject.content}
+                                onChange={(el) => setContent(el.target.value)}/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded color='success' onClick={props.toggleShow}>
+                            <MDBBtn rounded color='success' onClick={update}>
                                 Save
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>

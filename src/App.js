@@ -37,6 +37,7 @@ export default function App() {
     const [isCalendarView, setCalendarView] = useState(false);
     const [isFeedbackView, setFeedbackView] = useState(false);
     const [isSettingsView, setSettingsView] = useState(false);
+    const [isModalShown, setModalShown] = useState(false);
 
     const view = Views();
 
@@ -81,7 +82,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown]);
 
 
     const contextValue = {
@@ -91,7 +92,9 @@ export default function App() {
         isPetMenu,
         userId,
         petId,
-        petNotes
+        petNotes,
+        isModalShown,
+        setModalShown
     }
 
     return (

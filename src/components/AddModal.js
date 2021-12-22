@@ -47,10 +47,16 @@ export default function AddModal(props) {
                         </div>
 
                         <div id="input">
-                            <MDBInput label={props.inputTitle} type='text' onChange={(el) => setTitle(el.target.value)} />
+                            <MDBInput
+                                type='text'
+                                label={props.inputTitle}
+                                onChange={(el) => setTitle(el.target.value)} />
                         </div>
                         <div id="input">
-                            <MDBInput label={props.inputContent} type='text' onChange={(el) => setContent(el.target.value)}/>
+                            <MDBInput
+                                type='text'
+                                label={props.inputContent}
+                                onChange={(el) => setContent(el.target.value)}/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">

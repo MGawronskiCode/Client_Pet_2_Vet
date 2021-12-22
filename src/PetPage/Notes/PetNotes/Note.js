@@ -29,6 +29,7 @@ export default function Note(props) {
                                                 disabled={disabled}
                                                 getDeleteModal={props.getDeleteModal} 
                                                 getChangeModel={props.getChangeModel}
+                                                getObjectToChange={props.getObjectToChange}
                                                 id={props.note.id}/>
                                         </div>
                                     </MDBCardText>

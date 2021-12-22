@@ -16,6 +16,7 @@ export default function PetNotes(props) {
                     note={note}
                     index={index}
                     getChangeModel={props.getChangeModal}
+                    getObjectToChange={props.getObjectToChange}
                     getDeleteModal={props.getDeleteModal} />
             )
         })
