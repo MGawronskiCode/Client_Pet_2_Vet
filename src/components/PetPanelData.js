@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row } from 'react-bootstrap';
 
-export default function DataColumn(props) {
+export default function PetPanelData(props) {
     return (
         <div>
             <Row>

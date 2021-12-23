@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {MDBCard, MDBCardBody, MDBCardTitle} from "mdb-react-ui-kit";
-import CardHeader from "./Elements/CardHeader";
-import Note from "./PetNotes/Note";
-import '../../assets/styles/Old/Notes.css'
+import CardHeader from "./CardHeader";
+import CardElement from "./CardElement";
+import '../assets/styles/Card.css'
+import Clip from "../assets/images/Clip.jpg"
 
 export default function PetNotes(props) {
 
@@ -12,12 +13,15 @@ export default function PetNotes(props) {
     function getNotes() {
         return notes.map((note, index) => {
             return (
-                <Note
-                    note={note}
-                    index={index}
-                    getChangeModel={props.getChangeModal}
-                    getObjectToChange={props.getObjectToChange}
-                    getDeleteModal={props.getDeleteModal} />
+                <div key={index}>
+                    <CardElement
+                        element={note}
+                        index={index}
+                        image={Clip}
+                        getChangeModal={props.getChangeModal}
+                        getObjectToChange={props.getObjectToChange}
+                        getDeleteModal={props.getDeleteModal} />
+                </div>
             )
         })
     }

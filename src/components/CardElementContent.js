@@ -1,7 +1,7 @@
 import {MDBIcon} from "mdb-react-ui-kit";
 import React from "react";
 
-export default function NoteContent(props) {
+export default function CardElementContent(props) {
 
     function changeObject(event) {
         let id = event.target.attributes.storage.value;

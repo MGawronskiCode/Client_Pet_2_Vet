@@ -1,12 +1,12 @@
 import {Col, Row} from "react-bootstrap";
-import PetNotes from "../PetPage/Notes/PetNotes";
+import PetNotes from "../components/PetNotes";
 import React, {useContext, useState} from "react";
-import '../assets/styles/Old/Notes.css'
+import '../assets/styles/Card.css'
 import DeleteModal from "../components/DeleteModal";
 import ChangeModal from "../components/ChangeModal";
 import AddModal from "../components/AddModal";
-import PetPanel from "../PetPage/PetPanel/PetPanel";
-import History from "../PetPage/History/History";
+import PetPanel from "../components/PetPanel";
+import History from "../components/History";
 import {PageContext} from "../App";
 
 export default function PetView(props) {
@@ -55,7 +55,7 @@ export default function PetView(props) {
                     setShow={setShowAddModal}
                     modalTitle="Save note?"
                     inputTitle="Title"
-                    inputContent="Note"
+                    inputContent="Content"
                     saveUrl={baseNotesUrl}
                     toggleShow={toggleShowAddModal}/>
             }
@@ -66,7 +66,7 @@ export default function PetView(props) {
                     setShow={setShowChangeModal}
                     modalTitle="Save changes?"
                     inputTitle="Title"
-                    inputContent="Note"
+                    inputContent="Content"
                     updateUrl={baseNotesUrl}
                     toggleShow={toggleShowChangeModal}
                     currentObject={noteToChange}/>
@@ -87,7 +87,8 @@ export default function PetView(props) {
             </Row>
             <Row>
                 <Col id="history">
-                    <History/>
+                    <History
+                        getAddModal={toggleShowAddModal}/>
                 </Col>
                 <Col>
                     <PetNotes

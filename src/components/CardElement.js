@@ -1,36 +1,39 @@
 import React, {useState} from "react";
-import NoteContent from "../Elements/NoteContent";
+import CardElementContent from "./CardElementContent";
 import {MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
-import NoteImage from "../Elements/NoteImage";
+import CardElementImage from "./CardElementImage";
 
-export default function Note(props) {
+export default function CardElement(props) {
 
     const [disabled, setDisabled] = useState(true);
 
     return (
-        <div key={props.index}
+        <div
             onMouseOver={() => setDisabled(false)}
             onMouseOut={() => setDisabled(true)}>
 
             <div>
-                <MDBCard id="note">
+                <MDBCard id="element">
                     <MDBCardBody>
                         <MDBContainer>
                             <MDBRow>
                                 <MDBCol md="2" className='col-example'>
-                                    <NoteImage/>
+                                    <CardElementImage
+                                        image={props.image}/>
                                 </MDBCol>
                                 <MDBCol>
-                                    <MDBCardTitle>{props.note.title}</MDBCardTitle>
+                                    <MDBCardTitle>
+                                        {props.element.title}
+                                    </MDBCardTitle>
                                     <MDBCardText>
                                         <div>
-                                            <NoteContent
-                                                content={props.note.content}
+                                            <CardElementContent
+                                                content={props.element.content}
                                                 disabled={disabled}
                                                 getDeleteModal={props.getDeleteModal} 
-                                                getChangeModel={props.getChangeModel}
+                                                getChangeModel={props.getChangeModal}
                                                 getObjectToChange={props.getObjectToChange}
-                                                id={props.note.id}/>
+                                                id={props.element.id}/>
                                         </div>
                                     </MDBCardText>
                                 </MDBCol>

@@ -1,45 +1,45 @@
 import React from 'react';
 import {Col, Row} from 'react-bootstrap';
-import DataColumn from './Elements/DataColumn';
-import PetPortrait from './Elements/PetPortrait';
-import '../../assets/styles/Old/PetPanel.css';
+import PetPanelData from './PetPanelData';
+import PetPanelImage from './PetPanelImage';
+import '../assets/styles/PetPanel.css';
 
 export default function PetPanel() {
     return (
         <div id="pet-panel">
             <Row>
                 <Col id='pet-image-col' xs={5}>
-                    <PetPortrait/>
+                    <PetPanelImage/>
                 </Col>
                 <Col id='pet-data-column' xs={6}>
                     <Row className='data-row'>
-                        <DataColumn title="Name" content="Eyrie"/>
+                        <PetPanelData title="Name" content="Eyrie"/>
                     </Row>
                     <Row className='data-row'>
-                        <DataColumn title="Owner" content="Mr. X"/>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <DataColumn title="Sex" content="Female"/>
-                        </Col>
-                        <Col>
-                            <DataColumn title="Date of birth" content="27.10.2018"/>
-                        </Col>
+                        <PetPanelData title="Owner" content="Mr. X"/>
                     </Row>
                     <Row className='data-row'>
                         <Col>
-                            <DataColumn title="Kind" content="Cat"/>
+                            <PetPanelData title="Sex" content="Female"/>
                         </Col>
                         <Col>
-                            <DataColumn title="Breed" content="Maine Coon"/>
+                            <PetPanelData title="Date of birth" content="27.10.2018"/>
                         </Col>
                     </Row>
                     <Row className='data-row'>
                         <Col>
-                            <DataColumn title="Weight" content="5.2 kg"/>
+                            <PetPanelData title="Kind" content="Cat"/>
                         </Col>
                         <Col>
-                            <DataColumn title="Chip No." content="234567"/>
+                            <PetPanelData title="Breed" content="Maine Coon"/>
+                        </Col>
+                    </Row>
+                    <Row className='data-row'>
+                        <Col>
+                            <PetPanelData title="Weight" content="5.2 kg"/>
+                        </Col>
+                        <Col>
+                            <PetPanelData title="Chip No." content="234567"/>
                         </Col>
                     </Row>
                 </Col>

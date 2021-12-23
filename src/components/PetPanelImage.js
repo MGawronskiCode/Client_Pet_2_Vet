@@ -1,7 +1,7 @@
 import {Col, Container, Image, Row} from "react-bootstrap";
-import '../../../assets/styles/Old/PetPanel.css'
+import '../assets/styles/PetPanel.css'
 
-export default function PetPortrait () {
+export default function PetPanelImage () {
     return (
         <div>
             <Container>
