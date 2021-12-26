@@ -24,11 +24,11 @@ export default function App() {
     const [userId, setUserId] = useState(2);
     const [petId, setPetId] = useState(3);
 
-    const [isUserMenu, setUserMenu] = useState(false);
-    const [isPetMenu, setPetMenu] = useState(true);
+    const [isUserMenu, setUserMenu] = useState(true);
+    const [isPetMenu, setPetMenu] = useState(false);
 
-    const [isUserView, setUserView] = useState(false);
-    const [isPetView, setPetView] = useState(true);
+    const [isUserView, setUserView] = useState(true);
+    const [isPetView, setPetView] = useState(false);
     const [isUserNotesView, setUserNotesView] = useState(false);
     const [isAllPetsView, setAllPetsView] = useState(false);
     const [isVeterinariansView, setVeterinariansView] = useState(false);
@@ -65,8 +65,8 @@ export default function App() {
             GetData("http://localhost:8080/users/" + userId + "/notes")
                 .then(data => setUserNotes(data));
         }
-        if (isAllPetsView) {
-            GetData("http://localhost:8080/" + userId + "/pets")
+        if (isUserView) {
+            GetData("http://localhost:8080/users/" + userId + "/pets")
                 .then(data => setPets(data));
         }
         if (isPetView) {
@@ -87,6 +87,9 @@ export default function App() {
 
     const contextValue = {
         setCurrentView,
+        setPetId,
+        setUserMenu,
+        setPetMenu,
         view,
         isUserMenu,
         isPetMenu,
@@ -109,7 +112,7 @@ export default function App() {
                             <Menu/>
                         </Col>
                         <Col id="viewComponent">
-                            {isUserView && <UserView />}
+                            {isUserView && pets != null && <UserView pets={pets} />}
                             {isPetView && petNotes != null && <PetView notes={petNotes}/>}
                             {isUserNotesView && userNotes != null && <UserNotesView notes={userNotes}/>}
                             {isAllPetsView && pets != null && <AllPetsView pets={pets} />}
