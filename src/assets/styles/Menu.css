@@ -21,6 +21,10 @@
   transform-origin: left;
 }
 
+#logotype:hover {
+  cursor: pointer;
+}
+
 
 
 /*#bottomElements {*/
