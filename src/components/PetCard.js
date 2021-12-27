@@ -14,6 +14,10 @@ export default function PetCard(props) {
         pageContext.setCurrentView(pageContext.view.PET);
     }
 
+    function showAddModal() {
+        props.toggleShow();
+    }
+
     function getPetCard() {
         return (
             <MDBCol>
@@ -39,7 +43,7 @@ export default function PetCard(props) {
     function getAddCard() {
         return (
             <MDBCol >
-                <MDBCard id="petCard" onClick={() => changeView(props.pet.id)}>
+                <MDBCard id="addPet" onClick={() => showAddModal()}>
                     <MDBCardImage
                         id="image"
                         src={props.image}

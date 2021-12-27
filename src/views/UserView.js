@@ -2,10 +2,22 @@ import PetCard from "../components/PetCard";
 import {MDBRow} from "mdb-react-ui-kit";
 import "../assets/styles/Card.css"
 import PetImage from "../assets/images/Pet.png"
+import {useContext, useState} from "react";
+import {PageContext} from "../App";
+import AddPetModal from "../components/AddPetModal";
 
 export default function UserView(props) {
 
-    function getPets() {
+    const pageContext = useContext(PageContext)
+    const saveUrl = "http://localhost:8080/pets/";
+
+    const [showAddModal, setShowAddModal] = useState(false);
+    const toggleShowAddModal = () => {
+        pageContext.setModalShown(!pageContext.isModalShown);
+        setShowAddModal(!showAddModal);
+    }
+
+    function getPetsCards() {
         return props.pets.map((pet) => {
             return <PetCard pet={pet}/>
         })
@@ -14,8 +26,19 @@ export default function UserView(props) {
     return (
         <>
             <MDBRow id="card" className='row-cols-md-4 g-4 justify-content-center'>
-                {getPets()}
-                <PetCard pet={null} image={PetImage}/>
+                { showAddModal &&
+                    <AddPetModal
+                        isShow="true"
+                        setShow={setShowAddModal}
+                        saveUrl={saveUrl}
+                        toggleShow={toggleShowAddModal} />
+                }
+
+                {getPetsCards()}
+                <PetCard
+                    pet={null}
+                    image={PetImage}
+                    toggleShow={toggleShowAddModal} />
             </MDBRow>
         </>
     )
