@@ -17,11 +17,10 @@ import PostData from "../services/PostData";
 export default function AddPetModal(props) {
 
     const [name, setName] = useState("");
-    const [sex, setSex] = useState("Male");
-    const [dateOfBirth, setDateOfBirth] = useState("Date of birth");
+    const [sex, setSex] = useState("0");
+    const [dateOfBirth, setDateOfBirth] = useState(new Date());
 
     function save() {
-        alert(dateOfBirth)
         const data = {
             "name": name,
             "sex": sex,
@@ -67,6 +66,7 @@ export default function AddPetModal(props) {
                         </div>
 
                         <div id="input">
+                            Date of birth:
                             <DatePickerComponent
                                 placeholder="Date of birth"
                                 value={dateOfBirth}

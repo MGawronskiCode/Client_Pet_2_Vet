@@ -20,7 +20,7 @@ export default function PetCard(props) {
 
     function getPetCard() {
         return (
-            <MDBCol>
+            <MDBCol center sm={3}>
                 <MDBCard id="petCard" onClick={() => changeView(props.pet.id)}>
                     <MDBCardImage
                         id="image"
@@ -42,7 +42,7 @@ export default function PetCard(props) {
 
     function getAddCard() {
         return (
-            <MDBCol >
+            <MDBCol center sm={3}>
                 <MDBCard id="addPet" onClick={() => showAddModal()}>
                     <MDBCardImage
                         id="image"

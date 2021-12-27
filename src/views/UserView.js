@@ -1,5 +1,5 @@
 import PetCard from "../components/PetCard";
-import {MDBRow} from "mdb-react-ui-kit";
+import {MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import "../assets/styles/Card.css"
 import PetImage from "../assets/images/Pet.png"
 import {useContext, useState} from "react";
@@ -24,22 +24,22 @@ export default function UserView(props) {
     }
 
     return (
-        <>
-            <MDBRow id="card" className='row-cols-md-4 g-4 justify-content-center'>
-                { showAddModal &&
+        <MDBContainer id="container" >
+            <MDBRow id="row">
+                {showAddModal &&
                     <AddPetModal
                         isShow="true"
                         setShow={setShowAddModal}
                         saveUrl={saveUrl}
-                        toggleShow={toggleShowAddModal} />
+                        toggleShow={toggleShowAddModal}/>
                 }
 
                 {getPetsCards()}
                 <PetCard
                     pet={null}
                     image={PetImage}
-                    toggleShow={toggleShowAddModal} />
+                    toggleShow={toggleShowAddModal}/>
             </MDBRow>
-        </>
+        </MDBContainer>
     )
 }

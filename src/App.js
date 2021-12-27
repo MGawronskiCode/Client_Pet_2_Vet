@@ -63,26 +63,26 @@ export default function App() {
     useEffect(() => {
         if (isUserNotesView) {
             GetData("http://localhost:8080/users/" + userId + "/notes")
-                .then(data => setUserNotes(data));
+                .then(setUserNotes);
         }
         if (isUserView) {
             GetData("http://localhost:8080/users/" + userId + "/pets")
-                .then(data => setPets(data));
+                .then(setPets);
         }
         if (isPetView) {
             GetData("http://localhost:8080/pets/" + petId + "/notes")
-                .then(data => setPetNotes(data));
+                .then(setPetNotes);
         }
         if (isDietView) {
             GetData("http://localhost:8080/pets/" + petId + "/meals")
-                .then(data => setDietData(data));
+                .then(setDietData);
         }
 
         // TODO made endpoint to "Veterinarians" at back-end side
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes]);
 
 
     const contextValue = {
@@ -112,16 +112,16 @@ export default function App() {
                             <Menu/>
                         </Col>
                         <Col id="viewComponent">
-                            {isUserView && pets != null && <UserView pets={pets} />}
+                            {isUserView && pets != null && <UserView pets={pets}/>}
                             {isPetView && petNotes != null && <PetView notes={petNotes}/>}
                             {isUserNotesView && userNotes != null && <UserNotesView notes={userNotes}/>}
-                            {isAllPetsView && pets != null && <AllPetsView pets={pets} />}
-                            {isVeterinariansView && <VeterinariansView />}
-                            {isFindVeterinarianView && <FindVeterinarianView />}
+                            {isAllPetsView && pets != null && <AllPetsView pets={pets}/>}
+                            {isVeterinariansView && <VeterinariansView/>}
+                            {isFindVeterinarianView && <FindVeterinarianView/>}
                             {isDietView && dietData != null && <DietView dietData={dietData}/>}
-                            {isCalendarView && <CalendarView />}
-                            {isFeedbackView && <FeedbackView />}
-                            {isSettingsView && <SettingsView />}
+                            {isCalendarView && <CalendarView/>}
+                            {isFeedbackView && <FeedbackView/>}
+                            {isSettingsView && <SettingsView/>}
                         </Col>
                     </Row>
                     <Row id="footerComponent">
