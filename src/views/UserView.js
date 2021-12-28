@@ -9,7 +9,7 @@ import AddPetModal from "../components/AddPetModal";
 export default function UserView(props) {
 
     const pageContext = useContext(PageContext)
-    const saveUrl = "http://localhost:8080/pets/";
+    const saveUrl = "http://localhost:8080/users/" + pageContext.userId + "/pets";
 
     const [showAddModal, setShowAddModal] = useState(false);
     const toggleShowAddModal = () => {

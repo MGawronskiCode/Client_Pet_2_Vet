@@ -14,6 +14,8 @@
 #petCard {
     transition: transform .2s;
     color: #2d3051;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #petCard:hover, #addPet:hover {
