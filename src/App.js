@@ -59,17 +59,21 @@ export default function App() {
     const [petNotes, setPetNotes] = useState(null);
     const [userNotes, setUserNotes] = useState(null);
     const [dietData, setDietData] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         if (isUserNotesView) {
             GetData("http://localhost:8080/users/" + userId + "/notes")
                 .then(setUserNotes);
         }
-        if (isUserView) {
+        console.log(isLoading);
+        if (isLoading) {
             GetData("http://localhost:8080/users/" + userId + "/pets")
-                .then(setPets);
+                .then(setPets)
+                .then(() => setLoading(false));
+            console.log(isLoading);
         }
-        if (isPetView) {
+        if (isPetView) { //true
             GetData("http://localhost:8080/pets/" + petId + "/notes")
                 .then(setPetNotes);
         }
@@ -82,7 +86,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes, isLoading]);
 
 
     const contextValue = {
@@ -97,12 +101,14 @@ export default function App() {
         petId,
         petNotes,
         isModalShown,
-        setModalShown
+        setModalShown,
+        setLoading,
+        isLoading
     }
 
     return (
         <PageContext.Provider value={contextValue}>
-            <div>
+            <div id="page">
                 <Container fluid>
                     <Row id="navbarComponent">
                         NavBar component
@@ -112,7 +118,7 @@ export default function App() {
                             <Menu/>
                         </Col>
                         <Col id="viewComponent">
-                            {isUserView && pets != null && <UserView pets={pets}/>}
+                            {isUserView && pets != null && <UserView pets={pets} />}
                             {isPetView && petNotes != null && <PetView notes={petNotes}/>}
                             {isUserNotesView && userNotes != null && <UserNotesView notes={userNotes}/>}
                             {isAllPetsView && pets != null && <AllPetsView pets={pets}/>}

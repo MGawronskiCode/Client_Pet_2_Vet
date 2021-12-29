@@ -10,11 +10,14 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {DatePickerComponent} from "@syncfusion/ej2-react-calendars"
 import PostData from "../services/PostData";
+import {PageContext} from "../App";
 
 export default function AddPetModal(props) {
+
+    const pageContext = useContext(PageContext)
 
     const [name, setName] = useState("");
     const [sex, setSex] = useState("0");
@@ -27,6 +30,8 @@ export default function AddPetModal(props) {
             "birthday": dateOfBirth
         }
         PostData(props.saveUrl, data);
+        pageContext.setLoading(true);
+        console.log(pageContext.isLoading);
         props.toggleShow();
     }
 
