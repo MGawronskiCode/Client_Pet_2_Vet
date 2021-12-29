@@ -55,9 +55,9 @@ export default function App() {
     }
 
 
-    const [pets, setPets] = useState(null);
-    const [petNotes, setPetNotes] = useState(null);
-    const [userNotes, setUserNotes] = useState(null);
+    const [pets, setPets] = useState([]);
+    const [petNotes, setPetNotes] = useState([]);
+    const [userNotes, setUserNotes] = useState([]);
     const [dietData, setDietData] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
@@ -67,11 +67,10 @@ export default function App() {
                 .then(setUserNotes);
         }
         console.log(isLoading);
-        if (isLoading) {
+        if (isUserView) {
             GetData("http://localhost:8080/users/" + userId + "/pets")
                 .then(setPets)
                 .then(() => setLoading(false));
-            console.log(isLoading);
         }
         if (isPetView) { //true
             GetData("http://localhost:8080/pets/" + petId + "/notes")
@@ -86,7 +85,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes, isLoading]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes, pets.length]);
 
 
     const contextValue = {

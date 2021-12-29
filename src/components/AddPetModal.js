@@ -27,7 +27,7 @@ export default function AddPetModal(props) {
         const data = {
             "name": name,
             "sex": sex,
-            "birthday": dateOfBirth
+            "birthday": dateOfBirth.toDateString()
         }
         PostData(props.saveUrl, data);
         pageContext.setLoading(true);
