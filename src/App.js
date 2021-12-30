@@ -82,8 +82,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes]);
-
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown]);
 
     const contextValue = {
         setCurrentView,
