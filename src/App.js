@@ -27,8 +27,8 @@ export default function App() {
     const [isUserMenu, setUserMenu] = useState(true);
     const [isPetMenu, setPetMenu] = useState(false);
 
-    const [isUserView, setUserView] = useState(true);
-    const [isPetView, setPetView] = useState(false);
+    const [isUserView, setUserView] = useState(false);
+    const [isPetView, setPetView] = useState(true);
     const [isUserNotesView, setUserNotesView] = useState(false);
     const [isAllPetsView, setAllPetsView] = useState(false);
     const [isVeterinariansView, setVeterinariansView] = useState(false);
@@ -55,27 +55,26 @@ export default function App() {
     }
 
 
-    const [pets, setPets] = useState(null);
-    const [petNotes, setPetNotes] = useState(null);
+    const [pets, setPets] = useState([]);
+    const [actualPet, setActualPet] = useState(null)
+    const [petNotes, setPetNotes] = useState([]);
     const [userNotes, setUserNotes] = useState(null);
     const [dietData, setDietData] = useState(null);
-    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         if (isUserNotesView) {
             GetData("http://localhost:8080/users/" + userId + "/notes")
                 .then(setUserNotes);
         }
-        console.log(isLoading);
-        if (isLoading) {
+        if (isUserView) {
             GetData("http://localhost:8080/users/" + userId + "/pets")
-                .then(setPets)
-                .then(() => setLoading(false));
-            console.log(isLoading);
+                .then(setPets);
         }
-        if (isPetView) { //true
+        if (isPetView) {
             GetData("http://localhost:8080/pets/" + petId + "/notes")
                 .then(setPetNotes);
+            GetData("http://localhost:8080/pets/" + petId)
+                .then(setActualPet);
         }
         if (isDietView) {
             GetData("http://localhost:8080/pets/" + petId + "/meals")
@@ -86,7 +85,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes, isLoading]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, pets.length, petNotes.length]);
 
 
     const contextValue = {
@@ -102,8 +101,6 @@ export default function App() {
         petNotes,
         isModalShown,
         setModalShown,
-        setLoading,
-        isLoading
     }
 
     return (
@@ -119,7 +116,8 @@ export default function App() {
                         </Col>
                         <Col id="viewComponent">
                             {isUserView && pets != null && <UserView pets={pets} />}
-                            {isPetView && petNotes != null && <PetView notes={petNotes}/>}
+                            {isPetView && actualPet != null && petNotes != null &&
+                                <PetView pet={actualPet} notes={petNotes}/>}
                             {isUserNotesView && userNotes != null && <UserNotesView notes={userNotes}/>}
                             {isAllPetsView && pets != null && <AllPetsView pets={pets}/>}
                             {isVeterinariansView && <VeterinariansView/>}

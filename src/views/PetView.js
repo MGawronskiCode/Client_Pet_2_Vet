@@ -1,7 +1,8 @@
-import {Col, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import PetNotes from "../components/PetNotes";
 import React, {useContext, useState} from "react";
-import '../assets/styles/Card.css'
+import '../assets/styles/View.css';
+import '../assets/styles/Card.css';
 import DeleteModal from "../components/DeleteModal";
 import ChangeModal from "../components/ChangeModal";
 import AddModal from "../components/AddModal";
@@ -47,7 +48,7 @@ export default function PetView(props) {
     }
 
     return (
-        <>
+        <Container id="view">
             {
                 showAddModal &&
                 <AddModal
@@ -82,10 +83,10 @@ export default function PetView(props) {
                     deleteUrl={baseNotesUrl}/>
             }
 
-            <Row>
-                <PetPanel/>
+            <Row id="topRow">
+                <PetPanel pet={props.pet}/>
             </Row>
-            <Row>
+            <Row id="bottomRow">
                 <Col id="history">
                     <History
                         getAddModal={toggleShowAddModal}/>
@@ -100,6 +101,6 @@ export default function PetView(props) {
                 </Col>
             </Row>
 
-        </>
+        </Container>
     )
 }

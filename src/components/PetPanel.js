@@ -1,50 +1,60 @@
 import React from 'react';
-import {Col, Row} from 'react-bootstrap';
-import PetPanelData from './PetPanelData';
-import PetPanelImage from './PetPanelImage';
 import '../assets/styles/PetPanel.css';
+import {MDBCardImage, MDBCol, MDBContainer, MDBIcon, MDBRow} from "mdb-react-ui-kit";
+import DefaultImage from "../assets/images/Pet.png"
+import Pin from "../assets/images/Pin.jpg"
+import CardElementImage from "./CardElementImage";
 
-export default function PetPanel() {
+export default function PetPanel(props) {
     return (
-        <div id="pet-panel">
-            <Row>
-                <Col id='pet-image-col' xs={5}>
-                    <PetPanelImage/>
-                </Col>
-                <Col id='pet-data-column' xs={6}>
-                    <Row className='data-row'>
-                        <PetPanelData title="Name" content="Eyrie"/>
-                    </Row>
-                    <Row className='data-row'>
-                        <PetPanelData title="Owner" content="Mr. X"/>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <PetPanelData title="Sex" content="Female"/>
-                        </Col>
-                        <Col>
-                            <PetPanelData title="Date of birth" content="27.10.2018"/>
-                        </Col>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <PetPanelData title="Kind" content="Cat"/>
-                        </Col>
-                        <Col>
-                            <PetPanelData title="Breed" content="Maine Coon"/>
-                        </Col>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <PetPanelData title="Weight" content="5.2 kg"/>
-                        </Col>
-                        <Col>
-                            <PetPanelData title="Chip No." content="234567"/>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col xs={1}> </Col>
-            </Row>
-        </div>
+        <MDBContainer id="container">
+            <MDBRow>
+                <MDBCol center md='3' id="imageBox">
+                    <MDBCardImage
+                        id="petImage"
+                        src={DefaultImage}
+                        alt='...'/>
+                </MDBCol>
+
+                <MDBCol md='9'>
+                    <MDBContainer >
+                        <MDBRow>
+                            <MDBCol md="11" style={{textAlign: 'center'}}>
+                                <h1>{props.pet.name}</h1>
+                            </MDBCol>
+                            <MDBCol center md="1" id="pinIcon">
+                                <CardElementImage image={Pin}/>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBContainer>
+
+                    <MDBContainer>
+                        <MDBRow>
+                            <MDBCol>
+                                <p>Sex: {props.pet.sex}</p>
+                                <p>Birthday: {props.pet.birthday}</p>
+                                Kind
+                                Breed
+                            </MDBCol>
+                            <MDBCol>
+                                Owner
+
+                                Weight
+                                Chip No.
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBContainer>
+
+
+
+
+
+
+
+
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
+
     );
 }

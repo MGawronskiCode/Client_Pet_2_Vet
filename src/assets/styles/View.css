@@ -1,0 +1,15 @@
+#view {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 40vh 1fr;
+}
+
+#topRow{
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#bottomRow {
+}

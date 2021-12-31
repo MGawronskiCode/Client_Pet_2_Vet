@@ -30,8 +30,6 @@ export default function AddPetModal(props) {
             "birthday": dateOfBirth
         }
         PostData(props.saveUrl, data);
-        pageContext.setLoading(true);
-        console.log(pageContext.isLoading);
         props.toggleShow();
     }
 
