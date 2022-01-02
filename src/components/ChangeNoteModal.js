@@ -12,10 +12,9 @@ import {
 } from "mdb-react-ui-kit";
 import React, {useState} from "react";
 import '../assets/styles/Modal.css'
-import PostData from "../services/PostData";
 import PutData from "../services/PutData";
 
-export default function ChangeModal(props) {
+export default function ChangeNoteModal(props) {
 
     const [title, setTitle] = useState(props.currentObject.title)
     const [content, setContent] = useState(props.currentObject.content)

@@ -4,17 +4,19 @@ import React, {useContext, useState} from "react";
 import '../assets/styles/View.css';
 import '../assets/styles/Card.css';
 import DeleteModal from "../components/DeleteModal";
-import ChangeModal from "../components/ChangeModal";
+import ChangeNoteModal from "../components/ChangeNoteModal";
 import AddModal from "../components/AddModal";
 import PetPanel from "../components/PetPanel";
 import History from "../components/History";
 import {PageContext} from "../App";
+import ChangePetDataModal from "../components/ChangePetDataModal";
 
 export default function PetView(props) {
 
     const pageContext = useContext(PageContext)
     const notes = props.notes;
-    const baseNotesUrl = "http://localhost:8080/pets/" + pageContext.petId + "/notes/";
+    const baseNotesUrl = "http://localhost:8080/pets/" + props.pet.id + "/notes/";
+    const basePetUrl = "http://localhost:8080/pets/" + props.pet.id;
 
     // Delete Modal
     const [showDeleteModal, setShowDeleteModel] = useState(false);
@@ -23,8 +25,8 @@ export default function PetView(props) {
         setShowDeleteModel(!showDeleteModal);
     }
 
-    // Change Modal
-    const [showChangeModal, setShowChangeModal] = useState(false);
+    // Change Note Modal
+    const [showChangeNoteModal, setShowChangeNoteModal] = useState(false);
     const [noteToChange, setNoteToChange] = useState();
 
     function getObjectToChange(id) {
@@ -35,9 +37,17 @@ export default function PetView(props) {
         })
     }
 
-    const toggleShowChangeModal = () => {
+    // Change Pet Data Modal
+    const [showChangePetDataModal, setShowChangePetDataModal] = useState(false);
+
+    const toggleShowChangeNoteModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
-        setShowChangeModal(!showChangeModal);
+        setShowChangeNoteModal(!showChangeNoteModal);
+    }
+
+    const toggleShowChangePetDataModal = () => {
+        pageContext.setModalShown(!pageContext.isModalShown);
+        setShowChangePetDataModal(!showChangePetDataModal);
     }
 
     // Add Modal
@@ -61,16 +71,25 @@ export default function PetView(props) {
                     toggleShow={toggleShowAddModal}/>
             }
             {
-                showChangeModal &&
-                <ChangeModal
+                showChangeNoteModal &&
+                <ChangeNoteModal
                     isShow="true"
-                    setShow={setShowChangeModal}
+                    setShow={setShowChangeNoteModal}
                     modalTitle="Save changes?"
                     inputTitle="Title"
                     inputContent="Content"
                     updateUrl={baseNotesUrl}
-                    toggleShow={toggleShowChangeModal}
+                    toggleShow={toggleShowChangeNoteModal}
                     currentObject={noteToChange}/>
+            }
+            {
+                showChangePetDataModal &&
+                <ChangePetDataModal
+                    isShow="true"
+                    setShow={setShowChangePetDataModal}
+                    toggleShow={toggleShowChangePetDataModal}
+                    updateUrl={basePetUrl}
+                    pet={props.pet}/>
             }
             {
                 showDeleteModal &&
@@ -84,7 +103,9 @@ export default function PetView(props) {
             }
 
             <Row id="topRow">
-                <PetPanel pet={props.pet}/>
+                <PetPanel
+                    pet={props.pet}
+                    getChangeModal={toggleShowChangePetDataModal}/>
             </Row>
             <Row id="bottomRow">
                 <Col id="history">
@@ -94,7 +115,7 @@ export default function PetView(props) {
                 <Col>
                     <PetNotes
                         getAddModal={toggleShowAddModal}
-                        getChangeModal={toggleShowChangeModal}
+                        getChangeModal={toggleShowChangeNoteModal}
                         getObjectToChange={getObjectToChange}
                         getDeleteModal={toggleShowDeleteModal}
                         notes={notes}/>

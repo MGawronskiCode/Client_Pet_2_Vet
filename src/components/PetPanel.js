@@ -7,6 +7,7 @@ import CardElementImage from "./CardElementImage";
 import Empty from "antd/es/empty/empty";
 
 export default function PetPanel(props) {
+
     return (
         <MDBContainer id="container">
             <MDBRow>
@@ -24,7 +25,7 @@ export default function PetPanel(props) {
                                 <h1>{props.pet.name ? props.pet.name : "Name"}</h1>
                             </MDBCol>
                             <MDBCol md="3"/>
-                            <MDBCol center md="1" id="pinIcon">
+                            <MDBCol center md="1" id="pinIcon" onClick={props.getChangeModal}>
                                 <CardElementImage image={Pin}/>
                             </MDBCol>
                         </MDBRow>
