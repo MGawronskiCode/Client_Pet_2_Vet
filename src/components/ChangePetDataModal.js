@@ -10,26 +10,25 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React, {useContext, useState} from "react";
-import {DatePickerComponent} from "@syncfusion/ej2-react-calendars"
-import PostData from "../services/PostData";
-import {PageContext} from "../App";
+import React, {useState} from "react";
+import '../assets/styles/Modal.css'
+import PutData from "../services/PutData";
+import {DatePickerComponent} from "@syncfusion/ej2-react-calendars";
 
-export default function AddPetModal(props) {
+export default function ChangePetDataModal(props) {
 
-    const pageContext = useContext(PageContext)
+    const [name, setName] = useState(props.pet.name)
+    const [sex, setSex] = useState(props.pet.sex)
+    const [birthday, setBirthday] = useState(props.pet.birthday)
 
-    const [name, setName] = useState("");
-    const [sex, setSex] = useState("0");
-    const [dateOfBirth, setDateOfBirth] = useState(new Date());
-
-    function save() {
+    function update() {
+        // TODO: fix problem with updating. Changes the date to the selected date minus one day
         const data = {
             "name": name,
             "sex": sex,
-            "birthday": dateOfBirth.toDateString()
+            "birthday": birthday
         }
-        PostData(props.saveUrl, data);
+        PutData(props.updateUrl, data);
         props.toggleShow();
     }
 
@@ -44,7 +43,7 @@ export default function AddPetModal(props) {
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">
-                                            New Pet
+                                            Save changes?
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
@@ -58,28 +57,27 @@ export default function AddPetModal(props) {
                             <MDBInput
                                 type='text'
                                 label="Name"
+                                defaultValue={props.pet.name}
                                 onChange={(el) => setName(el.target.value)}/>
                         </div>
-
                         <div id="input">
                             <select className="form-select" onChange={(el) => setSex(el.target.valueOf().value)}>
                                 <option value="0">Male</option>
                                 <option value="1">Female</option>
                             </select>
                         </div>
-
                         <div id="input">
                             Date of birth:
                             <DatePickerComponent
                                 placeholder="Date of birth"
-                                value={dateOfBirth}
+                                value={birthday}
                                 max={new Date()}
                                 format="yyyy-MM-dd"
-                                onChange={(el) => setDateOfBirth(el.target.valueOf().value)}/>
+                                onChange={(el) => setBirthday(el.target.valueOf().value)}/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={save}>
+                            <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={update}>
                                 Save
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>

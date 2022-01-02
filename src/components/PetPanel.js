@@ -1,50 +1,64 @@
 import React from 'react';
-import {Col, Row} from 'react-bootstrap';
-import PetPanelData from './PetPanelData';
-import PetPanelImage from './PetPanelImage';
 import '../assets/styles/PetPanel.css';
+import {MDBCardImage, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
+import DefaultImage from "../assets/images/Pet.png"
+import Pin from "../assets/images/Pin.jpg"
+import CardElementImage from "./CardElementImage";
+import Empty from "antd/es/empty/empty";
 
-export default function PetPanel() {
+export default function PetPanel(props) {
+
     return (
-        <div id="pet-panel">
-            <Row>
-                <Col id='pet-image-col' xs={5}>
-                    <PetPanelImage/>
-                </Col>
-                <Col id='pet-data-column' xs={6}>
-                    <Row className='data-row'>
-                        <PetPanelData title="Name" content="Eyrie"/>
-                    </Row>
-                    <Row className='data-row'>
-                        <PetPanelData title="Owner" content="Mr. X"/>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <PetPanelData title="Sex" content="Female"/>
-                        </Col>
-                        <Col>
-                            <PetPanelData title="Date of birth" content="27.10.2018"/>
-                        </Col>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <PetPanelData title="Kind" content="Cat"/>
-                        </Col>
-                        <Col>
-                            <PetPanelData title="Breed" content="Maine Coon"/>
-                        </Col>
-                    </Row>
-                    <Row className='data-row'>
-                        <Col>
-                            <PetPanelData title="Weight" content="5.2 kg"/>
-                        </Col>
-                        <Col>
-                            <PetPanelData title="Chip No." content="234567"/>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col xs={1}> </Col>
-            </Row>
-        </div>
+        <MDBContainer id="container">
+            <MDBRow>
+                <MDBCol center md='3' id="imageBox">
+                    <MDBCardImage
+                        id="petImage"
+                        src={props.pet.petImage ? props.pet.petImage : DefaultImage}
+                        alt='...'/>
+                </MDBCol>
+
+                <MDBCol md='9'>
+                    <MDBContainer >
+                        <MDBRow>
+                            <MDBCol md="8" style={{textAlign: 'center'}}>
+                                <h1>{props.pet.name ? props.pet.name : "Name"}</h1>
+                            </MDBCol>
+                            <MDBCol md="3"/>
+                            <MDBCol center md="1" id="pinIcon" onClick={props.getChangeModal}>
+                                <CardElementImage image={Pin}/>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBContainer>
+
+                    <MDBContainer>
+                        <MDBRow>
+                            <MDBCol md="2">
+                                <p><strong>Sex</strong></p>
+                                <p><strong>Birthday</strong></p>
+                                <p><strong>Kind</strong></p>
+                                <p><strong>Breed</strong></p>
+                            </MDBCol>
+                            <MDBCol md="2">
+                                <p>{props.pet.sex ? props.pet.sex : "Empty"}</p>
+                                <p>{props.pet.birthday ? props.pet.birthday : "Empty"}</p>
+                                <p>{props.pet.kind ? props.pet.kind : "Empty"}</p>
+                                <p>{props.pet.breed ? props.pet.breed : "Empty"}</p>
+                            </MDBCol>
+                            <MDBCol md="2">
+                                <p><strong>Owner</strong></p>
+                                <p><strong>Weight</strong></p>
+                                <p><strong>Chip No.</strong></p>
+                            </MDBCol>
+                            <MDBCol md="2">
+                                <p>{props.pet.owner ? props.pet.owner : "Empty"}</p>
+                                <p>{props.pet.weight ? props.pet.weight : "Empty"}</p>
+                                <p>{props.pet.chip ? props.pet.chip : "Empty"}</p>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBContainer>
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
     );
 }
