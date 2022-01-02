@@ -1,9 +1,6 @@
-import { pets } from "./db";
+import { pets } from "../mocks/db";
 
 export default function GetData(URL) {
-    // return fetch(URL)
-    //     .then(response => response.json());
-    return new Promise((resolve, reject) => {
-        resolve(pets);
-    })
+    return fetch(URL)
+        .then(response => response.json());
 }

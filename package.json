@@ -46,6 +46,10 @@
   },
   "devDependencies": {
     "mdb-ui-kit": "^3.10.1",
+    "msw": "^0.36.3",
     "react-popconfirm": "^0.1.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

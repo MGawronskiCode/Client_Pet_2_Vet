@@ -66,11 +66,9 @@ export default function App() {
             GetData("http://localhost:8080/users/" + userId + "/notes")
                 .then(setUserNotes);
         }
-        console.log(isLoading);
         if (isUserView) {
             GetData("http://localhost:8080/users/" + userId + "/pets")
                 .then(setPets)
-                .then(() => setLoading(false));
         }
         if (isPetView) {
             GetData("http://localhost:8080/pets/" + petId + "/notes")
@@ -87,7 +85,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes, pets.length]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes.length, pets.length]);
 
 
     const contextValue = {

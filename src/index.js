@@ -5,6 +5,9 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
 
+const { worker } = require('./mocks/browser')
+worker.start()
+
 ReactDOM.render(
     <React.StrictMode>
         <App />

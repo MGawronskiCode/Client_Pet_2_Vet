@@ -1,28 +1,33 @@
 import { rest } from 'msw';
+import { petNotes, pets } from './db';
 
 export const handlers = [
     // Handles a GET /user request
-    rest.get('http://localhost:8080/2/pets', (req, res, ctx) => {
-        // Persist user's authentication in the session
+    rest.get('http://localhost:8080/pets/3', (req, res, ctx) => {
         return res(
             ctx.status(200),
-            ctx.json([{
-                id: 1,
-                name: 'test1',
-                sex: 'male',
-                birthday: '10.12.2020'
-            },
-            {
-                id: 2,
-                name: 'test2',
-                sex: 'male',
-                birthday: '10.12.2020'
-            },
-            {
-                id: 3,
-                name: 'test3',
-                sex: 'male',
-                birthday: '10.12.2020'
-            }
-            ]))
-    })]
+            ctx.json(pets[2]))
+    }),
+    rest.get('http://localhost:8080/pets/3/notes', (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json(petNotes))
+    }),
+    rest.get('http://localhost:8080/users/2/pets', (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json(pets))
+    }),
+    rest.post('http://localhost:8080/users/2/pets', (req, res, ctx) => {
+        pets.push(req.body);
+        return res(
+            ctx.status(200),
+        )
+    }),
+    rest.post('http://localhost:8080/pets/3/notes', (req, res, ctx) => {
+        petNotes.push(req.body);
+        return res(
+            ctx.status(200),
+        )
+    }),
+]
