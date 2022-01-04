@@ -18,7 +18,6 @@ export default function CardElementContent(props) {
     return (
         <div id="content">
 
-            {props.content}
             {
                 props.disabled ?
                     <>

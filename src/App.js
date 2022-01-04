@@ -58,6 +58,7 @@ export default function App() {
     const [pets, setPets] = useState([]);
     const [actualPet, setActualPet] = useState(null)
     const [petNotes, setPetNotes] = useState([]);
+    const [petVisits, setPetVisits] = useState([]);
     const [userNotes, setUserNotes] = useState(null);
     const [dietData, setDietData] = useState(null);
 
@@ -75,6 +76,8 @@ export default function App() {
                 .then(setPetNotes);
             GetData("http://localhost:8080/pets/" + petId)
                 .then(setActualPet);
+            GetData("http://localhost:8080/pets/" + petId + "/visits")
+                .then(setPetVisits);
         }
         if (isDietView) {
             GetData("http://localhost:8080/pets/" + petId + "/meals")
@@ -85,7 +88,8 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes.length, pets.length]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes.length, pets.length,
+        petVisits.length]);
 
 
     const contextValue = {
@@ -116,8 +120,8 @@ export default function App() {
                         </Col>
                         <Col id="viewComponent">
                             {isUserView && pets != null && <UserView pets={pets} />}
-                            {isPetView && actualPet != null && petNotes != null &&
-                                <PetView pet={actualPet} notes={petNotes}/>}
+                            {isPetView && actualPet != null && petNotes != null && petVisits != null &&
+                                <PetView pet={actualPet} notes={petNotes} visits={petVisits}/>}
                             {isUserNotesView && userNotes != null && <UserNotesView notes={userNotes}/>}
                             {isAllPetsView && pets != null && <AllPetsView pets={pets}/>}
                             {isVeterinariansView && <VeterinariansView/>}

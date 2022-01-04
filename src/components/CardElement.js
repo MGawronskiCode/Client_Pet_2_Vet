@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import CardElementContent from "./CardElementContent";
-import {MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
+import {MDBCard, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import CardElementImage from "./CardElementImage";
 
 export default function CardElement(props) {
@@ -8,40 +8,42 @@ export default function CardElement(props) {
     const [disabled, setDisabled] = useState(true);
 
     return (
-        <div
+
+        <MDBCard
+            id="element"
             onMouseOver={() => setDisabled(false)}
             onMouseOut={() => setDisabled(true)}>
+            <MDBContainer>
+                <MDBRow>
+                    <MDBCol md="2" center>
+                        <CardElementImage
+                            image={props.image}/>
+                    </MDBCol>
 
-            <div>
-                <MDBCard id="element">
-                    <MDBCardBody>
-                        <MDBContainer>
+                    <MDBCol md="10">
+                        <MDBContainer style={{textAlign: "center"}}>
                             <MDBRow>
-                                <MDBCol md="2" className='col-example'>
-                                    <CardElementImage
-                                        image={props.image}/>
+                                <MDBCol md="10">
+                                    <h5>{props.element.title}</h5>
                                 </MDBCol>
-                                <MDBCol>
-                                    <MDBCardTitle>
-                                        {props.element.title}
-                                    </MDBCardTitle>
-                                    <MDBCardText>
-                                        <div>
-                                            <CardElementContent
-                                                content={props.element.content}
-                                                disabled={disabled}
-                                                getDeleteModal={props.getDeleteModal} 
-                                                getChangeModel={props.getChangeModal}
-                                                getObjectToChange={props.getObjectToChange}
-                                                id={props.element.id}/>
-                                        </div>
-                                    </MDBCardText>
+                                <MDBCol md="2" center>
+                                    <CardElementContent
+                                        content={props.element.content}
+                                        disabled={disabled}
+                                        getDeleteModal={props.getDeleteModal}
+                                        getChangeModel={props.getChangeModal}
+                                        getObjectToChange={props.getObjectToChange}
+                                        id={props.element.id}/>
                                 </MDBCol>
                             </MDBRow>
+                            <MDBRow>
+                                {props.element.content}
+                            </MDBRow>
                         </MDBContainer>
-                    </MDBCardBody>
-                </MDBCard>
-            </div>
-        </div>
+                    </MDBCol>
+
+                </MDBRow>
+            </MDBContainer>
+        </MDBCard>
     )
 }

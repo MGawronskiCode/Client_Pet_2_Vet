@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import App from "./App";
 
 const { worker } = require('./mocks/browser')
-worker.start()
+// worker.start()
 
 ReactDOM.render(
     <React.StrictMode>

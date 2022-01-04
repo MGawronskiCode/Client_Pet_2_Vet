@@ -110,6 +110,7 @@ export default function PetView(props) {
             <Row id="bottomRow">
                 <Col id="history">
                     <History
+                        visits={props.visits}
                         getAddModal={toggleShowAddModal}/>
                 </Col>
                 <Col>
