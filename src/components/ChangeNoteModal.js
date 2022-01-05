@@ -10,11 +10,14 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import '../assets/styles/Modal.css'
 import PutData from "../services/PutData";
+import {PageContext} from "../App";
 
 export default function ChangeNoteModal(props) {
+
+    const pageContext = useContext(PageContext)
 
     const [title, setTitle] = useState(props.currentObject.title)
     const [content, setContent] = useState(props.currentObject.content)
@@ -24,7 +27,8 @@ export default function ChangeNoteModal(props) {
             "title": title,
             "content": content
         }
-        PutData(props.updateUrl + props.currentObject.id, data);
+        PutData(props.updateUrl + props.currentObject.id, data)
+            .then(() => pageContext.setSynchronized(!pageContext.synchronized));
         props.toggleShow();
     }
 

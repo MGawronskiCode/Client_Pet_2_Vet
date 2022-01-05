@@ -10,14 +10,18 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React from "react";
+import React, {useContext} from "react";
 import '../assets/styles/Modal.css'
 import DeleteData from "../services/DeleteData";
+import {PageContext} from "../App";
 
 export default function DeleteModal (props) {
 
+    const pageContext = useContext(PageContext);
+
     function deleteObject() {
-        DeleteData(props.deleteUrl + props.currentObject.id);
+        DeleteData(props.deleteUrl + props.currentObject.id)
+            .then(() => pageContext.setSynchronized(!pageContext.synchronized));
         props.toggleShow();
     }
 

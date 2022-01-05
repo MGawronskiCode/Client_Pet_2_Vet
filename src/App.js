@@ -61,6 +61,7 @@ export default function App() {
     const [petVisits, setPetVisits] = useState([]);
     const [userNotes, setUserNotes] = useState(null);
     const [dietData, setDietData] = useState(null);
+    const [synchronized, setSynchronized] = useState(false);
 
     useEffect(() => {
         if (isUserNotesView) {
@@ -88,8 +89,7 @@ export default function App() {
         // const veterinarians = ...
 
     }, [isUserView, isPetView, isUserNotesView, isAllPetsView, isVeterinariansView, isFindVeterinarianView,
-        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, petNotes.length, pets.length,
-        petVisits.length]);
+        isDietView, isCalendarView, isFeedbackView, isSettingsView, isModalShown, synchronized]);
 
 
     const contextValue = {
@@ -105,6 +105,8 @@ export default function App() {
         petNotes,
         isModalShown,
         setModalShown,
+        synchronized,
+        setSynchronized
     }
 
     return (

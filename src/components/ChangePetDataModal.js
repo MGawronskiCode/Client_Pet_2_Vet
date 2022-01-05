@@ -10,16 +10,19 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import '../assets/styles/Modal.css'
 import PutData from "../services/PutData";
 import {DatePickerComponent} from "@syncfusion/ej2-react-calendars";
+import {PageContext} from "../App";
 
 export default function ChangePetDataModal(props) {
 
-    const [name, setName] = useState(props.pet.name)
-    const [sex, setSex] = useState(props.pet.sex)
-    const [birthday, setBirthday] = useState(props.pet.birthday)
+    const pageContext = useContext(PageContext);
+
+    const [name, setName] = useState(props.pet.name);
+    const [sex, setSex] = useState(props.pet.sex);
+    const [birthday, setBirthday] = useState(props.pet.birthday);
 
     function update() {
         // TODO: fix problem with updating. Changes the date to the selected date minus one day
@@ -28,7 +31,7 @@ export default function ChangePetDataModal(props) {
             "sex": sex,
             "birthday": birthday
         }
-        PutData(props.updateUrl, data);
+        PutData(props.updateUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
         props.toggleShow();
     }
 

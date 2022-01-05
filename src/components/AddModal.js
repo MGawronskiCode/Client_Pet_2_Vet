@@ -8,20 +8,23 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import PostData from "../services/PostData";
+import {PageContext} from "../App";
 
 export default function AddModal(props) {
 
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
+    const pageContext = useContext(PageContext);
+
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
     function save() {
         const data = {
             "title": title,
             "content": content
         }
-        PostData(props.saveUrl, data);
+        PostData(props.saveUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
         props.toggleShow();
     }
 

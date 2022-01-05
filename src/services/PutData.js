@@ -9,7 +9,7 @@ export default function PutData (URL, data) {
         body: JSON.stringify(data)
     }
 
-    fetch(URL, options)
+    return fetch(URL, options)
         .then(response => response.json())
 
 }
