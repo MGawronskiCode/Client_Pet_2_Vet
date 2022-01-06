@@ -27,10 +27,12 @@ export default function Visit(props) {
                         <MDBCol center md="2">
                             <CardElementContent
                                 disabled={disabled}
-                                id={props.visit.id}/>
-                            {/*getDeleteModal={props.getDeleteModal}*/}
+                                id={props.visit.id}
+                                setElementToChange={props.setElementToChange}
+                                getDeleteModal={props.getDeleteModal}
+                                elementTochange="visits"/>
+
                             {/*getChangeModel={props.getChangeModal}*/}
-                            {/*getObjectToChange={props.getObjectToChange}*/}
 
                         </MDBCol>
                     </MDBRow>

@@ -18,6 +18,8 @@ export default function History (props) {
                         visit={visit}
                         index={index}
                         setDisabled={setDisabled}
+                        getDeleteModal={props.getDeleteModal}
+                        setElementToChange={props.setElementToChange}
                         image={HistoryImage}/>
                 </div>
             )

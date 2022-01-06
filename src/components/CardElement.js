@@ -28,11 +28,11 @@ export default function CardElement(props) {
                                 </MDBCol>
                                 <MDBCol md="2" center>
                                     <CardElementContent
-                                        content={props.element.content}
                                         disabled={disabled}
                                         getDeleteModal={props.getDeleteModal}
                                         getChangeModel={props.getChangeModal}
-                                        getObjectToChange={props.getObjectToChange}
+                                        setElementToChange={props.setElementToChange}
+                                        elementTochange="notes"
                                         id={props.element.id}/>
                                 </MDBCol>
                             </MDBRow>

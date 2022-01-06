@@ -19,7 +19,7 @@ export default function PetNotes(props) {
                         index={index}
                         image={Clip}
                         getChangeModal={props.getChangeModal}
-                        getObjectToChange={props.getObjectToChange}
+                        setElementToChange={props.setElementToChange}
                         getDeleteModal={props.getDeleteModal} />
                 </div>
             )
