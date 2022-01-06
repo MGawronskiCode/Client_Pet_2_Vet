@@ -12,7 +12,7 @@ import React, {useContext, useState} from "react";
 import PostData from "../services/PostData";
 import {PageContext} from "../App";
 
-export default function AddModal(props) {
+export default function AddNoteModal(props) {
 
     const pageContext = useContext(PageContext);
 

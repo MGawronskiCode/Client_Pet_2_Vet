@@ -5,29 +5,26 @@ import '../assets/styles/View.css';
 import '../assets/styles/Card.css';
 import DeleteModal from "../components/DeleteModal";
 import ChangeNoteModal from "../components/ChangeNoteModal";
-import AddModal from "../components/AddModal";
+import AddNoteModal from "../components/AddNoteModal";
 import PetPanel from "../components/PetPanel";
 import History from "../components/History";
 import {PageContext} from "../App";
 import ChangePetDataModal from "../components/ChangePetDataModal";
+import AddHistoryModal from "../components/AddHistoryModal";
 
 export default function PetView(props) {
 
     const pageContext = useContext(PageContext)
     const notes = props.notes;
     const baseNotesUrl = "http://localhost:8080/pets/" + props.pet.id + "/notes/";
+    const baseHistoryUrl = "http://localhost:8080/pets/" + props.pet.id + "/visits/";
     const basePetUrl = "http://localhost:8080/pets/" + props.pet.id;
 
-    // Delete Modal
+    // Note Modals
     const [showDeleteModal, setShowDeleteModel] = useState(false);
-    const toggleShowDeleteModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowDeleteModel(!showDeleteModal);
-    }
-
-    // Change Note Modal
     const [showChangeNoteModal, setShowChangeNoteModal] = useState(false);
     const [noteToChange, setNoteToChange] = useState();
+    const [showAddNoteModal, setShowAddNoteModal] = useState(false);
 
     function getObjectToChange(id) {
         notes.map((note) => {
@@ -37,38 +34,55 @@ export default function PetView(props) {
         })
     }
 
-    // Change Pet Data Modal
-    const [showChangePetDataModal, setShowChangePetDataModal] = useState(false);
-
+    const toggleShowDeleteModal = () => {
+        pageContext.setModalShown(!pageContext.isModalShown);
+        setShowDeleteModel(!showDeleteModal);
+    }
     const toggleShowChangeNoteModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowChangeNoteModal(!showChangeNoteModal);
     }
+    const toggleShowAddNoteModal = () => {
+        pageContext.setModalShown(!pageContext.isModalShown);
+        setShowAddNoteModal(!showAddNoteModal);
+    }
+
+    // Pet Data Modal
+    const [showChangePetDataModal, setShowChangePetDataModal] = useState(false);
 
     const toggleShowChangePetDataModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowChangePetDataModal(!showChangePetDataModal);
     }
 
-    // Add Modal
-    const [showAddModal, setShowAddModal] = useState(false);
-    const toggleShowAddModal = () => {
+    // History Modals
+    const [showAddHistoryModal, setShowAddHistoryModal] = useState(false);
+    const toggleShowAddHistoryModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
-        setShowAddModal(!showAddModal);
+        setShowAddHistoryModal(!showAddHistoryModal);
     }
 
     return (
         <Container id="view">
             {
-                showAddModal &&
-                <AddModal
+                showAddNoteModal &&
+                <AddNoteModal
                     isShow="true"
-                    setShow={setShowAddModal}
+                    setShow={setShowAddNoteModal}
                     modalTitle="Save note?"
                     inputTitle="Title"
                     inputContent="Content"
                     saveUrl={baseNotesUrl}
-                    toggleShow={toggleShowAddModal}/>
+                    toggleShow={toggleShowAddNoteModal}/>
+            }
+            {
+                showAddHistoryModal &&
+                <AddHistoryModal
+                    isShow="true"
+                    setShow={setShowAddHistoryModal}
+                    modalTitle="Save history?"
+                    saveUrl={baseHistoryUrl}
+                    toggleShow={toggleShowAddHistoryModal}/>
             }
             {
                 showChangeNoteModal &&
@@ -111,11 +125,11 @@ export default function PetView(props) {
                 <Col id="history">
                     <History
                         visits={props.visits}
-                        getAddModal={toggleShowAddModal}/>
+                        getAddModal={toggleShowAddHistoryModal}/>
                 </Col>
                 <Col>
                     <PetNotes
-                        getAddModal={toggleShowAddModal}
+                        getAddModal={toggleShowAddNoteModal}
                         getChangeModal={toggleShowChangeNoteModal}
                         getObjectToChange={getObjectToChange}
                         getDeleteModal={toggleShowDeleteModal}

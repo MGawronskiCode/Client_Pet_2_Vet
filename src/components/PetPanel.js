@@ -40,7 +40,7 @@ export default function PetPanel(props) {
                                 <p><strong>Breed</strong></p>
                             </MDBCol>
                             <MDBCol md="2">
-                                <p>{props.pet.sex ? props.pet.sex : "Empty"}</p>
+                                <p>{props.pet.sex ? (props.pet.sex === "MALE" ? "Male" : "Female") : "Empty"}</p>
                                 <p>{props.pet.birthday ? props.pet.birthday : "Empty"}</p>
                                 <p>{props.pet.kind ? props.pet.kind : "Empty"}</p>
                                 <p>{props.pet.breed ? props.pet.breed : "Empty"}</p>

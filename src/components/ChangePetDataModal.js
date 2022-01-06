@@ -21,11 +21,12 @@ export default function ChangePetDataModal(props) {
     const pageContext = useContext(PageContext);
 
     const [name, setName] = useState(props.pet.name);
-    const [sex, setSex] = useState(props.pet.sex);
+    const [sex, setSex] = useState("0");
     const [birthday, setBirthday] = useState(props.pet.birthday);
 
     function update() {
         // TODO: fix problem with updating. Changes the date to the selected date minus one day
+        // alert(sex)
         const data = {
             "name": name,
             "sex": sex,
@@ -65,8 +66,8 @@ export default function ChangePetDataModal(props) {
                         </div>
                         <div id="input">
                             <select className="form-select" onChange={(el) => setSex(el.target.valueOf().value)}>
-                                <option value="0">Male</option>
-                                <option value="1">Female</option>
+                                <option value={props.pet.sex === "MALE" ? "0" : "1"}>{props.pet.sex === "MALE" ? "Male" : "Female"}</option>
+                                <option value={props.pet.sex === "MALE" ? "1" : "0"}>{props.pet.sex === "MALE" ? "Female" : "Male"}</option>
                             </select>
                         </div>
                         <div id="input">
