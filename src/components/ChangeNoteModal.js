@@ -38,7 +38,7 @@ export default function ChangeNoteModal(props) {
                 <MDBModalDialog>
                     <MDBModalContent>
 
-                        <div id="update">
+                        <div id="addNew">
                             <MDBContainer>
                                 <MDBRow>
                                     <MDBCol md="11">
@@ -69,7 +69,7 @@ export default function ChangeNoteModal(props) {
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded color='success' onClick={update}>
+                            <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={update}>
                                 Save
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
