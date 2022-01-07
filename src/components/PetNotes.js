@@ -39,7 +39,7 @@ export default function PetNotes(props) {
                 </MDBCardTitle>
 
                 <MDBCardBody>
-                    {getNotes()}
+                    {notes.length !== 0 ? getNotes() : "Empty"}
                 </MDBCardBody>
 
             </MDBCard>

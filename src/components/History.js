@@ -41,7 +41,7 @@ export default function History (props) {
                 </MDBCardTitle>
 
                 <MDBCardBody>
-                    {getVisits()}
+                    {visits.length !== 0 ? getVisits() : "Empty"}
                 </MDBCardBody>
 
             </MDBCard>
