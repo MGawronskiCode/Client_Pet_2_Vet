@@ -29,11 +29,9 @@ export default function Visit(props) {
                                 disabled={disabled}
                                 id={props.visit.id}
                                 setElementToChange={props.setElementToChange}
+                                getChangeModel={props.getChangeModal}
                                 getDeleteModal={props.getDeleteModal}
                                 elementTochange="visits"/>
-
-                            {/*getChangeModel={props.getChangeModal}*/}
-
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>

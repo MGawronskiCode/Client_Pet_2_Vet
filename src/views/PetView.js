@@ -11,6 +11,7 @@ import History from "../components/History";
 import {PageContext} from "../App";
 import ChangePetDataModal from "../components/ChangePetDataModal";
 import AddHistoryModal from "../components/AddHistoryModal";
+import ChangeHistoryDataModal from "../components/ChangeHistoryDataModal";
 
 export default function PetView(props) {
 
@@ -74,6 +75,7 @@ export default function PetView(props) {
     // History Modals
     const [showAddHistoryModal, setShowAddHistoryModal] = useState(false);
     const [showDeleteHistoryModal, setShowDeleteHistoryModal] = useState(false);
+    const [showChangeHistoryModal, setShowChangeHistoryModal] = useState(false);
     const toggleShowAddHistoryModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowAddHistoryModal(!showAddHistoryModal);
@@ -81,6 +83,10 @@ export default function PetView(props) {
     const toggleShowDeleteHistoryModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowDeleteHistoryModal(!showDeleteHistoryModal);
+    }
+    const toggleShowChangeHistoryModal = () => {
+        pageContext.setModalShown(!pageContext.isModalShown);
+        setShowChangeHistoryModal(!showChangeHistoryModal);
     }
 
     return (
@@ -127,6 +133,15 @@ export default function PetView(props) {
                     pet={props.pet}/>
             }
             {
+                showChangeHistoryModal &&
+                <ChangeHistoryDataModal
+                    isShow="true"
+                    setShow={setShowChangeHistoryModal}
+                    updateUrl={baseHistoryUrl}
+                    toggleShow={toggleShowChangeHistoryModal}
+                    currentObject={elementToChange}/>
+            }
+            {
                 showDeleteModal &&
                 <DeleteModal
                     isShow="true"
@@ -157,6 +172,7 @@ export default function PetView(props) {
                     <History
                         visits={props.visits}
                         getAddModal={toggleShowAddHistoryModal}
+                        getChangeModal={toggleShowChangeHistoryModal}
                         getDeleteModal={toggleShowDeleteHistoryModal}
                         setElementToChange={changeElement}/>
                 </Col>
