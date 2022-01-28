@@ -10,4 +10,4 @@ How it works?
  
 This is the frontend part of the application written in React, running on desktop and mobile devices.
 
-<!-- ![alt text](tutaj url do zdjęcia) -->
+![alt text](https://i.imgur.com/1RimfJ0.png)
