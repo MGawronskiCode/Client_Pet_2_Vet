@@ -10,6 +10,6 @@ How it works?
  
 This is the frontend part of the application written in React, running on desktop and mobile devices.
 
-![alt text](https://i.imgur.com/1RimfJ0.png)
+![alt text](https://i.imgur.com/Gr5nWjk.png)
 
 ![alt text](https://images-ext-2.discordapp.net/external/sPnOsqNXGhubSs50jv7fHnVs9RfmUulnE9G0jefYFJ8/https/i.imgur.com/JvK7SaV.png?width=1294&height=602)
