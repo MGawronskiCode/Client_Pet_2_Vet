@@ -21,7 +21,7 @@ const PageContext = createContext(null);
 export default function App() {
 
     // TODO: change userId with logging procedure. Change petId to null
-    const [userId, setUserId] = useState(2);
+    const [userId, setUserId] = useState(7);
     const [petId, setPetId] = useState(3);
 
     const [isUserMenu, setUserMenu] = useState(true);

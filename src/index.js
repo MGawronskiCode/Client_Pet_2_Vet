@@ -4,13 +4,15 @@ import './assets/styles/index.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
+import Login from "./Login";
 
 const { worker } = require('./mocks/browser')
 // worker.start()
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        {/*<App />*/}
+        <Login />
     </React.StrictMode>,
     document.getElementById('root')
 );
