@@ -8,7 +8,7 @@ import ChangeNoteModal from "../components/ChangeNoteModal";
 import AddNoteModal from "../components/AddNoteModal";
 import PetPanel from "../components/PetPanel";
 import History from "../components/History";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 import ChangePetDataModal from "../components/ChangePetDataModal";
 import AddHistoryModal from "../components/AddHistoryModal";
 import ChangeHistoryDataModal from "../components/ChangeHistoryDataModal";

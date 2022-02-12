@@ -3,7 +3,7 @@ import {MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import "../assets/styles/Card.css"
 import PetImage from "../assets/images/Pet.png"
 import {useContext, useState} from "react";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 import AddPetModal from "../components/AddPetModal";
 
 export default function UserView(props) {

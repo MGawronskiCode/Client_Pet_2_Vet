@@ -1,6 +1,6 @@
 import {MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol, MDBIcon} from "mdb-react-ui-kit";
 import React, {useContext} from "react";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 import "../assets/styles/Card.css"
 import ImageP from "../assets/images/Pet.png"
 

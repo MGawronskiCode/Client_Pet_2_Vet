@@ -10,7 +10,7 @@ import {
 } from "mdb-react-ui-kit";
 import React, {useContext, useState} from "react";
 import PostData from "../services/PostData";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 
 export default function AddNoteModal(props) {
 

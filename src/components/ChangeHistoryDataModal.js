@@ -13,7 +13,7 @@ import {
 import React, {useContext, useState} from "react";
 import '../assets/styles/Modal.css'
 import PutData from "../services/PutData";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 import {DateTimePickerComponent} from "@syncfusion/ej2-react-calendars/src/datetimepicker/datetimepicker.component";
 
 export default function ChangeHistoryDataModal(props) {

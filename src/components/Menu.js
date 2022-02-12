@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 import MenuTitle from "./MenuTitle";
 import Logotype from "./Logotype";
 import MenuElement from "./MenuElement";

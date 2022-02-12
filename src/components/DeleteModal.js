@@ -13,7 +13,7 @@ import {
 import React, {useContext} from "react";
 import '../assets/styles/Modal.css'
 import DeleteData from "../services/DeleteData";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 
 export default function DeleteModal (props) {
 

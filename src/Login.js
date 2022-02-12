@@ -21,7 +21,7 @@ import './assets/styles/App.css'
 import GetData from "./services/GetData";
 import {response} from "msw";
 
-export default function Login() {
+export default function Login({loggedKey, setLogged}) {
 
     const [loginRegisterActive, setLoginRegisterClick] = useState('login');
 
@@ -30,15 +30,19 @@ export default function Login() {
 
     function logIn() {
         const base64 = require('base-64');
-        let headers1 = new Headers();
-        headers1.append("Content-Type", "application/json")
-        headers1.append("Authorization", "Basic " + base64.encode(login + ":" + password));
-        fetch("/users/6", {
+        let fetchHeaders = new Headers();
+        fetchHeaders.append("Content-Type", "application/json")
+        fetchHeaders.append("Authorization", "Basic " + base64.encode(login + ":" + password));
+        fetch("/pets", {
             method: 'GET',
-            headers: headers1
+            headers: fetchHeaders
         })
             .then(response => {
                 console.log(response.status)
+                if (response.status === 200) {
+                    window.localStorage.setItem(loggedKey, true)
+                    setLogged();
+                }
             })
     }
 

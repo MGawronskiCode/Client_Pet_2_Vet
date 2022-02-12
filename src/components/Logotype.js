@@ -1,7 +1,7 @@
 import {Container, Image} from "react-bootstrap";
 import image from  "../assets/images/Logotype.png";
 import {useContext} from "react";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 
 export default function Logotype() {
 

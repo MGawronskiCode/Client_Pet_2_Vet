@@ -13,7 +13,7 @@ import {
 import React, {useContext, useState} from "react";
 import '../assets/styles/Modal.css'
 import PutData from "../services/PutData";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 
 export default function ChangeNoteModal(props) {
 
