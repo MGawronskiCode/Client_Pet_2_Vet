@@ -21,14 +21,14 @@ const PageContext = createContext(null);
 export default function App() {
 
     // TODO: change userId with logging procedure. Change petId to null
-    const [userId, setUserId] = useState(7);
-    const [petId, setPetId] = useState(3);
+    const [userId, setUserId] = useState(6);
+    const [petId, setPetId] = useState(10);
 
     const [isUserMenu, setUserMenu] = useState(true);
     const [isPetMenu, setPetMenu] = useState(false);
 
-    const [isUserView, setUserView] = useState(false);
-    const [isPetView, setPetView] = useState(true);
+    const [isUserView, setUserView] = useState(true);
+    const [isPetView, setPetView] = useState(false);
     const [isUserNotesView, setUserNotesView] = useState(false);
     const [isAllPetsView, setAllPetsView] = useState(false);
     const [isVeterinariansView, setVeterinariansView] = useState(false);
@@ -114,7 +114,7 @@ export default function App() {
             <div id="page">
                 <Container fluid>
                     <Row id="navbarComponent">
-                        NavBar component
+
                     </Row>
                     <Row>
                         <Col id="menuComponent" md={2}>

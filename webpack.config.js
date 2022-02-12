@@ -79,29 +79,31 @@ module.exports = function (env) {
                 {
                     test: /\.css$/,
                     loader: isProduction ?
-                        ExtractTextPlugin.extract({ fallback: 'style-loader', use: [
-                            {
-                                loader: require.resolve('css-loader')
-                            },
-                            {
-                                loader: require.resolve('postcss-loader'),
-                                options: {
-                                    plugins: () => [
-                                        require('postcss-flexbugs-fixes'),
-                                        autoprefixer({
-                                            browsers: [
-                                                '>1%',
-                                                'last 4 versions',
-                                                'Firefox ESR',
-                                                'not ie < 9',
-                                            ],
-                                            flexbox: 'no-2009',
-                                        }),
-                                    ],
+                        ExtractTextPlugin.extract({
+                            fallback: 'style-loader', use: [
+                                {
+                                    loader: require.resolve('css-loader')
                                 },
-                            }
-                        ] }) :
-                        [ 'style-loader', 'css-loader', ]
+                                {
+                                    loader: require.resolve('postcss-loader'),
+                                    options: {
+                                        plugins: () => [
+                                            require('postcss-flexbugs-fixes'),
+                                            autoprefixer({
+                                                browsers: [
+                                                    '>1%',
+                                                    'last 4 versions',
+                                                    'Firefox ESR',
+                                                    'not ie < 9',
+                                                ],
+                                                flexbox: 'no-2009',
+                                            }),
+                                        ],
+                                    },
+                                }
+                            ]
+                        }) :
+                        ['style-loader', 'css-loader',]
                 },
                 /**
                  * json-loader
@@ -168,21 +170,30 @@ module.exports = function (env) {
          * https://webpack.js.org/guides/development/#webpack-dev-server
          * https://webpack.js.org/configuration/dev-server/
          */
-        devServer:{
-            hot: true,
-            contentBase: path.join(__dirname, "public"),
-            compress: true,
-            port: 9000,
-            publicPath: '/',
-            // 设置代理，比如，请求 /api/abc 会代理制 http://localhost:7000/abc
-            // https://webpack.js.org/configuration/dev-server/#devserver-proxy
-            // https://github.com/chimurai/http-proxy-middleware#http-proxy-middleware-options
+        // devServer: {
+        //     hot: true,
+        //     contentBase: path.join(__dirname, "public"),
+        //     compress: true,
+        //     port: 3000,
+        //     publicPath: '/',
+        //     // 设置代理，比如，请求 /api/abc 会代理制 http://localhost:7000/abc
+        //     // https://webpack.js.org/configuration/dev-server/#devserver-proxy
+        //     // https://github.com/chimurai/http-proxy-middleware#http-proxy-middleware-options
+        //     proxy: {
+        //         "/api": {
+        //             target: "http://localhost:8080/",
+        //             pathRewrite: {"^/api" : ""},
+        //             secure: false,
+        //             changeOrigin: true
+        //         }
+        //     }
+        // },
+        devServer: {
             proxy: {
-                "/api": {
-                    target: "http://localhost:7000/",
-                    pathRewrite: {"^/api" : ""},
-                    secure: false,
-                    changeOrigin: true
+                '/': {
+                    target: 'http://localhost:3000',
+                    router: () => 'http://localhost:8080',
+                    logLevel: 'debug' /*optional*/
                 }
             }
         },

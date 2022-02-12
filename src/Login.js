@@ -1,27 +1,47 @@
 import React, {useState} from 'react';
 import {
-    MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBCheckbox,
     MDBBtn,
+    MDBCheckbox,
+    MDBCol,
     MDBIcon,
+    MDBInput,
+    MDBRow,
     MDBTabs,
+    MDBTabsContent,
     MDBTabsItem,
     MDBTabsLink,
-    MDBTabsContent,
-    MDBTabsPane, MDBContainer,
+    MDBTabsPane,
 } from 'mdb-react-ui-kit';
 import './assets/styles/Modal.css'
 import LoginImage from './assets/images/LoginImage.png'
-import * as url from "url";
-import {Select} from "antd";
 import Footer from "./components/Footer";
 import {Container, Row} from "react-bootstrap";
+import PostData from "./services/PostData";
+import './assets/styles/App.css'
+import GetData from "./services/GetData";
+import {response} from "msw";
 
-export default function App() {
+export default function Login() {
 
     const [loginRegisterActive, setLoginRegisterClick] = useState('login');
+
+    const [login, setLogin] = useState("");
+    const [password, setPassword] = useState("");
+
+    function logIn() {
+        const base64 = require('base-64');
+        let headers1 = new Headers();
+        headers1.append("Content-Type", "application/json")
+        headers1.append("Authorization", "Basic " + base64.encode(login + ":" + password));
+        fetch("http://localhost:8080/login", {
+            method: 'GET',
+            headers: headers1
+        })
+            .then(response => {
+                console.log(response.text())
+                console.log(response.status)
+            })
+    }
 
     function getSignInMethods() {
         return (
@@ -43,7 +63,7 @@ export default function App() {
     return (
         <Container fluid>
             <Row id="navbarComponent">
-                NavBar component
+
             </Row>
 
             <div style={{
@@ -85,28 +105,33 @@ export default function App() {
 
                             <MDBTabsContent>
                                 <MDBTabsPane show={loginRegisterActive === 'login'}>
-                                    <form>
 
-                                        <MDBInput className='mb-4' type='email' label='Login'/>
-                                        <MDBInput className='mb-4' type='password' label='Password'/>
 
-                                        <MDBRow className='mb-4'>
-                                            <MDBCol className='d-flex justify-content-center'>
-                                                <MDBCheckbox
-                                                    style={{backgroundColor: "#2d3051", borderColor: '#2d3051'}}
-                                                    id='form7Example3' label='Remember me' defaultChecked/>
-                                            </MDBCol>
-                                        </MDBRow>
+                                    <MDBInput
+                                        className='mb-4' type='email' label='Login'
+                                        onChange={(el) => setLogin(el.target.value)}/>
+                                    <MDBInput
+                                        className='mb-4' type='password' label='Password'
+                                        onChange={(el) => setPassword(el.target.value)}/>
 
-                                        <MDBBtn
-                                            type='submit' className='mb-4' block
-                                            style={{backgroundColor: '#2d3051'}}>
-                                            Sign in
-                                        </MDBBtn>
+                                    <MDBRow className='mb-4'>
+                                        <MDBCol className='d-flex justify-content-center'>
+                                            <MDBCheckbox
+                                                style={{backgroundColor: "#2d3051", borderColor: '#2d3051'}}
+                                                id='form7Example4' label='Remember me' defaultChecked/>
+                                        </MDBCol>
+                                    </MDBRow>
 
-                                        {getSignInMethods()}
+                                    <MDBBtn
+                                        className='mb-4' block
+                                        onClick={logIn}
+                                        style={{backgroundColor: '#2d3051'}}>
+                                        Sign in
+                                    </MDBBtn>
 
-                                    </form>
+                                    {getSignInMethods()}
+
+
                                 </MDBTabsPane>
                                 <MDBTabsPane show={loginRegisterActive === 'register'}>
                                     <form>
