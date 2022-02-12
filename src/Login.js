@@ -16,12 +16,9 @@ import './assets/styles/Modal.css'
 import LoginImage from './assets/images/LoginImage.png'
 import Footer from "./components/Footer";
 import {Container, Row} from "react-bootstrap";
-import PostData from "./services/PostData";
 import './assets/styles/App.css'
-import GetData from "./services/GetData";
-import {response} from "msw";
 
-export default function Login({loggedKey, setLogged}) {
+export default function Login({loggedKey, setLogged, setShowInfoModal}) {
 
     const [loginRegisterActive, setLoginRegisterClick] = useState('login');
 
@@ -30,20 +27,28 @@ export default function Login({loggedKey, setLogged}) {
 
     function logIn() {
         const base64 = require('base-64');
-        let fetchHeaders = new Headers();
-        fetchHeaders.append("Content-Type", "application/json")
+        const fetchHeaders = new Headers();
         fetchHeaders.append("Authorization", "Basic " + base64.encode(login + ":" + password));
         fetch("/pets", {
             method: 'GET',
             headers: fetchHeaders
         })
             .then(response => {
-                console.log(response.status)
+                console.log(response.statusText)
                 if (response.status === 200) {
                     window.localStorage.setItem(loggedKey, true)
-                    setLogged();
+                    setLogged(true);
+                }
+                if (response.status === 401) {
+                    setShowInfoModal()
                 }
             })
+        setNullValue();
+    }
+
+    function setNullValue() {
+        setLogin("");
+        setPassword("");
     }
 
     function getSignInMethods() {
@@ -112,10 +117,10 @@ export default function Login({loggedKey, setLogged}) {
 
                                     <MDBInput
                                         className='mb-4' type='email' label='Login'
-                                        onChange={(el) => setLogin(el.target.value)}/>
+                                        value={login} onChange={(el) => setLogin(el.target.value)}/>
                                     <MDBInput
                                         className='mb-4' type='password' label='Password'
-                                        onChange={(el) => setPassword(el.target.value)}/>
+                                        value={password} onChange={(el) => setPassword(el.target.value)}/>
 
                                     <MDBRow className='mb-4'>
                                         <MDBCol className='d-flex justify-content-center'>
