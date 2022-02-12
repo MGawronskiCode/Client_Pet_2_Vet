@@ -190,9 +190,9 @@ module.exports = function (env) {
         // },
         devServer: {
             proxy: {
-                '/': {
-                    target: 'http://localhost:3000',
-                    router: () => 'http://localhost:8080',
+                '/login': {
+                    target: 'http://localhost:8080',
+                    router: () => 'http://localhost:3000',
                     logLevel: 'debug' /*optional*/
                 }
             }

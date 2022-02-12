@@ -33,12 +33,11 @@ export default function Login() {
         let headers1 = new Headers();
         headers1.append("Content-Type", "application/json")
         headers1.append("Authorization", "Basic " + base64.encode(login + ":" + password));
-        fetch("http://localhost:8080/login", {
+        fetch("/users/6", {
             method: 'GET',
             headers: headers1
         })
             .then(response => {
-                console.log(response.text())
                 console.log(response.status)
             })
     }
