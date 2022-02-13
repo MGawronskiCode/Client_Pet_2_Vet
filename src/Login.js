@@ -20,7 +20,7 @@ import './assets/styles/App.css'
 import ThinkingMan from "./assets/images/thinking_man.png";
 import Successful from "./assets/images/Successful.png"
 
-// TODO: 1. Form validation. 2. Error handling (in request)
+// TODO: 1. Form validation. 2. Error handling (in request). 3. Checkbox
 export default function Login({loggedKey, setLogged, setShowInfoModal}) {
 
     const base64 = require('base-64');
