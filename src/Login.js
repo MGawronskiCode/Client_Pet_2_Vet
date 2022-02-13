@@ -29,12 +29,12 @@ export default function Login({loggedKey, setLogged, setShowInfoModal}) {
         const base64 = require('base-64');
         const fetchHeaders = new Headers();
         fetchHeaders.append("Authorization", "Basic " + base64.encode(login + ":" + password));
-        fetch("/pets", {
-            method: 'GET',
+        fetch("/login", {
+            method: 'POST',
             headers: fetchHeaders
         })
             .then(response => {
-                console.log(response.statusText)
+                console.log(response.status)
                 if (response.status === 200) {
                     window.localStorage.setItem(loggedKey, true)
                     setLogged(true);
