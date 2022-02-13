@@ -17,43 +17,79 @@ import LoginImage from './assets/images/LoginImage.png'
 import Footer from "./components/Footer";
 import {Container, Row} from "react-bootstrap";
 import './assets/styles/App.css'
+import ThinkingMan from "./assets/images/thinking_man.png";
+import Successful from "./assets/images/Successful.png"
 
+// TODO: 1. Form validation. 2. Error handling (in request)
 export default function Login({loggedKey, setLogged, setShowInfoModal}) {
+
+    const base64 = require('base-64');
+    const fetchHeaders = new Headers();
 
     const [loginRegisterActive, setLoginRegisterClick] = useState('login');
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
+    const [name, setName] = useState("");
+    const [sex, setSex] = useState("0");
+    const [loginForRegistration, setLoginForRegistration] = useState("");
+    const [passwordForRegistration, setPasswordForRegistration] = useState("");
+    const [role, setRole] = useState("ROLE_OWNER");
+
     function logIn() {
-        const base64 = require('base-64');
-        const fetchHeaders = new Headers();
         fetchHeaders.append("Authorization", "Basic " + base64.encode(login + ":" + password));
         fetch("/login", {
             method: 'POST',
             headers: fetchHeaders
+        }).then(response => {
+            if (response.status === 200) {
+                window.localStorage.setItem(loggedKey, true)
+                setLogged(true);
+            }
+            if (response.status === 401) {
+                setShowInfoModal("Something went wrong...", ThinkingMan)
+            }
         })
-            .then(response => {
-                console.log(response.status)
-                if (response.status === 200) {
-                    window.localStorage.setItem(loggedKey, true)
-                    setLogged(true);
-                }
-                if (response.status === 401) {
-                    setShowInfoModal()
-                }
-            })
+        setNullValue();
+    }
+
+    function register() {
+        const data = {
+            "name": name,
+            "sex": sex,
+            "login": loginForRegistration,
+            "role": role
+        }
+        let options = {
+            method: 'POST',
+            headers: {
+                'password': passwordForRegistration,
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        }
+        fetch("/users", options).then(response => {
+            if (response.status === 201) {
+                setShowInfoModal("Registration completed", Successful)
+            }
+        })
         setNullValue();
     }
 
     function setNullValue() {
         setLogin("");
         setPassword("");
+        setName("");
+        setSex("0");
+        setLoginForRegistration("");
+        setPasswordForRegistration("");
+        setRole("ROLE_OWNER");
     }
 
     function getSignInMethods() {
         return (
-            <div className='text-center mb-3'>
+            <div className='text-center mb-2'>
                 <p>Sign up with:</p>
 
                 <MDBBtn floating className='mx-1' style={{backgroundColor: '#2d3051'}}>
@@ -114,15 +150,14 @@ export default function Login({loggedKey, setLogged, setShowInfoModal}) {
                             <MDBTabsContent>
                                 <MDBTabsPane show={loginRegisterActive === 'login'}>
 
-
                                     <MDBInput
-                                        className='mb-4' type='email' label='Login'
+                                        className='mb-2' type='email' label='Login'
                                         value={login} onChange={(el) => setLogin(el.target.value)}/>
                                     <MDBInput
-                                        className='mb-4' type='password' label='Password'
+                                        className='mb-2' type='password' label='Password'
                                         value={password} onChange={(el) => setPassword(el.target.value)}/>
 
-                                    <MDBRow className='mb-4'>
+                                    <MDBRow className='mb-2'>
                                         <MDBCol className='d-flex justify-content-center'>
                                             <MDBCheckbox
                                                 style={{backgroundColor: "#2d3051", borderColor: '#2d3051'}}
@@ -131,51 +166,67 @@ export default function Login({loggedKey, setLogged, setShowInfoModal}) {
                                     </MDBRow>
 
                                     <MDBBtn
-                                        className='mb-4' block
+                                        className='mb-2' block
                                         onClick={logIn}
                                         style={{backgroundColor: '#2d3051'}}>
                                         Sign in
                                     </MDBBtn>
 
                                     {getSignInMethods()}
-
-
                                 </MDBTabsPane>
+
                                 <MDBTabsPane show={loginRegisterActive === 'register'}>
-                                    <form>
 
-                                        <MDBInput className='mb-4' type='text' label='Name'/>
-                                        <div className='mb-4'>
-                                            <select className="form-select">
-                                                <option value="0">Male</option>
-                                                <option value="1">Female</option>
-                                            </select>
-                                        </div>
-                                        <MDBInput className='mb-4' type='email' label='Login'/>
-                                        <MDBInput className='mb-4' type='password' label='Password'/>
+                                    <MDBInput
+                                        className='mb-2' type='text' label='Name'
+                                        value={name} onChange={(el) => setName(el.target.value)}/>
+                                    <div className='mb-2'>
+                                        <select
+                                            className="form-select"
+                                            onChange={(el) => setSex(el.target.valueOf().value)}>
+                                            <option value="0">Male</option>
+                                            <option value="1">Female</option>
+                                        </select>
+                                    </div>
+                                    <MDBInput
+                                        className='mb-2' type='email' label='Login'
+                                        value={loginForRegistration}
+                                        onChange={(el) => setLoginForRegistration(el.target.value)}/>
+                                    <MDBInput
+                                        className='mb-2' type='password' label='Password'
+                                        value={passwordForRegistration}
+                                        onChange={(el) => setPasswordForRegistration(el.target.value)}/>
+                                    <div className='mb-2'>
+                                        <select
+                                            className="form-select"
+                                            onChange={(el) => setRole(el.target.valueOf().value)}>
+                                            <option value="ROLE_OWNER">Owner</option>
+                                            <option value="ROLE_VET" disabled={true}>Vet</option>
+                                        </select>
+                                    </div>
 
-                                        <MDBRow className='mb-4'>
-                                            <MDBCol className='d-flex justify-content-center'>
-                                                <MDBCheckbox
-                                                    style={{
-                                                        backgroundColor: loginRegisterActive ? "#2d3051" : "white",
-                                                        borderColor: '#2d3051'
-                                                    }}
-                                                    id='form7Example3' label='I have read and agree to the terms'
-                                                    defaultChecked/>
-                                            </MDBCol>
-                                        </MDBRow>
+                                    <MDBRow className='mb-2'>
+                                        <MDBCol className='d-flex justify-content-center'>
+                                            <MDBCheckbox
+                                                style={{
+                                                    backgroundColor: loginRegisterActive ? "#2d3051" : "white",
+                                                    borderColor: '#2d3051'
+                                                }}
+                                                id='form7Example3' label='I have read and agree to the terms'
+                                                defaultChecked/>
+                                        </MDBCol>
+                                    </MDBRow>
 
-                                        <MDBBtn
-                                            type='submit' className='mb-4' block
-                                            style={{backgroundColor: '#2d3051'}}>
-                                            Sign in
-                                        </MDBBtn>
+                                    <MDBBtn
+                                        className='mb-2' block
+                                        onClick={register}
+                                        style={{backgroundColor: '#2d3051'}}>
+                                        Sign in
+                                    </MDBBtn>
 
-                                        {getSignInMethods()}
-
-                                    </form>
+                                    {getSignInMethods()}
                                 </MDBTabsPane>
+
                             </MDBTabsContent>
                         </div>
                     </div>

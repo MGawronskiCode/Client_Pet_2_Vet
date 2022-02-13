@@ -8,9 +8,8 @@ export default function App () {
     const loggedKey = "logged";
     const [logged, setLogged] = useState(window.localStorage.getItem(loggedKey));
     const [isShow, setShow] = useState(false);
-
-    // console.log(window.localStorage.getItem("logged"))
-    // response.json().then(data => console.log(data))
+    const [message, setMessage] = useState("")
+    const [messageImage, setMessageImage] = useState();
 
     return (
         <>
@@ -18,11 +17,17 @@ export default function App () {
                 <InfoModal
                     isShow={isShow}
                     setShow={setShow}
+                    message={message}
+                    messageImage={messageImage}
                     setShowInfoModal={() => setShow(!isShow)}/>}
             {!logged &&
                 <Login
                     isShow={isShow}
-                    setShowInfoModal={() => setShow(!isShow)}
+                    setShowInfoModal={(message, image) => {
+                        setMessage(message)
+                        setMessageImage(image)
+                        setShow(!isShow)
+                    }}
                     loggedKey={loggedKey}
                     setLogged={(status) => setLogged(status)} />}
             {logged &&

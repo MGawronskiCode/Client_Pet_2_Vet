@@ -10,9 +10,8 @@ import {
     MDBRow
 } from "mdb-react-ui-kit";
 import React from "react";
-import ThinkingMan from '../assets/images/thinking_man.png'
 
-export default function InfoModal ({isShow, setShowInfoModal, setShow}) {
+export default function InfoModal ({isShow, setShowInfoModal, setShow, messageImage, message}) {
     return(
         <>
             <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
@@ -24,7 +23,7 @@ export default function InfoModal ({isShow, setShowInfoModal, setShow}) {
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">
-                                            Something went wrong...
+                                            {message}
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
@@ -36,7 +35,7 @@ export default function InfoModal ({isShow, setShowInfoModal, setShow}) {
 
                         <div id="message">
                             <img
-                                srcSet={ThinkingMan}
+                                srcSet={messageImage}
                                 style={{ maxWidth: '10rem' }}
                                 alt='...'/>
                         </div>
