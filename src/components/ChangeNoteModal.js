@@ -10,12 +10,14 @@ import {
     MDBModalTitle,
     MDBRow
 } from "mdb-react-ui-kit";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import '../assets/styles/Modal.css'
-import PostData from "../services/PostData";
 import PutData from "../services/PutData";
+import {PageContext} from "../Main";
 
-export default function ChangeModal(props) {
+export default function ChangeNoteModal(props) {
+
+    const pageContext = useContext(PageContext)
 
     const [title, setTitle] = useState(props.currentObject.title)
     const [content, setContent] = useState(props.currentObject.content)
@@ -25,7 +27,8 @@ export default function ChangeModal(props) {
             "title": title,
             "content": content
         }
-        PutData(props.updateUrl + props.currentObject.id, data);
+        PutData(props.updateUrl + props.currentObject.id, data)
+            .then(() => pageContext.setSynchronized(!pageContext.synchronized));
         props.toggleShow();
     }
 
@@ -35,7 +38,7 @@ export default function ChangeModal(props) {
                 <MDBModalDialog>
                     <MDBModalContent>
 
-                        <div id="update">
+                        <div id="addNew">
                             <MDBContainer>
                                 <MDBRow>
                                     <MDBCol md="11">
@@ -66,7 +69,7 @@ export default function ChangeModal(props) {
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded color='success' onClick={update}>
+                            <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={update}>
                                 Save
                             </MDBBtn>
                             <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>

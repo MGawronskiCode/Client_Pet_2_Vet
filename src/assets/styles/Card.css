@@ -87,8 +87,6 @@
 }
 
 #delete {
-    position: fixed;
-    right: 25px;
     transition: transform .2s;
 }
 
@@ -99,8 +97,7 @@
 }
 
 #edit {
-    position: fixed;
-    right: 50px;
+    /*margin-right: 2px;*/
     transition: transform .2s;
 }
 

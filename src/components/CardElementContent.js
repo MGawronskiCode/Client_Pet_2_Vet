@@ -5,20 +5,19 @@ export default function CardElementContent(props) {
 
     function changeObject(event) {
         let id = event.target.attributes.storage.value;
-        props.getObjectToChange(id);
+        props.setElementToChange(id, props.elementTochange);
         props.getChangeModel();
     }
 
     function deleteObject(event) {
         let id = event.target.attributes.storage.value;
-        props.getObjectToChange(id);
+        props.setElementToChange(id, props.elementTochange);
         props.getDeleteModal();
     }
 
     return (
         <div id="content">
 
-            {props.content}
             {
                 props.disabled ?
                     <>

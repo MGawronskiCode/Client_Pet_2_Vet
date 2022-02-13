@@ -1,20 +1,29 @@
+#page {
+    width: 100%;
+    /*min-height: 100vh;*/
+}
+
 #navbarComponent {
     color: white;
     background-color: #46528e;
+    min-height: 5vh;
 }
 
 #menuComponent {
     color: white;
     background-color: #2d3051;
+    min-height: 90vh;
 }
+
 
 #viewComponent {
     background-color: #8f99cd;
+    min-height: 90vh;
 }
 
 #footerComponent {
     position: sticky;
-    height: 3vmax;
     background-color: #46528e;
     color: white;
+    min-height: 5vh;
 }

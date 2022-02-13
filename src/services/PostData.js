@@ -1,3 +1,5 @@
+import { pets } from "../mocks/db";
+
 export default function PostData (URL, data) {
 
     let options = {
@@ -9,6 +11,6 @@ export default function PostData (URL, data) {
         body: JSON.stringify(data)
     }
 
-    fetch(URL, options)
-        .then(response => response.json())
+    return fetch(URL, options)
+        .then(response => response.json());
 }

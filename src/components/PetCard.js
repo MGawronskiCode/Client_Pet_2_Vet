@@ -1,7 +1,8 @@
 import {MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol, MDBIcon} from "mdb-react-ui-kit";
 import React, {useContext} from "react";
-import {PageContext} from "../App";
+import {PageContext} from "../Main";
 import "../assets/styles/Card.css"
+import ImageP from "../assets/images/Pet.png"
 
 export default function PetCard(props) {
 
@@ -24,7 +25,7 @@ export default function PetCard(props) {
                 <MDBCard id="petCard" onClick={() => changeView(props.pet.id)}>
                     <MDBCardImage
                         id="image"
-                        src='https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp'
+                        src={ImageP}
                         alt='...'/>
                     <MDBCardBody>
                         <MDBCardTitle id="card-title">

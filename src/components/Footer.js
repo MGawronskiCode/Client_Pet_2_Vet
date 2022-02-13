@@ -12,7 +12,7 @@ export default function Footer() {
                 <MDBCol size='md' id="center">
                     Authors
                 </MDBCol>
-                <MDBCol size='md' id="center">
+                <MDBCol size='md' id="right">
                     Privacy policy
                 </MDBCol>
             </MDBRow>
