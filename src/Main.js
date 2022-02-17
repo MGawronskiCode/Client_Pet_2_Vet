@@ -21,7 +21,6 @@ const PageContext = createContext(null);
 export default function Main() {
 
     // TODO: change userId with logging procedure. Change petId to null
-    const [userId, setUserId] = useState(6);
     const [petId, setPetId] = useState(10);
 
     const [isUserMenu, setUserMenu] = useState(true);
@@ -73,15 +72,15 @@ export default function Main() {
                 .then(setPets)
         }
         if (isPetView) {
-            GetData("http://localhost:8080/pets/" + petId + "/notes")
+            GetData("/pets/" + petId + "/notes")
                 .then(setPetNotes);
-            GetData("http://localhost:8080/pets/" + petId)
+            GetData("/pets/" + petId)
                 .then(setActualPet);
-            GetData("http://localhost:8080/pets/" + petId + "/visits")
+            GetData("/pets/" + petId + "/visits")
                 .then(setPetVisits);
         }
         if (isDietView) {
-            GetData("http://localhost:8080/pets/" + petId + "/meals")
+            GetData("/pets/" + petId + "/meals")
                 .then(setDietData);
         }
 
@@ -100,7 +99,6 @@ export default function Main() {
         view,
         isUserMenu,
         isPetMenu,
-        userId,
         petId,
         petNotes,
         isModalShown,
