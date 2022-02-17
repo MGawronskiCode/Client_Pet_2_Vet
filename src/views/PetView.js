@@ -18,9 +18,9 @@ export default function PetView(props) {
     const pageContext = useContext(PageContext)
     const notes = props.notes;
     const visits = props.visits;
-    const baseNotesUrl = "http://localhost:8080/pets/" + props.pet.id + "/notes/";
-    const baseHistoryUrl = "http://localhost:8080/pets/" + props.pet.id + "/visits/";
-    const basePetUrl = "http://localhost:8080/pets/" + props.pet.id;
+    const baseNotesUrl = "/pets/" + pageContext.petId + "/notes/";
+    const baseHistoryUrl = "/pets/" + pageContext.petId + "/visits/";
+    const basePetUrl = "/pets/" + pageContext.petId;
 
     const [elementToChange, setElementToChange] = useState();
 
