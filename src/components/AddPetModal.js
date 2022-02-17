@@ -14,6 +14,7 @@ import React, {useContext, useState} from "react";
 import {DatePickerComponent} from "@syncfusion/ej2-react-calendars"
 import PostData from "../services/PostData";
 import {PageContext} from "../Main";
+import Reference from "../Reference"
 
 export default function AddPetModal(props) {
 
@@ -21,15 +22,18 @@ export default function AddPetModal(props) {
 
     const [name, setName] = useState("");
     const [sex, setSex] = useState("0");
+    // const [specie, setSpecie] = useState("Mammal");
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
 
     function save() {
         const data = {
             "name": name,
             "sex": sex,
+            // "specie": new Object({"id": 2, "name": specie, "isDeleted": false}),
+            // "specie": new Object({"name": specie}),
             "birthday": dateOfBirth
         }
-        PostData(props.saveUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
+        PostData(Reference.pet, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
         props.toggleShow();
     }
 
@@ -67,6 +71,15 @@ export default function AddPetModal(props) {
                                 <option value="1">Female</option>
                             </select>
                         </div>
+
+                        {/*<div id="input">*/}
+                        {/*    <select className="form-select" onChange={(el) => setSpecie(el.target.valueOf().value)}>*/}
+                        {/*        <option value="Mammal">Mammal</option>*/}
+                        {/*        <option value="Bird">Bird</option>*/}
+                        {/*        <option value="Rodent">Rodent</option>*/}
+                        {/*        <option value="Reptile">Reptile</option>*/}
+                        {/*    </select>*/}
+                        {/*</div>*/}
 
                         <div id="input">
                             Date of birth:
