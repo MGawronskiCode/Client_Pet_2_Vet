@@ -18,7 +18,7 @@ export default function UserView(props) {
 
     function getPetsCards() {
         return props.pets.map((pet) => {
-            return <PetCard pet={pet}/>
+            return <PetCard key={pet.id} pet={pet}/>
         })
     }
 

@@ -31,10 +31,8 @@ export default function PetCard(props) {
                         <MDBCardTitle id="card-title">
                             {props.pet.name}
                         </MDBCardTitle>
-                        <MDBCardText>
-                            <p>Sex: {props.pet.sex}</p>
-                            <p>Birthday: {props.pet.birthday}</p>
-                        </MDBCardText>
+                        <p>Sex: {props.pet.sex}</p>
+                        <p>Birthday: {props.pet.birthday}</p>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
@@ -53,11 +51,9 @@ export default function PetCard(props) {
                         <MDBCardTitle id="card-title">
                             New pet
                         </MDBCardTitle>
-                        <MDBCardText>
-                            <span id="plus">
-                                <MDBIcon fas icon="plus"/>
-                            </span>
-                        </MDBCardText>
+                        <div id="plus">
+                            <MDBIcon fas icon="plus" id="plus"/>
+                        </div>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
