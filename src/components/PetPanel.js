@@ -4,7 +4,6 @@ import {MDBCardImage, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import DefaultImage from "../assets/images/Pet.png"
 import Pin from "../assets/images/Pin.jpg"
 import CardElementImage from "./CardElementImage";
-import Empty from "antd/es/empty/empty";
 
 export default function PetPanel(props) {
 
