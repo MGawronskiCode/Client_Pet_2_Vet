@@ -54,9 +54,9 @@ export default function PetCard(props) {
                             New pet
                         </MDBCardTitle>
                         <MDBCardText>
-                            <div id="plus">
+                            <span id="plus">
                                 <MDBIcon fas icon="plus"/>
-                            </div>
+                            </span>
                         </MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
