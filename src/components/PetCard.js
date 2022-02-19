@@ -1,8 +1,9 @@
-import {MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol, MDBIcon} from "mdb-react-ui-kit";
+import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCol, MDBIcon} from "mdb-react-ui-kit";
 import React, {useContext} from "react";
 import {PageContext} from "../Main";
 import "../assets/styles/Card.css"
 import ImageP from "../assets/images/Pet.png"
+import {View} from "../commons/Views"
 
 export default function PetCard(props) {
 
@@ -12,7 +13,8 @@ export default function PetCard(props) {
         pageContext.setUserMenu(false);
         pageContext.setPetMenu(true);
         pageContext.setPetId(petId);
-        pageContext.setCurrentView(pageContext.view.PET);
+        pageContext.setActualView(View.PET);
+        pageContext.setSynchronized(!pageContext.synchronized)
     }
 
     function showAddModal() {
