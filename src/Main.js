@@ -37,25 +37,27 @@ export default function Main() {
     const [synchronized, setSynchronized] = useState(false);
 
     useEffect(() => {
-        if (actualView === View.USER_NOTES) {
-            GetData("/user/notes")
-                .then(setUserNotes);
-        }
-        if (actualView === View.USER) {
-            GetData("/pets")
-                .then(setPets)
-        }
-        if (actualView === View.PET) {
-            GetData("/pets/" + petId + "/notes")
-                .then(setPetNotes);
-            GetData("/pets/" + petId)
-                .then(setActualPet);
-            GetData("/pets/" + petId + "/visits")
-                .then(setPetVisits);
-        }
-        if (actualView === View.DIET) {
-            GetData("/pets/" + petId + "/meals")
-                .then(setDietData);
+        switch (actualView) {
+            case View.USER_NOTES:
+                GetData("/user/notes")
+                    .then(setUserNotes);
+                break;
+            case View.USER:
+                GetData("/pets")
+                    .then(setPets);
+                break;
+            case View.PET:
+                GetData("/pets/" + petId + "/notes")
+                    .then(setPetNotes);
+                GetData("/pets/" + petId)
+                    .then(setActualPet);
+                GetData("/pets/" + petId + "/visits")
+                    .then(setPetVisits);
+                break;
+            case View.DIET:
+                GetData("/pets/" + petId + "/meals")
+                    .then(setDietData);
+                break;
         }
     }, [isModalShown, synchronized]);
 
