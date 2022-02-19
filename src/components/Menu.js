@@ -3,6 +3,7 @@ import {PageContext} from "../Main";
 import MenuTitle from "./MenuTitle";
 import Logotype from "./Logotype";
 import MenuElement from "./MenuElement";
+import {View} from "../commons/Views"
 
 export default function Menu() {
 
@@ -15,55 +16,47 @@ export default function Menu() {
 
             {pageContext.isUserMenu &&
                 <MenuElement
-                    setView={pageContext.setCurrentView}
-                    view={pageContext.view.USER_NOTES}
+                    setView={() => pageContext.setActualView(View.USER_NOTES)}
                     icon="sticky-note"
                     title="Notes"/>
             }
 
             {pageContext.isPetMenu &&
                 <MenuElement
-                    setView={pageContext.setCurrentView}
-                    view={pageContext.view.PETS}
+                    setView={() => pageContext.setActualView(View.PETS)}
                     icon="heart"
                     title="Your Pets"/>
             }
 
             <MenuElement
-                setView={pageContext.setCurrentView}
-                view={pageContext.view.VETERINARIANS}
+                setView={() => pageContext.setActualView(View.VETERINARIANS)}
                 icon="user-md"
                 title="Veterinarians"/>
 
             <MenuElement
-                setView={pageContext.setCurrentView}
-                view={pageContext.view.FIND_A_VETERINARIAN}
+                setView={() => pageContext.setActualView(View.FIND_A_VETERINARIAN)}
                 icon="map-marked-alt"
                 title="Find a Veterinarian"/>
 
             {pageContext.isPetMenu &&
                 <MenuElement
-                    setView={pageContext.setCurrentView}
-                    view={pageContext.view.DIET}
+                    setView={() => pageContext.setActualView(View.DIET)}
                     icon="drumstick-bite"
                     title="Diet module"/>
             }
 
             <MenuElement
-                setView={pageContext.setCurrentView}
-                view={pageContext.view.CALENDAR}
+                setView={() => pageContext.setActualView(View.CALENDAR)}
                 icon="calendar-alt"
                 title="Calendar"/>
 
             <MenuElement
-                setView={pageContext.setCurrentView}
-                view={pageContext.view.FEEDBACK}
+                setView={() => pageContext.setActualView(View.FEEDBACK)}
                 icon="paper-plane"
                 title="Send feedback"/>
 
             <MenuElement
-                setView={pageContext.setCurrentView}
-                view={pageContext.view.SETTINGS}
+                setView={() => pageContext.setActualView(View.SETTINGS)}
                 icon="cog"
                 title="Settings"/>
         </>

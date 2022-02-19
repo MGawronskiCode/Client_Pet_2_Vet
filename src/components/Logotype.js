@@ -2,6 +2,7 @@ import {Container, Image} from "react-bootstrap";
 import image from  "../assets/images/Logotype.png";
 import {useContext} from "react";
 import {PageContext} from "../Main";
+import {View} from "../commons/Views"
 
 export default function Logotype() {
 
@@ -10,7 +11,7 @@ export default function Logotype() {
     function changeView() {
         pageContext.setUserMenu(true);
         pageContext.setPetMenu(false);
-        pageContext.setCurrentView(pageContext.view.USER);
+        pageContext.setActualView(View.USER);
     }
 
     return (

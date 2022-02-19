@@ -4,9 +4,8 @@ import {MDBCardImage, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import DefaultImage from "../assets/images/Pet.png"
 import Pin from "../assets/images/Pin.jpg"
 import CardElementImage from "./CardElementImage";
-import Empty from "antd/es/empty/empty";
 
-export default function PetPanel(props) {
+export default function PetPanel({pet, getChangeModal}) {
 
     return (
         <MDBContainer id="container">
@@ -14,7 +13,7 @@ export default function PetPanel(props) {
                 <MDBCol center md='3' id="imageBox">
                     <MDBCardImage
                         id="petImage"
-                        src={props.pet.petImage ? props.pet.petImage : DefaultImage}
+                        src={pet.petImage != null ? pet.petImage : DefaultImage}
                         alt='...'/>
                 </MDBCol>
 
@@ -22,10 +21,10 @@ export default function PetPanel(props) {
                     <MDBContainer >
                         <MDBRow>
                             <MDBCol md="8" style={{textAlign: 'center'}}>
-                                <h1>{props.pet.name ? props.pet.name : "Name"}</h1>
+                                <h1>{pet.name ? pet.name : "Name"}</h1>
                             </MDBCol>
                             <MDBCol md="3"/>
-                            <MDBCol center md="1" id="pinIcon" onClick={props.getChangeModal}>
+                            <MDBCol center md="1" id="pinIcon" onClick={getChangeModal}>
                                 <CardElementImage image={Pin}/>
                             </MDBCol>
                         </MDBRow>
@@ -40,10 +39,10 @@ export default function PetPanel(props) {
                                 <p><strong>Breed</strong></p>
                             </MDBCol>
                             <MDBCol md="2">
-                                <p>{props.pet.sex ? (props.pet.sex === "MALE" ? "Male" : "Female") : "Empty"}</p>
-                                <p>{props.pet.birthday ? props.pet.birthday : "Empty"}</p>
-                                <p>{props.pet.kind ? props.pet.kind : "Empty"}</p>
-                                <p>{props.pet.breed ? props.pet.breed : "Empty"}</p>
+                                <p>{pet.sex ? (pet.sex === "MALE" ? "Male" : "Female") : "Empty"}</p>
+                                <p>{pet.birthday ? pet.birthday : "Empty"}</p>
+                                <p>{pet.kind ? pet.kind : "Empty"}</p>
+                                <p>{pet.breed ? pet.breed : "Empty"}</p>
                             </MDBCol>
                             <MDBCol md="2">
                                 <p><strong>Owner</strong></p>
@@ -51,9 +50,9 @@ export default function PetPanel(props) {
                                 <p><strong>Chip No.</strong></p>
                             </MDBCol>
                             <MDBCol md="2">
-                                <p>{props.pet.owner ? props.pet.owner : "Empty"}</p>
-                                <p>{props.pet.weight ? props.pet.weight : "Empty"}</p>
-                                <p>{props.pet.chip ? props.pet.chip : "Empty"}</p>
+                                <p>{pet.owner ? pet.owner : "Empty"}</p>
+                                <p>{pet.weight ? pet.weight : "Empty"}</p>
+                                <p>{pet.chip ? pet.chip : "Empty"}</p>
                             </MDBCol>
                         </MDBRow>
                     </MDBContainer>
