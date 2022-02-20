@@ -14,9 +14,8 @@ import React, {useContext, useState} from "react";
 import {DatePickerComponent} from "@syncfusion/ej2-react-calendars"
 import PostData from "../services/PostData";
 import {PageContext} from "../Main";
-import Reference from "../Reference"
 
-export default function AddPetModal(props) {
+export default function AddPetModal({isShow, setShow, toggleShow}) {
 
     const pageContext = useContext(PageContext)
 
@@ -33,13 +32,13 @@ export default function AddPetModal(props) {
             // "specie": new Object({"name": specie}),
             "birthday": dateOfBirth
         }
-        PostData(Reference.pet, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
-        props.toggleShow();
+        PostData("/pets", data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
+        toggleShow();
     }
 
     return (
         <>
-            <MDBModal show={props.isShow} setShow={props.setShow} tabIndex='-1'>
+            <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
 
@@ -52,7 +51,7 @@ export default function AddPetModal(props) {
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -95,7 +94,7 @@ export default function AddPetModal(props) {
                             <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={save}>
                                 Save
                             </MDBBtn>
-                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
+                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={toggleShow}>
                                 Cancel
                             </MDBBtn>
                         </MDBModalFooter>

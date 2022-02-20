@@ -1,28 +1,33 @@
 import {Col, Container, Row} from "react-bootstrap";
-import PetNotes from "../components/PetNotes";
+import {PageContext} from "../Main";
+import {Element} from "../commons/Element";
+import {Operation} from "../commons/Operations";
 import React, {useContext, useState} from "react";
 import '../assets/styles/View.css';
 import '../assets/styles/Card.css';
+import PetNotes from "../components/PetNotes";
 import DeleteModal from "../components/DeleteModal";
 import ChangeNoteModal from "../components/ChangeNoteModal";
 import AddNoteModal from "../components/AddNoteModal";
 import PetPanel from "../components/PetPanel";
 import History from "../components/History";
-import {PageContext} from "../Main";
 import ChangePetDataModal from "../components/ChangePetDataModal";
 import AddHistoryModal from "../components/AddHistoryModal";
 import ChangeHistoryDataModal from "../components/ChangeHistoryDataModal";
 
-export default function PetView(props) {
+export default function PetView({pet, notes, visits}) {
 
     const pageContext = useContext(PageContext)
-    const notes = props.notes;
-    const visits = props.visits;
+
     const baseNotesUrl = "/pets/" + pageContext.petId + "/notes/";
     const baseHistoryUrl = "/pets/" + pageContext.petId + "/visits/";
     const basePetUrl = "/pets/" + pageContext.petId;
 
-    const [elementToChange, setElementToChange] = useState();
+    const [isShow, setShow] = useState(false);
+    const [currentElement, setCurrentElement] = useState(null);
+    const [currentOperation, setCurrentOperation] = useState(null);
+    const [elementToChange, setElementToChange] = useState(null);
+
 
     // Note Modals
     const [showDeleteModal, setShowDeleteModel] = useState(false);
@@ -30,8 +35,8 @@ export default function PetView(props) {
     const [showAddNoteModal, setShowAddNoteModal] = useState(false);
 
     function changeElement(id, element) {
-        let elementsToChange = getElementsToChange(element);
-        elementsToChange.map((el) => {
+        let elements = getElementsToChange(element);
+        elements.map((el) => {
             if (el.id === Number(id)) {
                 setElementToChange(el);
             }
@@ -39,16 +44,16 @@ export default function PetView(props) {
     }
 
     function getElementsToChange(element) {
-        let elementsToChange;
+        let elements;
         switch (element) {
-            case "notes":
-                elementsToChange = notes;
+            case Element.NOTE:
+                elements = notes;
                 break;
-            case "visits":
-                elementsToChange = visits;
+            case Element.HISTORY:
+                elements = visits;
                 break;
         }
-        return elementsToChange;
+        return elements;
     }
 
     const toggleShowDeleteModal = () => {
@@ -73,20 +78,10 @@ export default function PetView(props) {
     }
 
     // History Modals
-    const [showAddHistoryModal, setShowAddHistoryModal] = useState(false);
     const [showDeleteHistoryModal, setShowDeleteHistoryModal] = useState(false);
-    const [showChangeHistoryModal, setShowChangeHistoryModal] = useState(false);
-    const toggleShowAddHistoryModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowAddHistoryModal(!showAddHistoryModal);
-    }
     const toggleShowDeleteHistoryModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowDeleteHistoryModal(!showDeleteHistoryModal);
-    }
-    const toggleShowChangeHistoryModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowChangeHistoryModal(!showChangeHistoryModal);
     }
 
     return (
@@ -103,13 +98,13 @@ export default function PetView(props) {
                     toggleShow={toggleShowAddNoteModal}/>
             }
             {
-                showAddHistoryModal &&
+                currentElement === Element.HISTORY && currentOperation === Operation.ADD && isShow &&
                 <AddHistoryModal
-                    isShow="true"
-                    setShow={setShowAddHistoryModal}
+                    isShow={isShow}
+                    setShow={setShow}
                     modalTitle="Save history?"
                     saveUrl={baseHistoryUrl}
-                    toggleShow={toggleShowAddHistoryModal}/>
+                    toggleShow={() => setShow(!isShow)}/>
             }
             {
                 showChangeNoteModal &&
@@ -130,15 +125,15 @@ export default function PetView(props) {
                     setShow={setShowChangePetDataModal}
                     toggleShow={toggleShowChangePetDataModal}
                     updateUrl={basePetUrl}
-                    pet={props.pet}/>
+                    pet={pet}/>
             }
             {
-                showChangeHistoryModal &&
+                currentElement === Element.HISTORY && currentOperation === Operation.CHANGE && isShow &&
                 <ChangeHistoryDataModal
-                    isShow="true"
-                    setShow={setShowChangeHistoryModal}
+                    isShow={isShow}
+                    setShow={setShow}
                     updateUrl={baseHistoryUrl}
-                    toggleShow={toggleShowChangeHistoryModal}
+                    toggleShow={() => setShow(!isShow)}
                     currentObject={elementToChange}/>
             }
             {
@@ -164,17 +159,18 @@ export default function PetView(props) {
 
             <Row id="topRow">
                 <PetPanel
-                    pet={props.pet}
+                    pet={pet}
                     getChangeModal={toggleShowChangePetDataModal}/>
             </Row>
             <Row id="bottomRow">
                 <Col id="history">
                     <History
-                        visits={props.visits}
-                        getAddModal={toggleShowAddHistoryModal}
-                        getChangeModal={toggleShowChangeHistoryModal}
-                        getDeleteModal={toggleShowDeleteHistoryModal}
-                        setElementToChange={changeElement}/>
+                        visits={visits}
+                        setShow={() => setShow(!isShow)}
+                        setCurrentElement={() => setCurrentElement(Element.HISTORY)}
+                        setCurrentOperation={setCurrentOperation}
+                        setElementToChange={changeElement}
+                    />
                 </Col>
                 <Col>
                     <PetNotes
