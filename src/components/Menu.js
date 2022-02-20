@@ -4,6 +4,7 @@ import MenuTitle from "./MenuTitle";
 import Logotype from "./Logotype";
 import MenuElement from "./MenuElement";
 import {View} from "../commons/Views"
+import {MenuNavigation} from "../commons/MenuNavigation";
 
 export default function Menu() {
 
@@ -12,16 +13,16 @@ export default function Menu() {
     return (
         <>
             <Logotype/>
-            <MenuTitle icon={pageContext.isUserMenu ? "user-alt" : "paw"}/>
+            <MenuTitle icon={pageContext.actualMenu === MenuNavigation.USER_MENU ? "user-alt" : "paw"}/>
 
-            {pageContext.isUserMenu &&
+            {pageContext.actualMenu === MenuNavigation.USER_MENU &&
                 <MenuElement
                     setView={() => pageContext.setActualView(View.USER_NOTES)}
                     icon="sticky-note"
                     title="Notes"/>
             }
 
-            {pageContext.isPetMenu &&
+            {pageContext.actualMenu === MenuNavigation.PET_MENU &&
                 <MenuElement
                     setView={() => pageContext.setActualView(View.PETS)}
                     icon="heart"
@@ -38,7 +39,7 @@ export default function Menu() {
                 icon="map-marked-alt"
                 title="Find a Veterinarian"/>
 
-            {pageContext.isPetMenu &&
+            {pageContext.actualMenu === MenuNavigation.PET_MENU &&
                 <MenuElement
                     setView={() => pageContext.setActualView(View.DIET)}
                     icon="drumstick-bite"

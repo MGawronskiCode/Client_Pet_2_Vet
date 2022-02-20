@@ -15,26 +15,24 @@ import VeterinariansView from "./views/VeterinariansView";
 import FindVeterinarianView from "./views/FindVeterinarianView";
 import UserNotesView from "./views/UserNotesView";
 import {View} from './commons/Views'
+import {MenuNavigation} from './commons/MenuNavigation'
 
 const PageContext = createContext(null);
 
 export default function Main() {
 
-    const [petId, setPetId] = useState(null);
     const [actualView, setActualView] = useState(View.USER);
-
-    const [isUserMenu, setUserMenu] = useState(true);
-    const [isPetMenu, setPetMenu] = useState(false);
-
+    const [actualMenu, setActualMenu] = useState(MenuNavigation.USER_MENU)
     const [isModalShown, setModalShown] = useState(false);
+    const [synchronized, setSynchronized] = useState(false);
 
     const [pets, setPets] = useState([]);
     const [actualPet, setActualPet] = useState(null)
+    const [petId, setPetId] = useState(null);
     const [petNotes, setPetNotes] = useState([]);
     const [petVisits, setPetVisits] = useState([]);
     const [userNotes, setUserNotes] = useState(null);
     const [dietData, setDietData] = useState(null);
-    const [synchronized, setSynchronized] = useState(false);
 
     useEffect(() => {
         switch (actualView) {
@@ -63,11 +61,9 @@ export default function Main() {
 
     const contextValue = {
         setActualView,
+        actualMenu,
+        setActualMenu,
         setPetId,
-        setUserMenu,
-        setPetMenu,
-        isUserMenu,
-        isPetMenu,
         petId,
         petNotes,
         isModalShown,
@@ -81,14 +77,14 @@ export default function Main() {
             <div id="page">
                 <Container fluid>
                     <Row id="navbarComponent">
-                        {actualView}
+
                     </Row>
                     <Row>
                         <Col id="menuComponent" md={2}>
                             <Menu/>
                         </Col>
                         <Col id="viewComponent">
-                            {actualView === View.USER && <UserView pets={pets} />}
+                            {actualView === View.USER && <UserView pets={pets}/>}
                             {actualView === View.PET && actualPet != null && petNotes != null && petVisits != null &&
                                 <PetView pet={actualPet} notes={petNotes} visits={petVisits}/>}
                             {actualView === View.USER_NOTES && userNotes != null && <UserNotesView notes={userNotes}/>}
