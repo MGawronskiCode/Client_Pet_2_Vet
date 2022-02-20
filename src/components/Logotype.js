@@ -1,16 +1,16 @@
 import {Container, Image} from "react-bootstrap";
-import image from  "../assets/images/Logotype.png";
+import image from "../assets/images/Logotype.png";
 import {useContext} from "react";
 import {PageContext} from "../Main";
-import {View} from "../commons/Views"
+import {View} from "../commons/Views";
+import {MenuNavigation} from "../commons/MenuNavigation";
 
 export default function Logotype() {
 
     const pageContext = useContext(PageContext)
 
     function changeView() {
-        pageContext.setUserMenu(true);
-        pageContext.setPetMenu(false);
+        pageContext.setActualMenu(pageContext.actualMenu === MenuNavigation.USER_MENU ? MenuNavigation.PET_MENU : MenuNavigation.USER_MENU);
         pageContext.setActualView(View.USER);
     }
 

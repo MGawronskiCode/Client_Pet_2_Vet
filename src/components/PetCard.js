@@ -4,16 +4,16 @@ import {PageContext} from "../Main";
 import "../assets/styles/Card.css"
 import ImageP from "../assets/images/Pet.png"
 import {View} from "../commons/Views"
+import {MenuNavigation} from "../commons/MenuNavigation";
 
 export default function PetCard(props) {
 
     const pageContext = useContext(PageContext)
 
     function changeView(petId) {
-        pageContext.setUserMenu(false);
-        pageContext.setPetMenu(true);
         pageContext.setPetId(petId);
         pageContext.setActualView(View.PET);
+        pageContext.setActualMenu(MenuNavigation.PET_MENU);
         pageContext.setSynchronized(!pageContext.synchronized)
     }
 
@@ -23,7 +23,7 @@ export default function PetCard(props) {
 
     function getPetCard() {
         return (
-            <MDBCol center sm={3}>
+            <MDBCol center sm="3">
                 <MDBCard id="petCard" onClick={() => changeView(props.pet.id)}>
                     <MDBCardImage
                         id="image"
@@ -43,7 +43,7 @@ export default function PetCard(props) {
 
     function getAddCard() {
         return (
-            <MDBCol center sm={3}>
+            <MDBCol center sm="3">
                 <MDBCard id="addPet" onClick={() => showAddModal()}>
                     <MDBCardImage
                         id="image"
