@@ -1,5 +1,5 @@
 export const Element = {
     HISTORY: "history",
-    NOTE: "note",
+    PET_NOTE: "petNote",
     PET_DATA: "petData"
 }

@@ -40,7 +40,7 @@ export default function PetView({pet, notes, visits}) {
     function getElementsToChange(element) {
         let elements;
         switch (element) {
-            case Element.NOTE:
+            case Element.PET_NOTE:
                 elements = notes;
                 break;
             case Element.HISTORY:
@@ -53,7 +53,6 @@ export default function PetView({pet, notes, visits}) {
     // Note Modals
     const [showDeleteModal, setShowDeleteModel] = useState(false);
     const [showChangeNoteModal, setShowChangeNoteModal] = useState(false);
-    const [showAddNoteModal, setShowAddNoteModal] = useState(false);
 
     const toggleShowDeleteModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
@@ -63,23 +62,18 @@ export default function PetView({pet, notes, visits}) {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowChangeNoteModal(!showChangeNoteModal);
     }
-    const toggleShowAddNoteModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowAddNoteModal(!showAddNoteModal);
-    }
 
     return (
         <Container id="view">
             {
-                showAddNoteModal &&
+                currentElement === Element.PET_NOTE && currentOperation === Operation.ADD && isShow &&
                 <AddNoteModal
-                    isShow="true"
-                    setShow={setShowAddNoteModal}
+                    isShow={isShow}
+                    setShow={setShow}
                     modalTitle="Save note?"
-                    inputTitle="Title"
-                    inputContent="Content"
                     saveUrl={baseNotesUrl}
-                    toggleShow={toggleShowAddNoteModal}/>
+                    toggleShow={() => setShow(!isShow)}
+                />
             }
             {
                 currentElement === Element.HISTORY && currentOperation === Operation.ADD && isShow &&
@@ -158,11 +152,12 @@ export default function PetView({pet, notes, visits}) {
                 </Col>
                 <Col>
                     <PetNotes
-                        getAddModal={toggleShowAddNoteModal}
-                        getChangeModal={toggleShowChangeNoteModal}
+                        notes={notes}
+                        setShow={() => setShow(!isShow)}
+                        setCurrentElement={() => setCurrentElement(Element.PET_NOTE)}
+                        setCurrentOperation={setCurrentOperation}
                         setElementToChange={changeElement}
-                        getDeleteModal={toggleShowDeleteModal}
-                        notes={notes}/>
+                    />
                 </Col>
             </Row>
 
