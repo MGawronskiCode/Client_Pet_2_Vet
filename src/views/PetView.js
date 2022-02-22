@@ -52,15 +52,10 @@ export default function PetView({pet, notes, visits}) {
 
     // Note Modals
     const [showDeleteModal, setShowDeleteModel] = useState(false);
-    const [showChangeNoteModal, setShowChangeNoteModal] = useState(false);
 
     const toggleShowDeleteModal = () => {
         pageContext.setModalShown(!pageContext.isModalShown);
         setShowDeleteModel(!showDeleteModal);
-    }
-    const toggleShowChangeNoteModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowChangeNoteModal(!showChangeNoteModal);
     }
 
     return (
@@ -85,15 +80,12 @@ export default function PetView({pet, notes, visits}) {
                     toggleShow={() => setShow(!isShow)}/>
             }
             {
-                showChangeNoteModal &&
+                currentElement === Element.PET_NOTE && currentOperation === Operation.CHANGE && isShow &&
                 <ChangeNoteModal
-                    isShow="true"
-                    setShow={setShowChangeNoteModal}
-                    modalTitle="Save changes?"
-                    inputTitle="Title"
-                    inputContent="Content"
+                    isShow={isShow}
+                    setShow={setShow}
                     updateUrl={baseNotesUrl}
-                    toggleShow={toggleShowChangeNoteModal}
+                    toggleShow={() => setShow(!isShow)}
                     currentObject={elementToChange}/>
             }
             {
