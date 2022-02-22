@@ -2,21 +2,26 @@ import {MDBIcon} from "mdb-react-ui-kit";
 import React from "react";
 import {Operation} from "../commons/Operations";
 
-export default function CardElementContent({id, disabled, setShow, setCurrentElement, setCurrentOperation, element,
+export default function CardElementContent({ id, disabled, setShow, setCurrentElement, setCurrentOperation, element,
                                                setElementToChange}) {
 
-    function changeObject(event) {
+    function changeObject(event, operation) {
         let id = event.target.attributes.storage.value;
-        setCurrentElement();
-        setElementToChange(id, element)
-        setCurrentOperation(Operation.CHANGE)
-        setShow();
+        switch (operation) {
+            case Operation.CHANGE:
+                setCurrentOperation(Operation.CHANGE);
+                break;
+            case Operation.DELETE:
+                setCurrentOperation(Operation.DELETE);
+                break;
+        }
+        setStates(id);
     }
 
-    function deleteObject(event) {
-        let id = event.target.attributes.storage.value;
-        // setElementToChange(id, elementTochange);
-        // getDeleteModal();
+    function setStates(id) {
+        setCurrentElement();
+        setElementToChange(id, element);
+        setShow();
     }
 
     return (
@@ -31,9 +36,9 @@ export default function CardElementContent({id, disabled, setShow, setCurrentEle
                     :
                     <>
                         <MDBIcon id="edit" fas icon="pencil-alt" storage={id}
-                                 onClick={(event) => changeObject(event)}/>
+                                 onClick={(event) => changeObject(event, Operation.CHANGE)}/>
                         <MDBIcon id="delete" fas icon="trash-alt" storage={id}
-                                 onClick={(event) => deleteObject(event)}/>
+                                 onClick={(event) => changeObject(event, Operation.DELETE)}/>
                     </>
             }
         </div>

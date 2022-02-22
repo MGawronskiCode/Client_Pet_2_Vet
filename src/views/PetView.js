@@ -77,13 +77,6 @@ export default function PetView({pet, notes, visits}) {
         setShowChangePetDataModal(!showChangePetDataModal);
     }
 
-    // History Modals
-    const [showDeleteHistoryModal, setShowDeleteHistoryModal] = useState(false);
-    const toggleShowDeleteHistoryModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowDeleteHistoryModal(!showDeleteHistoryModal);
-    }
-
     return (
         <Container id="view">
             {
@@ -141,20 +134,18 @@ export default function PetView({pet, notes, visits}) {
                 <DeleteModal
                     isShow="true"
                     setShow={setShowDeleteModel}
-                    modalTitle="Are you sure?"
                     toggleShow={toggleShowDeleteModal}
                     currentObject={elementToChange}
                     deleteUrl={baseNotesUrl}/>
             }
             {
-                showDeleteHistoryModal &&
+                currentElement === Element.HISTORY && currentOperation === Operation.DELETE && isShow &&
                 <DeleteModal
-                    isShow="true"
-                    setShow={setShowDeleteHistoryModal}
-                    modalTitle="Are you sure?"
-                    toggleShow={toggleShowDeleteHistoryModal}
-                    currentObject={elementToChange}
-                    deleteUrl={baseHistoryUrl}/>
+                    isShow={isShow}
+                    setShow={setShow}
+                    deleteUrl={baseHistoryUrl}
+                    toggleShow={() => setShow(!isShow)}
+                    currentObject={elementToChange}/>
             }
 
             <Row id="topRow">
