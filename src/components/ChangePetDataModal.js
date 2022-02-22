@@ -16,29 +16,27 @@ import PutData from "../services/PutData";
 import {DatePickerComponent} from "@syncfusion/ej2-react-calendars";
 import {PageContext} from "../Main";
 
-export default function ChangePetDataModal(props) {
+export default function ChangePetDataModal({pet, updateUrl, isShow, setShow, toggleShow}) {
 
     const pageContext = useContext(PageContext);
 
-    const [name, setName] = useState(props.pet.name);
+    const [name, setName] = useState(pet.name);
     const [sex, setSex] = useState("0");
-    const [birthday, setBirthday] = useState(props.pet.birthday);
+    const [birthday, setBirthday] = useState(pet.birthday);
 
     function update() {
-        // TODO: fix problem with updating. Changes the date to the selected date minus one day
-        // alert(sex)
         const data = {
             "name": name,
             "sex": sex,
             "birthday": birthday
         }
-        PutData(props.updateUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
-        props.toggleShow();
+        PutData(updateUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
+        toggleShow();
     }
 
     return (
         <>
-            <MDBModal show={props.isShow} setShow={props.setShow} tabIndex='-1'>
+            <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
 
@@ -51,7 +49,8 @@ export default function ChangePetDataModal(props) {
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none"
+                                                onClick={toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -61,13 +60,15 @@ export default function ChangePetDataModal(props) {
                             <MDBInput
                                 type='text'
                                 label="Name"
-                                defaultValue={props.pet.name}
+                                defaultValue={pet.name}
                                 onChange={(el) => setName(el.target.value)}/>
                         </div>
                         <div id="input">
                             <select className="form-select" onChange={(el) => setSex(el.target.valueOf().value)}>
-                                <option value={props.pet.sex === "MALE" ? "0" : "1"}>{props.pet.sex === "MALE" ? "Male" : "Female"}</option>
-                                <option value={props.pet.sex === "MALE" ? "1" : "0"}>{props.pet.sex === "MALE" ? "Female" : "Male"}</option>
+                                <option
+                                    value={pet.sex === "MALE" ? "0" : "1"}>{pet.sex === "MALE" ? "Male" : "Female"}</option>
+                                <option
+                                    value={pet.sex === "MALE" ? "1" : "0"}>{pet.sex === "MALE" ? "Female" : "Male"}</option>
                             </select>
                         </div>
                         <div id="input">
@@ -84,7 +85,7 @@ export default function ChangePetDataModal(props) {
                             <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={update}>
                                 Save
                             </MDBBtn>
-                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
+                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={toggleShow}>
                                 Cancel
                             </MDBBtn>
                         </MDBModalFooter>

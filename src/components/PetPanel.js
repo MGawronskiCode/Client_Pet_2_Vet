@@ -4,8 +4,9 @@ import {MDBCardImage, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import DefaultImage from "../assets/images/Pet.png"
 import Pin from "../assets/images/Pin.jpg"
 import CardElementImage from "./CardElementImage";
+import {Operation} from "../commons/Operations";
 
-export default function PetPanel({pet, getChangeModal}) {
+export default function PetPanel({pet, setShow, setCurrentElement, setCurrentOperation}) {
 
     return (
         <MDBContainer id="container">
@@ -24,7 +25,11 @@ export default function PetPanel({pet, getChangeModal}) {
                                 <h1>{pet.name ? pet.name : "Name"}</h1>
                             </MDBCol>
                             <MDBCol md="3"/>
-                            <MDBCol center md="1" id="pinIcon" onClick={getChangeModal}>
+                            <MDBCol center md="1" id="pinIcon" onClick={() => {
+                                setShow();
+                                setCurrentElement();
+                                setCurrentOperation(Operation.CHANGE);
+                            }}>
                                 <CardElementImage image={Pin}/>
                             </MDBCol>
                         </MDBRow>
