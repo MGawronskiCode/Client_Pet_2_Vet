@@ -26,7 +26,7 @@ export default function Login({loggedKey, setLogged, setShowInfoModal}) {
     const base64 = require('base-64');
     const fetchHeaders = new Headers();
 
-    const [loginRegisterActive, setLoginRegisterClick] = useState('login');
+    const [loginRegisterActive, setLoginRegisterActive] = useState('login');
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -132,7 +132,7 @@ export default function Login({loggedKey, setLogged, setShowInfoModal}) {
                                 <MDBTabsItem>
                                     <MDBTabsLink
                                         style={{backgroundColor: loginRegisterActive === 'login' ? '#2d3051' : ''}}
-                                        onClick={() => setLoginRegisterClick('login')}
+                                        onClick={() => setLoginRegisterActive('login')}
                                         active={loginRegisterActive === 'login'}>
                                         Login
                                     </MDBTabsLink>
@@ -140,7 +140,7 @@ export default function Login({loggedKey, setLogged, setShowInfoModal}) {
                                 <MDBTabsItem>
                                     <MDBTabsLink
                                         style={{backgroundColor: loginRegisterActive === 'register' ? '#2d3051' : ''}}
-                                        onClick={() => setLoginRegisterClick('register')}
+                                        onClick={() => setLoginRegisterActive('register')}
                                         active={loginRegisterActive === 'register'}>
                                         Register
                                     </MDBTabsLink>

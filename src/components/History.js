@@ -3,11 +3,10 @@ import React, {useState} from "react";
 import CardHeader from "./CardHeader";
 import HistoryImage from "../assets/images/History.jpg";
 import Visit from "./Visit";
+import {Operation} from "../commons/Operations";
 
+export default function History ({visits, setShow, setCurrentElement, setCurrentOperation, setElementToChange}) {
 
-export default function History (props) {
-
-    const visits = props.visits;
     const [disabled, setDisabled] = useState(true);
 
     function getVisits() {
@@ -16,11 +15,10 @@ export default function History (props) {
                 <div key={index}>
                     <Visit
                         visit={visit}
-                        index={index}
-                        setDisabled={setDisabled}
-                        getDeleteModal={props.getDeleteModal}
-                        getChangeModal={props.getChangeModal}
-                        setElementToChange={props.setElementToChange}
+                        setShow={setShow}
+                        setCurrentElement={setCurrentElement}
+                        setCurrentOperation={setCurrentOperation}
+                        setElementToChange={setElementToChange}
                         image={HistoryImage}/>
                 </div>
             )
@@ -37,7 +35,10 @@ export default function History (props) {
                     <CardHeader
                         title="History"
                         disabled={disabled}
-                        getAddModal={props.getAddModal} />
+                        setShow={setShow}
+                        setCurrentElement={setCurrentElement}
+                        setCurrentOperation={() => setCurrentOperation(Operation.ADD)}
+                    />
                 </MDBCardTitle>
 
                 <MDBCardBody>

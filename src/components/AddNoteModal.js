@@ -12,7 +12,7 @@ import React, {useContext, useState} from "react";
 import PostData from "../services/PostData";
 import {PageContext} from "../Main";
 
-export default function AddNoteModal(props) {
+export default function AddNoteModal({modalTitle, saveUrl, isShow, setShow, toggleShow}) {
 
     const pageContext = useContext(PageContext);
 
@@ -24,13 +24,13 @@ export default function AddNoteModal(props) {
             "title": title,
             "content": content
         }
-        PostData(props.saveUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
-        props.toggleShow();
+        PostData(saveUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
+        toggleShow();
     }
 
     return (
         <>
-            <MDBModal show={props.isShow} setShow={props.setShow} tabIndex='-1'>
+            <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
 
@@ -39,11 +39,12 @@ export default function AddNoteModal(props) {
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">
-                                            {props.modalTitle}
+                                            {modalTitle}
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none"
+                                                onClick={toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -52,21 +53,21 @@ export default function AddNoteModal(props) {
                         <div id="input">
                             <MDBInput
                                 type='text'
-                                label={props.inputTitle}
-                                onChange={(el) => setTitle(el.target.value)} />
+                                label="Title"
+                                onChange={(el) => setTitle(el.target.value)}/>
                         </div>
                         <div id="input">
                             <MDBInput
                                 type='text'
-                                label={props.inputContent}
+                                label="Content"
                                 onChange={(el) => setContent(el.target.value)}/>
                         </div>
 
                         <MDBModalFooter className="justify-content-center">
-                            <MDBBtn rounded style={{ backgroundColor: '#2d3051' }} onClick={save}>
+                            <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={save}>
                                 Save
                             </MDBBtn>
-                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
+                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={toggleShow}>
                                 Cancel
                             </MDBBtn>
                         </MDBModalFooter>

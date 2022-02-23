@@ -3,7 +3,7 @@ import CardElementContent from "./CardElementContent";
 import {MDBCard, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
 import CardElementImage from "./CardElementImage";
 
-export default function CardElement(props) {
+export default function CardElement({element, image, setShow, setCurrentElement, setCurrentOperation, setElementToChange}) {
 
     const [disabled, setDisabled] = useState(true);
 
@@ -17,27 +17,29 @@ export default function CardElement(props) {
                 <MDBRow>
                     <MDBCol md="2" center>
                         <CardElementImage
-                            image={props.image}/>
+                            image={image}/>
                     </MDBCol>
 
                     <MDBCol md="10">
                         <MDBContainer style={{textAlign: "center"}}>
                             <MDBRow>
                                 <MDBCol md="10">
-                                    <h5>{props.element.title}</h5>
+                                    <h5>{element.title}</h5>
                                 </MDBCol>
                                 <MDBCol md="2" center>
                                     <CardElementContent
+                                        id={element.id}
+                                        element="petNote"
                                         disabled={disabled}
-                                        getDeleteModal={props.getDeleteModal}
-                                        getChangeModel={props.getChangeModal}
-                                        setElementToChange={props.setElementToChange}
-                                        elementTochange="notes"
-                                        id={props.element.id}/>
+                                        setShow={setShow}
+                                        setCurrentElement={setCurrentElement}
+                                        setCurrentOperation={setCurrentOperation}
+                                        setElementToChange={setElementToChange}
+                                    />
                                 </MDBCol>
                             </MDBRow>
                             <MDBRow>
-                                {props.element.content}
+                                {element.content}
                             </MDBRow>
                         </MDBContainer>
                     </MDBCol>

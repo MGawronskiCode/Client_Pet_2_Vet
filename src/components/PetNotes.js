@@ -4,10 +4,10 @@ import CardHeader from "./CardHeader";
 import CardElement from "./CardElement";
 import '../assets/styles/Card.css'
 import Clip from "../assets/images/Clip.jpg"
+import {Operation} from "../commons/Operations";
 
-export default function PetNotes(props) {
+export default function PetNotes({notes, setShow, setCurrentElement, setCurrentOperation, setElementToChange}) {
 
-    const notes = props.notes;
     const [disabled, setDisabled] = useState(true);
 
     function getNotes() {
@@ -18,9 +18,11 @@ export default function PetNotes(props) {
                         element={note}
                         index={index}
                         image={Clip}
-                        getChangeModal={props.getChangeModal}
-                        setElementToChange={props.setElementToChange}
-                        getDeleteModal={props.getDeleteModal} />
+                        setShow={setShow}
+                        setCurrentElement={setCurrentElement}
+                        setCurrentOperation={setCurrentOperation}
+                        setElementToChange={setElementToChange}
+                    />
                 </div>
             )
         })
@@ -35,7 +37,10 @@ export default function PetNotes(props) {
                     <CardHeader
                         title="Personal notes"
                         disabled={disabled}
-                        getAddModal={props.getAddModal}/>
+                        setShow={setShow}
+                        setCurrentElement={setCurrentElement}
+                        setCurrentOperation={() => setCurrentOperation(Operation.ADD)}
+                    />
                 </MDBCardTitle>
 
                 <MDBCardBody>

@@ -6,7 +6,7 @@ import ImageP from "../assets/images/Pet.png"
 import {View} from "../commons/Views"
 import {MenuNavigation} from "../commons/MenuNavigation";
 
-export default function PetCard(props) {
+export default function PetCard({pet, image, toggleShow}) {
 
     const pageContext = useContext(PageContext)
 
@@ -17,24 +17,20 @@ export default function PetCard(props) {
         pageContext.setSynchronized(!pageContext.synchronized)
     }
 
-    function showAddModal() {
-        props.toggleShow();
-    }
-
     function getPetCard() {
         return (
             <MDBCol center sm="3">
-                <MDBCard id="petCard" onClick={() => changeView(props.pet.id)}>
+                <MDBCard id="petCard" onClick={() => changeView(pet.id)}>
                     <MDBCardImage
                         id="image"
                         src={ImageP}
                         alt='...'/>
                     <MDBCardBody>
                         <MDBCardTitle id="card-title">
-                            {props.pet.name}
+                            {pet.name}
                         </MDBCardTitle>
-                        <p>Sex: {props.pet.sex}</p>
-                        <p>Birthday: {props.pet.birthday}</p>
+                        <p>Sex: {pet.sex}</p>
+                        <p>Birthday: {pet.birthday}</p>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
@@ -44,10 +40,10 @@ export default function PetCard(props) {
     function getAddCard() {
         return (
             <MDBCol center sm="3">
-                <MDBCard id="addPet" onClick={() => showAddModal()}>
+                <MDBCard id="addPet" onClick={toggleShow}>
                     <MDBCardImage
                         id="image"
-                        src={props.image}
+                        src={image}
                         alt='...'/>
                     <MDBCardBody>
                         <MDBCardTitle id="card-title">
@@ -64,8 +60,8 @@ export default function PetCard(props) {
 
     return (
         <>
-            {props.pet !== null && getPetCard()}
-            {props.pet === null && getAddCard()}
+            {pet !== null && getPetCard()}
+            {pet === null && getAddCard()}
         </>
     )
 }

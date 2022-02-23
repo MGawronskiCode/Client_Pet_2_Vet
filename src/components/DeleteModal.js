@@ -15,19 +15,19 @@ import '../assets/styles/Modal.css'
 import DeleteData from "../services/DeleteData";
 import {PageContext} from "../Main";
 
-export default function DeleteModal (props) {
+export default function DeleteModal({isShow, setShow, deleteUrl, toggleShow, currentObject}) {
 
     const pageContext = useContext(PageContext);
 
     function deleteObject() {
-        DeleteData(props.deleteUrl + props.currentObject.id)
+        DeleteData(deleteUrl + currentObject.id)
             .then(() => pageContext.setSynchronized(!pageContext.synchronized));
-        props.toggleShow();
+        toggleShow();
     }
 
     return (
         <>
-            <MDBModal show={props.isShow} setShow={props.setShow} tabIndex='-1'>
+            <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
 
@@ -36,11 +36,12 @@ export default function DeleteModal (props) {
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">
-                                            {props.modalTitle}
+                                            "Are you sure?"
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none"
+                                                onClick={toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -54,7 +55,7 @@ export default function DeleteModal (props) {
                             <MDBBtn rounded className='mx-2' color='danger' onClick={deleteObject}>
                                 Yes
                             </MDBBtn>
-                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
+                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={toggleShow}>
                                 No
                             </MDBBtn>
                         </MDBModalFooter>

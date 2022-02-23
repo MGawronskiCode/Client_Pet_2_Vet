@@ -15,26 +15,26 @@ import '../assets/styles/Modal.css'
 import PutData from "../services/PutData";
 import {PageContext} from "../Main";
 
-export default function ChangeNoteModal(props) {
+export default function ChangeNoteModal({isShow, setShow, currentObject, updateUrl, toggleShow}) {
 
     const pageContext = useContext(PageContext)
 
-    const [title, setTitle] = useState(props.currentObject.title)
-    const [content, setContent] = useState(props.currentObject.content)
+    const [title, setTitle] = useState(currentObject.title)
+    const [content, setContent] = useState(currentObject.content)
 
     function update() {
         const data = {
             "title": title,
             "content": content
         }
-        PutData(props.updateUrl + props.currentObject.id, data)
+        PutData(updateUrl + currentObject.id, data)
             .then(() => pageContext.setSynchronized(!pageContext.synchronized));
-        props.toggleShow();
+        toggleShow();
     }
 
     return (
         <>
-            <MDBModal show={props.isShow} setShow={props.setShow} tabIndex='-1'>
+            <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
 
@@ -43,11 +43,11 @@ export default function ChangeNoteModal(props) {
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">
-                                            {props.modalTitle}
+                                            "Save changes?"
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -56,15 +56,15 @@ export default function ChangeNoteModal(props) {
                         <div id="input">
                             <MDBInput
                                 type='text'
-                                label={props.inputTitle}
-                                defaultValue={props.currentObject.title}
+                                label="Title"
+                                defaultValue={currentObject.title}
                                 onChange={(el) => setTitle(el.target.value)}/>
                         </div>
                         <div id="input">
                             <MDBInput
                                 type='text'
-                                label={props.inputContent}
-                                defaultValue={props.currentObject.content}
+                                label="Content"
+                                defaultValue={currentObject.content}
                                 onChange={(el) => setContent(el.target.value)}/>
                         </div>
 
@@ -72,7 +72,7 @@ export default function ChangeNoteModal(props) {
                             <MDBBtn rounded style={{backgroundColor: '#2d3051'}} onClick={update}>
                                 Save
                             </MDBBtn>
-                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
+                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={toggleShow}>
                                 Cancel
                             </MDBBtn>
                         </MDBModalFooter>

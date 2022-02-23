@@ -14,7 +14,7 @@ import {PageContext} from "../Main";
 import {DateTimePickerComponent} from "@syncfusion/ej2-react-calendars/src/datetimepicker/datetimepicker.component";
 import PostData from "../services/PostData";
 
-export default function AddHistoryModal(props) {
+export default function AddHistoryModal({modalTitle, saveUrl, isShow, setShow, toggleShow}) {
 
     const pageContext = useContext(PageContext);
 
@@ -34,13 +34,13 @@ export default function AddHistoryModal(props) {
             "recommendation": recommendation,
             "files": []
         }
-        PostData(props.saveUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
-        props.toggleShow();
+        PostData(saveUrl, data).then(() => pageContext.setSynchronized(!pageContext.synchronized));
+        toggleShow();
     }
 
     return (
         <>
-            <MDBModal show={props.isShow} setShow={props.setShow} tabIndex='-1'>
+            <MDBModal show={isShow} setShow={setShow} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
 
@@ -49,11 +49,11 @@ export default function AddHistoryModal(props) {
                                 <MDBRow>
                                     <MDBCol md="11">
                                         <MDBModalTitle className="modal-danger text-center">
-                                            {props.modalTitle}
+                                            {modalTitle}
                                         </MDBModalTitle>
                                     </MDBCol>
                                     <MDBCol md="1">
-                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={props.toggleShow}/>
+                                        <MDBBtn className="btn-close btn-close-white" color="none" onClick={toggleShow}/>
                                     </MDBCol>
                                 </MDBRow>
                             </MDBContainer>
@@ -102,7 +102,7 @@ export default function AddHistoryModal(props) {
                             <MDBBtn rounded style={{ backgroundColor: '#2d3051' }} onClick={save}>
                                 Save
                             </MDBBtn>
-                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={props.toggleShow}>
+                            <MDBBtn outline rounded className='mx-2' color='dark' onClick={toggleShow}>
                                 Cancel
                             </MDBBtn>
                         </MDBModalFooter>
