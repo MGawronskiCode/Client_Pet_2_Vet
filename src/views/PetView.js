@@ -50,14 +50,6 @@ export default function PetView({pet, notes, visits}) {
         return elements;
     }
 
-    // Note Modals
-    const [showDeleteModal, setShowDeleteModel] = useState(false);
-
-    const toggleShowDeleteModal = () => {
-        pageContext.setModalShown(!pageContext.isModalShown);
-        setShowDeleteModel(!showDeleteModal);
-    }
-
     return (
         <Container id="view">
             {
@@ -107,13 +99,13 @@ export default function PetView({pet, notes, visits}) {
                     currentObject={elementToChange}/>
             }
             {
-                showDeleteModal &&
+                currentElement === Element.PET_NOTE && currentOperation === Operation.DELETE && isShow &&
                 <DeleteModal
-                    isShow="true"
-                    setShow={setShowDeleteModel}
-                    toggleShow={toggleShowDeleteModal}
-                    currentObject={elementToChange}
-                    deleteUrl={baseNotesUrl}/>
+                    isShow={isShow}
+                    setShow={setShow}
+                    deleteUrl={baseNotesUrl}
+                    toggleShow={() => setShow(!isShow)}
+                    currentObject={elementToChange}/>
             }
             {
                 currentElement === Element.HISTORY && currentOperation === Operation.DELETE && isShow &&
