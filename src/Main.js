@@ -60,6 +60,7 @@ export default function Main() {
     }, [isModalShown, synchronized]);
 
     const contextValue = {
+        actualView,
         setActualView,
         actualMenu,
         setActualMenu,

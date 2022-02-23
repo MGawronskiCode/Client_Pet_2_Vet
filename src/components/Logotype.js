@@ -10,7 +10,13 @@ export default function Logotype() {
     const pageContext = useContext(PageContext)
 
     function changeView() {
-        pageContext.setActualMenu(pageContext.actualMenu === MenuNavigation.USER_MENU ? MenuNavigation.PET_MENU : MenuNavigation.USER_MENU);
+        let menu;
+        if (pageContext.actualMenu === MenuNavigation.PET_MENU) {
+            menu = MenuNavigation.USER_MENU;
+        } else {
+            menu = pageContext.actualView === View.USER ? MenuNavigation.USER_MENU : MenuNavigation.PET_MENU;
+        }
+        pageContext.setActualMenu(menu);
         pageContext.setActualView(View.USER);
     }
 
