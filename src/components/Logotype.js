@@ -14,7 +14,7 @@ export default function Logotype() {
         if (pageContext.actualMenu === MenuNavigation.PET_MENU) {
             menu = MenuNavigation.USER_MENU;
         } else {
-            menu = pageContext.actualView === View.USER ? MenuNavigation.USER_MENU : MenuNavigation.PET_MENU;
+            menu = pageContext.actualView !== View.PET ? MenuNavigation.USER_MENU : MenuNavigation.PET_MENU;
         }
         pageContext.setActualMenu(menu);
         pageContext.setActualView(View.USER);
